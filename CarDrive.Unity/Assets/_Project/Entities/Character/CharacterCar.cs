@@ -1,10 +1,10 @@
 using Assets._Project.Systems.Driving;
 using UnityEngine;
 
-namespace Assets._Project.Entities
+namespace Assets._Project.Entities.Character
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterCar : MonoBehaviour, IDrivable
+    public class CharacterCar : Entity, IDrivable
     {
         private Rigidbody _rigidbody;
 
@@ -20,7 +20,7 @@ namespace Assets._Project.Entities
 
         public void Stear(float value)
         {
-            
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Assets._Project.Helpers;
 using UnityEngine;
 
-namespace Assets._Project.Entities
+namespace Assets._Project.Entities.Character
 {
     public class CharacterCarFactory
     {
@@ -12,7 +12,7 @@ namespace Assets._Project.Entities
             _prefab = prefab;
         }
 
-        public CharacterCar Create(SpawnData spawnData) 
+        public CharacterCar Create(SpawnData spawnData)
         {
             CharacterCar instance = Object
                 .Instantiate(_prefab, spawnData.Position, spawnData.Rotation, spawnData.Parent).AddComponent<CharacterCar>();
