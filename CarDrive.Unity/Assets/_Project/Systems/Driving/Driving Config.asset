@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1202abded600904e8c502c436abd755, type: 3}
   m_Name: Driving Config
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 30
   <StartupAcceleration>k__BackingField: 5
   <StearSpeed>k__BackingField: 5
