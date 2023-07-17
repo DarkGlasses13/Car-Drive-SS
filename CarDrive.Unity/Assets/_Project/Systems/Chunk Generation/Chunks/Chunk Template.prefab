@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8582516603581545008}
-  - component: {fileID: 1439856785814082127}
   - component: {fileID: 3833563624080843551}
   m_Layer: 3
   m_Name: Chunk Template
@@ -34,20 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1439856785814082127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6403475352705863054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992856e2eb5dd634f8f87cc1aed25037, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _roadMeshRenderer: {fileID: 3881133655087389305}
-  <IsInitial>k__BackingField: 0
 --- !u!65 &3833563624080843551
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -147,12 +132,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0db0d0f46957ae346bed902636eae62f, type: 3}
---- !u!23 &3881133655087389305 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7708843001034744259, guid: 0db0d0f46957ae346bed902636eae62f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6856661862522731450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8945802867604276770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2522616044927581592, guid: 0db0d0f46957ae346bed902636eae62f,

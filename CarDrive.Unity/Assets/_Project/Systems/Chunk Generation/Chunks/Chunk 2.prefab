@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Name
-      value: Chunk 3
+      value: Chunk 2
       objectReference: {fileID: 0}
     - target: {fileID: 8582516603581545008, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}

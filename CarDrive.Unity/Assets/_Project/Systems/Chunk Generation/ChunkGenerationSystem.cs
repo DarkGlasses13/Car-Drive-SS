@@ -1,31 +1,50 @@
 using Assets._Project.Architecture;
+using Assets._Project.Helpers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Pool;
 
 namespace Assets._Project.Systems.ChunkGeneration
 {
     public class ChunkGenerationSystem : GameSystem
     {
-        private readonly ChunkGenerationConfig _config;
-        private readonly List<Chunk> _prefabs;
+        private readonly ChunkGenerationData _data;
+        private readonly LocalAssetLoader _assetLoader;
         private readonly Transform _container;
-        private ObjectPool<Chunk> _pool;
-        private Chunk _last;
-        //private int _passedCount;
+        private ChunkGenerationConfig _config;
+        private AssetLabelReference _emptyLabel, _obstaclebleLabel;
+        private List<Chunk> _emptyPrefabs;
+        private List<ObstaclebleChunk> _obstacleblePrefabs;
+        private ObjectPool<Chunk> _emptyPool;
+        private ObjectPool<ObstaclebleChunk> _obstacleblePool;
+        private Chunk _initial, _last;
+        private CheckPointChunk _checkPoint;
 
-        public ChunkGenerationSystem(ChunkGenerationConfig config, IEnumerable<Chunk> prefabs, Transform container)
+        public ChunkGenerationSystem(ChunkGenerationData data, LocalAssetLoader assetLoader, Transform container)
         {
-            _config = config;
-            _prefabs = new List<Chunk>(prefabs);
+            _data = data;
+            _assetLoader = assetLoader;
             _container = container;
-            _pool = new(OnCreate, null, null, OnDestroy, true, defaultCapacity: config.InitialAmount, maxSize: 100);
         }
 
-        public override void Initialize()
+        public override async Task InitializeAsync()
         {
-            _last = Object.Instantiate(_prefabs.SingleOrDefault(chunk => chunk.IsInitial), _container);
+            _config = await _assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
+            _emptyLabel = _config.EmptyChunkAssetLabel;
+            _obstaclebleLabel = _config.ObstaclebleChunkAssetLabel;
+            IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>(_emptyLabel, OnEmptyPrefabLoaded);
+            _emptyPrefabs = new(emptyPrefabs.Select(chunk => chunk.GetComponent<Chunk>()));
+            _emptyPool = new(CreateEmpty, null, null, OnDestroy, true, defaultCapacity: 0, maxSize: 100);
+            IList<GameObject> obstacleblePrefabs = await _assetLoader.LoadAll<GameObject>(_obstaclebleLabel, OnObstacleblePrefabLoaded);
+            _obstacleblePrefabs = new(obstacleblePrefabs.Select(chunk => chunk.GetComponent<ObstaclebleChunk>()));
+            _obstacleblePool = new(CreateObstacleble, null, null, OnObstaclebleDestroy, true, defaultCapacity: 0, maxSize: 100);
+            _initial = await _assetLoader.LoadAndInstantiateAsync<Chunk>("Initial Chunk", _container);
+            _checkPoint = await _assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _container);
+            _checkPoint.gameObject.SetActive(false);
+            _last = _initial;
 
             for (int i = 1; i < _config.InitialAmount; i++)
             {
@@ -35,34 +54,35 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void Spawn()
         {
-            Chunk instance = _pool.Get();
+            Chunk instance = _config.GeneralObstacleDencity >= Random.value 
+                ? _obstacleblePool.Get() 
+                : _emptyPool.Get();
+
             instance.transform.position = _last.GetConnectPosition(instance);
             _last = instance;
         }
 
         public override void Tick()
         {
-
+            
         }
 
         private void OnPassed(Chunk chunk)
         {
-            //_passedCount++;
-
-            //if (_passedCount >= _config.ChunksPassedBeforeCentering)
-            //{
-            //    _passedCount = 0;
-            //    // Center
-            //}
-
+            _data.PassedChunksCount++;
             Spawn();
         }
 
-        private Chunk OnCreate()
+        private ObstaclebleChunk CreateObstacleble() => Create(_obstacleblePrefabs);
+
+        private void OnObstaclebleDestroy(ObstaclebleChunk chunk) => OnDestroy(chunk);
+
+        private Chunk CreateEmpty() => Create(_emptyPrefabs);
+
+        private T Create<T>(List<T> prefabs) where T : Chunk
         {
-            IEnumerable<Chunk> prefabs = _prefabs.Where(prefab => prefab.IsInitial == false);
-            Chunk prefab = prefabs.ElementAt(Random.Range(0, prefabs.Count()));
-            Chunk instance = Object.Instantiate(prefab, _container);
+            T prefab = prefabs.ElementAt(Random.Range(0, prefabs.Count()));
+            T instance = Object.Instantiate(prefab, _container);
             instance.OnPassed += OnPassed;
             return instance;
         }
@@ -71,5 +91,9 @@ namespace Assets._Project.Systems.ChunkGeneration
         {
             chunk.OnPassed -= OnPassed;
         }
+
+        private void OnObstacleblePrefabLoaded(GameObject prefab) { }
+
+        private void OnEmptyPrefabLoaded(GameObject prefab) { }
     }
 }

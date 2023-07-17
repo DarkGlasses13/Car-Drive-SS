@@ -7,7 +7,6 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         public Action<Chunk> OnPassed;
         [SerializeField] private MeshRenderer _roadMeshRenderer;
-        [field: SerializeField] public bool IsInitial { get; private set; }
 
         public Bounds Bounds => _roadMeshRenderer.bounds;
 
