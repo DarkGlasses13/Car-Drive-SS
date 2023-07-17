@@ -1,15 +1,14 @@
 ﻿using Assets._Project.CameraControl;
 using Assets._Project.DI;
 using Assets._Project.Entities;
+using Assets._Project.Entities.Character;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Driving;
+using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace Assets._Project
 {
@@ -20,25 +19,22 @@ namespace Assets._Project
             _chunksContainer,
             _entityContainer;
 
-        [SerializeField] private AssetLabelReference _chunkAssetLable;
-
         protected async void Start()
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
+            IEntityContainer entityContainer = new EntityContainer();
             Cinematographer cinematographer = projectContainer.Get<Cinematographer>();
-            await assetLoader.LoadAndInstantiate<Camera>("Player Camera", _camerasContainer);
+            await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
             cinematographer.AddCamera(GameCamera.Run, await assetLoader
-                .LoadAndInstantiate<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
+                .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
             cinematographer.AddCamera(GameCamera.Lose, await assetLoader
-                .LoadAndInstantiate<CinemachineVirtualCamera>("Lose Virtual Camera", _camerasContainer));
+                .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Lose Virtual Camera", _camerasContainer));
 
-            IList<GameObject> chunks = await assetLoader
-                .LoadAll<GameObject>(_chunkAssetLable, chunk => { });
-            ChunkGenerationSystem chunkGenerationSystem = new(await assetLoader
-                .Load<ChunkGenerationConfig>("Chunk Generation Config"), chunks
-                .Select(chunk => chunk.GetComponent<Chunk>()), _chunksContainer);
+            ChunkGenerationData chunkGenerationData = new();
+            ChunkGenerationSystem chunkGenerationSystem = new(chunkGenerationData, assetLoader, _chunksContainer);
 
+            WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"), chunkGenerationData);
 
             SpawnData characterCarSpawnData = new(_entityContainer, Vector3.zero, Quaternion.identity);
             CharacterCar characterCar = new CharacterCarFactory(await assetLoader
@@ -46,11 +42,14 @@ namespace Assets._Project
             DrivingSystem drivingSystem = new(await assetLoader
                 .Load<DrivingConfig>("Driving Config"), projectContainer.Get<IPlayerInput>(), characterCar);
 
-            chunkGenerationSystem.Initialize();
+            entityContainer.Add(characterCar);
+
+            await chunkGenerationSystem.InitializeAsync();
 
             _systems = new() 
             {
                 chunkGenerationSystem,
+                worldCentringSystem,
                 drivingSystem
             };
 
