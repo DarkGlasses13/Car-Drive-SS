@@ -18,22 +18,44 @@ MonoBehaviour:
   m_GUID: ae537bc8eac07b149b532b26c61fb148
   m_SerializeEntries:
   - m_GUID: d1c49bc71684d674b864bcc7b746bd9e
-    m_Address: Chunk0
+    m_Address: Initial Chunk
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunks
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17c3516b5213a1a4c9b77362fd5cf775
-    m_Address: Chunk1
+  - m_GUID: 5d5cf7d1eb595184da4c46d43fbc657e
+    m_Address: Chunk 1.o
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Chunks
+    - Obstacleble Chunk
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: deb3304004a80a14cad814cf93c39b4f
-    m_Address: Chunk3
+  - m_GUID: de4afaacabe51b248bd9cd5ca41f6176
+    m_Address: Chunk 1.e
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Chunks
+    - Empty Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6afa6a0018d97441b30a94e266b7129
+    m_Address: Chunk 2.e
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Empty Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d356cbf4ec293ce4fb9fbda8149dfbb5
+    m_Address: Chunk 2.o
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Obstacleble Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fbeaf5182565b84b840694747df95dc
+    m_Address: Chunk 2.o
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Obstacleble Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74d3aa0d5e94ae4458eece4a62a0454a
+    m_Address: Check Point Chunk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
