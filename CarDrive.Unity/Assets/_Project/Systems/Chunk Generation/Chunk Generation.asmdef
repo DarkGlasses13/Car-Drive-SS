@@ -1,0 +1,17 @@
+{
+    "name": "ChunkGeneration",
+    "rootNamespace": "",
+    "references": [
+        "GUID:be0d3019f3c593a4d8db8286e2c87e83",
+        "GUID:2e4677e5e7be7fe47bb1858b90cb600a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

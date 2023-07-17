@@ -1,0 +1,17 @@
+{
+    "name": "Driving",
+    "rootNamespace": "",
+    "references": [
+        "GUID:be0d3019f3c593a4d8db8286e2c87e83",
+        "GUID:3698af82ae308224a8981c034eaa693c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

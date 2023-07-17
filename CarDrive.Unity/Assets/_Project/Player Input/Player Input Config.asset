@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131d45ae0987fc749bd2f321522dacaa, type: 3}
+  m_Name: Player Input Config
+  m_EditorClassIdentifier: 
+  <GasRegulationInputAction>k__BackingField:
+    m_Name: Gas Regulation Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 23301bc4-2756-4444-9a13-140ee0167bbc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: WS
+      m_Id: 84d90a27-608c-475c-ac26-a0cd6c5f7801
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 4f5989e3-a0c8-4044-ad18-5044b0826e1c
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 07239863-efd6-43ca-87cd-fb47c390d992
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 8
+    m_Flags: 0
+  <StearInputAction>k__BackingField:
+    m_Name: Stear Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 622a5e23-7873-4159-af1a-311e4c669cb8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: AD
+      m_Id: 73ebd3ae-16cd-4ad3-afb2-69bceaf229e0
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 030a2cc6-ace8-41e7-abd8-7c63ad4d904b
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 3876d485-3742-4331-90e5-ee5e1a453f1b
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 8
+    m_Flags: 0
