@@ -20,7 +20,7 @@ namespace Assets._Project.Helpers
             return assets;
         }
 
-        public async Task<C> LoadAndInstantiate<C>(object key, Transform parent) where C : Component
+        public async Task<C> LoadAndInstantiateAsync<C>(object key, Transform parent) where C : Component
         {
             GameObject instance = await Addressables.InstantiateAsync(key).Task;
 
@@ -40,7 +40,7 @@ namespace Assets._Project.Helpers
 
             foreach (object key in keys)
             {
-                instances.Add(await LoadAndInstantiate<C>(key, parent));
+                instances.Add(await LoadAndInstantiateAsync<C>(key, parent));
             }
 
             return instances;
