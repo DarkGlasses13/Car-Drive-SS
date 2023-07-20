@@ -1,4 +1,7 @@
 using Assets._Project.Systems.Driving;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 namespace Assets._Project.Entities.Character
@@ -6,21 +9,29 @@ namespace Assets._Project.Entities.Character
     [RequireComponent(typeof(Rigidbody))]
     public class CharacterCar : Entity, IDrivable
     {
-        private Rigidbody _rigidbody;
+        //private Rigidbody _rigidbody;
+        private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
+        private TweenerCore<Quaternion, Vector3, QuaternionOptions> _rotationTween;
+        private Sequence _changeLineSequence;
 
-        private void Awake()
+        //private void Awake()
+        //{
+        //    _rigidbody = GetComponent<Rigidbody>();
+        //}
+
+        public void ChangeLine(float shift, float duration, float stearAngle)
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            //_changeLineSequence = new Sequence();
+            _moveTween?.Kill();
+            _moveTween = transform.DOMoveX(transform.position.x + shift, duration);
+            //_rotationTween = transform.DORotate(shift * stearAngle * Vector3.up, duration / 2).SetLoops(2, LoopType.Yoyo);
+            _moveTween?.Play();
         }
 
-        public void RegulateGas(float value)
+        public void Accelerate(float acceleration)
         {
-            _rigidbody.MovePosition(transform.position + Vector3.forward * value);
-        }
-
-        public void Stear(float value)
-        {
-
+            transform.Translate(transform.forward * acceleration);
+            //_rigidbody.MovePosition(_rigidbody.position + transform.forward * acceleration);
         }
     }
 }

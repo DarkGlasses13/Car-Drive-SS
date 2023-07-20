@@ -2,6 +2,7 @@
     "name": "PlayerInput",
     "rootNamespace": "",
     "references": [
+        "GUID:be0d3019f3c593a4d8db8286e2c87e83",
         "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],

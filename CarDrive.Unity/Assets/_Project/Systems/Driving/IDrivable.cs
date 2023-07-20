@@ -2,7 +2,7 @@
 {
     public interface IDrivable
     {
-        void RegulateGas(float value);
-        void Stear(float value);
+        void Accelerate(float acceleration);
+        void ChangeLine(float shift, float duration, float stearAngle);
     }
 }

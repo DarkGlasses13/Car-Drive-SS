@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GasRegulationInputAction>k__BackingField:
     m_Name: Gas Regulation Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 23301bc4-2756-4444-9a13-140ee0167bbc
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: eac9abf9-8d35-480e-b411-b271d62220a7
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: WS
-      m_Id: 84d90a27-608c-475c-ac26-a0cd6c5f7801
+      m_Id: 7cb50d9a-a661-4d06-a4de-eaa791871603
       m_Path: 1DAxis
       m_Interactions: 
       m_Processors: 
@@ -29,7 +29,7 @@ MonoBehaviour:
       m_Action: Gas Regulation Input
       m_Flags: 4
     - m_Name: negative
-      m_Id: 4f5989e3-a0c8-4044-ad18-5044b0826e1c
+      m_Id: 94787a5e-33c5-40c4-bac9-fd42f9a26380
       m_Path: <Keyboard>/s
       m_Interactions: 
       m_Processors: 
@@ -37,8 +37,32 @@ MonoBehaviour:
       m_Action: Gas Regulation Input
       m_Flags: 8
     - m_Name: positive
-      m_Id: 07239863-efd6-43ca-87cd-fb47c390d992
+      m_Id: 4eaba599-4626-48c5-9a4c-04b0c7696594
       m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 8
+    - m_Name: Arrows
+      m_Id: 6f33c62a-ec41-4c78-bb2c-1baa105847c2
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 317db574-ff23-4c42-8f0c-00a411b9d607
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gas Regulation Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: abe31c90-f919-48fb-ac72-8e66bb65c020
+      m_Path: <Keyboard>/upArrow
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -47,8 +71,8 @@ MonoBehaviour:
     m_Flags: 0
   <StearInputAction>k__BackingField:
     m_Name: Stear Input
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 622a5e23-7873-4159-af1a-311e4c669cb8
     m_Processors: 
     m_Interactions: 
@@ -77,4 +101,30 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Stear Input
       m_Flags: 8
+    - m_Name: Arrows
+      m_Id: 86865779-61b8-4a5e-8063-7cf794211f05
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 2cd3b3e0-daa5-4dde-b05d-a2f3fad81d1a
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: fe9eb540-2b59-4668-bfc8-5e4d51b7ae0b
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stear Input
+      m_Flags: 8
     m_Flags: 0
+  <DeadZone>k__BackingField: 10
+  <SwipeDirectionThreshold>k__BackingField: 0.25

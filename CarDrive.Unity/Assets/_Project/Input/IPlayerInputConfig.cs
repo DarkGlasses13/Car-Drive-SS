@@ -4,7 +4,9 @@ namespace Assets._Project.Input
 {
     public interface IPlayerInputConfig
     {
-        InputAction GasRegulationInputAction { get; }
         InputAction StearInputAction { get; }
+        InputAction GasRegulationInputAction { get; }
+        float DeadZone { get; }
+        float SwipeDirectionThreshold { get; }
     }
 }
