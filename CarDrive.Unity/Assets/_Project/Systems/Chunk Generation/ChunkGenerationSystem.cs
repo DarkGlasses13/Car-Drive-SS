@@ -54,8 +54,8 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void Spawn()
         {
-            Chunk instance = _config.GeneralObstacleDencity >= Random.value 
-                ? _obstacleblePool.Get() 
+            Chunk instance = _config.IsObstaclesEnabled && _config.GeneralObstacleDencity >= Random.value 
+                ? _obstacleblePool.Get()
                 : _emptyPool.Get();
 
             instance.transform.position = _last.GetConnectPosition(instance);
