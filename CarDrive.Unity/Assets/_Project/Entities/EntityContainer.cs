@@ -13,6 +13,8 @@ namespace Assets._Project.Entities
 
         public IEnumerable<T> Get<T>() where T : IEntity => (IEnumerable<T>)_entities.Where(entity => entity is T);
 
+        public IEnumerable<IEntity> GetAll() => _entities.AsEnumerable();
+
         public T GetFirstOrDefault<T>() where T : IEntity => (T)_entities.FirstOrDefault(entity => entity is T);
 
         public void Remove(IEntity entity) => _entities.Remove(entity);

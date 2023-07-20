@@ -5,6 +5,7 @@ using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.ChunkGeneration;
+using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
@@ -46,13 +47,16 @@ namespace Assets._Project
                 .Load<GameObject>("Character Car")).Create(characterCarSpawnData);
             DrivingSystem drivingSystem = new(await assetLoader
                 .Load<DrivingConfig>("Driving Config"), playerInput, characterCar, gameState);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, characterCar);
+            await damageSystem.InitializeAsync();
             await drivingSystem.InitializeAsync();
 
             _systems = new()
             {
                 chunkGenerationSystem,
                 worldCentringSystem,
-                drivingSystem
+                drivingSystem,
+                damageSystem
             };
 
             cinematographer.SwitchCamera(GameCamera.Run, isReset: true, characterCar.transform, characterCar.transform);

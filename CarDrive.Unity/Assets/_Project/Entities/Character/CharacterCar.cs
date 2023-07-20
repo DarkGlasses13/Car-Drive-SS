@@ -1,3 +1,4 @@
+using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using DG.Tweening;
 using DG.Tweening.Core;
@@ -7,12 +8,15 @@ using UnityEngine;
 namespace Assets._Project.Entities.Character
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterCar : Entity, IDrivable
+    public class CharacterCar : Entity, IDrivable, IDamageable
     {
         //private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
         private TweenerCore<Quaternion, Vector3, QuaternionOptions> _rotationTween;
         private Sequence _changeLineSequence;
+
+        public Vector3 Center => transform.position;
+        public Quaternion Rotation => transform.rotation;
 
         //private void Awake()
         //{
@@ -32,6 +36,13 @@ namespace Assets._Project.Entities.Character
         {
             transform.Translate(transform.forward * acceleration);
             //_rigidbody.MovePosition(_rigidbody.position + transform.forward * acceleration);
+        }
+
+        public void Die()
+        {
+            _moveTween?.Kill();
+            //_rotationTween?.Kill();
+            transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
         }
     }
 }

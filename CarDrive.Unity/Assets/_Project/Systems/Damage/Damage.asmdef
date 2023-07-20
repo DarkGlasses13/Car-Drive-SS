@@ -1,11 +1,10 @@
 {
-    "name": "Entities",
+    "name": "Damage",
     "rootNamespace": "",
     "references": [
+        "GUID:be0d3019f3c593a4d8db8286e2c87e83",
         "GUID:2e4677e5e7be7fe47bb1858b90cb600a",
-        "GUID:999e71f611b04ee42b0e9bcc72137165",
-        "GUID:54931d8469ed59242948fb67badf1a4b",
-        "GUID:baab7e34829ef6e409f78dbfaf2cd388"
+        "GUID:e535028252326734899c9b0507c0f3a3"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
