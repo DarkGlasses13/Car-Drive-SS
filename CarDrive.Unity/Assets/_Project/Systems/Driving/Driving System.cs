@@ -1,4 +1,5 @@
 using Assets._Project.Architecture;
+using Assets._Project.GameStateControl;
 using Assets._Project.Input;
 using UnityEngine;
 
@@ -9,13 +10,15 @@ namespace Assets._Project.Systems.Driving
         private readonly DrivingConfig _config;
         private readonly IPlayerInput _playerInpu;
         private readonly IDrivable _drivable;
+        private readonly GameState _gameState;
         private float _gasValue;
 
-        public DrivingSystem(DrivingConfig config, IPlayerInput playerInput, IDrivable drivable)
+        public DrivingSystem(DrivingConfig config, IPlayerInput playerInput, IDrivable drivable, GameState gameState)
         {
             _config = config;
             _playerInpu = playerInput;
             _drivable = drivable;
+            _gameState = gameState;
         }
 
         public override void Enable()
@@ -25,7 +28,10 @@ namespace Assets._Project.Systems.Driving
 
         private void Stear(float value)
         {
-            _drivable?.ChangeLine(value * _config.StearStep, _config.StearDuration, _config.StearAngle);
+            if (_gameState.Current == GameStates.Run)
+            {
+                _drivable?.ChangeLine(value * _config.StearStep, _config.StearDuration, _config.StearAngle);
+            }
         }
 
         public override void Tick()
@@ -35,7 +41,10 @@ namespace Assets._Project.Systems.Driving
 
         public override void FixedTick()
         {
-            _drivable?.Accelerate(_gasValue * Time.fixedDeltaTime);
+            if (_gameState.Current == GameStates.Run)
+            {
+                _drivable?.Accelerate(_gasValue * Time.fixedDeltaTime);
+            }
         }
 
         public override void Disable()

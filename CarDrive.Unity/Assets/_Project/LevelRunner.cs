@@ -1,6 +1,7 @@
 ﻿using Assets._Project.CameraControl;
 using Assets._Project.DI;
 using Assets._Project.Entities.Character;
+using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.ChunkGeneration;
@@ -23,6 +24,7 @@ namespace Assets._Project
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
+            GameState gameState = new(GameStates.Run);
             IPlayerInput playerInput = projectContainer.Get<IPlayerInput>();
             Cinematographer cinematographer = projectContainer.Get<Cinematographer>();
             await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
@@ -43,7 +45,7 @@ namespace Assets._Project
             CharacterCar characterCar = new CharacterCarFactory(await assetLoader
                 .Load<GameObject>("Character Car")).Create(characterCarSpawnData);
             DrivingSystem drivingSystem = new(await assetLoader
-                .Load<DrivingConfig>("Driving Config"), playerInput, characterCar);
+                .Load<DrivingConfig>("Driving Config"), playerInput, characterCar, gameState);
             await drivingSystem.InitializeAsync();
 
             _systems = new()

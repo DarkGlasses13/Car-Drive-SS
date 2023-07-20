@@ -18,4 +18,4 @@ MonoBehaviour:
     m_LabelString: Obstacleble Chunk
   <InitialAmount>k__BackingField: 30
   <IsObstaclesEnabled>k__BackingField: 1
-  <GeneralObstacleDencity>k__BackingField: 1
+  <GeneralObstacleDencity>k__BackingField: 0.5
