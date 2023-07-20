@@ -6,7 +6,9 @@ namespace Assets._Project.Architecture
     {
         public virtual void Initialize() { }
         public virtual async Task InitializeAsync() { await Task.Yield(); }
+        public virtual void Enable() { }
         public virtual void FixedTick() { }
         public virtual void Tick() { }
+        public virtual void Disable() { }
     }
 }
