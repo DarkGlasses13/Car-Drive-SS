@@ -1,7 +1,10 @@
+using System;
+
 namespace Assets._Project.GameStateControl
 {
     public class GameState
     {
+        public Action<GameStates> OnSwitched;
         public GameStates Current { get; private set; }
 
         public GameState(GameStates current)
@@ -9,6 +12,10 @@ namespace Assets._Project.GameStateControl
             Current = current;
         }
 
-        public void Switch(GameStates to) => Current = to;
+        public void Switch(GameStates to)
+        {
+            Current = to;
+            OnSwitched?.Invoke(Current);
+        }
     }
 }
