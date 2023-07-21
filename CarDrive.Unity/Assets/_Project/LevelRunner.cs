@@ -14,12 +14,15 @@ using UnityEngine;
 
 namespace Assets._Project
 {
-    public class LevelRunner : Runner
+    public class LevelRunner : RunnerWithAutomaticSystemsInitialization
     {
         [SerializeField] private Transform 
             _camerasContainer,
             _chunksContainer,
             _entityContainer;
+        private IPlayerInput _playerInput;
+        private Cinematographer _cinematographer;
+        private CharacterCar _characterCar;
 
         protected override async Task CreateSystems()
         {
@@ -27,29 +30,24 @@ namespace Assets._Project
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
             GameState gameState = new(GameStates.Run);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
-            IPlayerInput playerInput = projectContainer.Get<IPlayerInput>();
-            Cinematographer cinematographer = projectContainer.Get<Cinematographer>();
+            _playerInput = projectContainer.Get<IPlayerInput>();
+            _cinematographer = projectContainer.Get<Cinematographer>();
             await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
-            cinematographer.AddCamera(GameCamera.Run, await assetLoader
+            _cinematographer.AddCamera(GameCamera.Run, await assetLoader
                 .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
-            cinematographer.AddCamera(GameCamera.Lose, await assetLoader
+            _cinematographer.AddCamera(GameCamera.Lose, await assetLoader
                 .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Lose Virtual Camera", _camerasContainer));
 
-            ChunkGenerationData chunkGenerationData = new();
-            ChunkGenerationSystem chunkGenerationSystem = new(chunkGenerationData, assetLoader, _chunksContainer);
-            await chunkGenerationSystem.InitializeAsync();
-
-            WorldCentringSystem worldCentringSystem = new(await assetLoader
-                .Load<WorldCentringConfig>("World Centring Config"), chunkGenerationData);
-            await worldCentringSystem.InitializeAsync();
-
             SpawnData characterCarSpawnData = new(_entityContainer, Vector3.zero + Vector3.up * 0.5f, Quaternion.identity);
-            CharacterCar characterCar = new CharacterCarFactory(await assetLoader
-                .Load<GameObject>("Character Car")).Create(characterCarSpawnData);
-            DrivingSystem drivingSystem = new(assetLoader, playerInput, characterCar, gameState, coroutiner);
-            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, characterCar);
-            await damageSystem.InitializeAsync();
-            await drivingSystem.InitializeAsync();
+            _characterCar = new CharacterCarFactory(await assetLoader.Load<GameObject>("Character Car")).Create(characterCarSpawnData);
+            _characterCar.gameObject.SetActive(false);
+
+            ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
+            ChunkSpawner chunkSpawner = new(assetLoader, chunkGenerationConfig, _chunksContainer);
+            ChunkGenerationSystem chunkGenerationSystem = new(chunkGenerationConfig, chunkSpawner, gameState);
+            WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"), chunkSpawner);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, gameState, coroutiner);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
 
             _systems = new()
             {
@@ -58,10 +56,13 @@ namespace Assets._Project
                 drivingSystem,
                 damageSystem
             };
+        }
 
-            cinematographer.SwitchCamera(GameCamera.Run, isReset: true, characterCar.transform, characterCar.transform);
-            playerInput.Enable();
-            drivingSystem.Enable();
+        protected override void OnInitializationCompleted()
+        {
+            _characterCar.gameObject.SetActive(true);
+            _cinematographer.SwitchCamera(GameCamera.Run, isReset: true, _characterCar.transform, _characterCar.transform);
+            _playerInput.Enable();
         }
     }
 }

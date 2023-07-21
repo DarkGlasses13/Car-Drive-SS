@@ -8,8 +8,10 @@ using UnityEngine;
 
 namespace Assets._Project
 {
-    public class ProjectRunner : Runner
+    public class ProjectRunner : RunnerWithAutomaticSystemsInitialization
     {
+        private ISceneChanger _sceneChanger;
+
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
@@ -21,10 +23,10 @@ namespace Assets._Project
             LocalAssetLoader assetLoader = new();
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
-            ISceneChanger sceneChanger = new SceneChanger();
+            _sceneChanger = new SceneChanger();
             container.Bind(assetLoader);
             container.Bind(playerInput);
-            container.Bind(sceneChanger);
+            container.Bind(_sceneChanger);
             container.Bind(coroutiner);
             container.Bind(new Cinematographer());
 
@@ -32,8 +34,11 @@ namespace Assets._Project
             {
 
             };
+        }
 
-            sceneChanger.Change("Level");
+        protected override void OnInitializationCompleted()
+        {
+            _sceneChanger.Change("Level");
         }
     }
 }

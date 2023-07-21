@@ -54,8 +54,6 @@ namespace Assets._Project.Systems.Damage
                     _gameState.Switch(GameStates.Lose);
                     _damageable.Die();
                 }
-                
-                Debug.Log("Crash");
             }
         }
     }
