@@ -5,6 +5,6 @@
         WaitForRun,
         Run,
         Lose,
-        OnCheckPoint
+        Finish
     }
 }

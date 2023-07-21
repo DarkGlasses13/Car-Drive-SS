@@ -7,6 +7,10 @@ namespace Assets._Project.GameStateControl
         public Action<GameStates> OnSwitched;
         public GameStates Current { get; private set; }
 
+        public GameState()
+        {
+        }
+
         public GameState(GameStates current)
         {
             Current = current;
