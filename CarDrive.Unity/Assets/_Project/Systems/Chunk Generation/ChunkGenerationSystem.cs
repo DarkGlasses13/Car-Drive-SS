@@ -1,99 +1,74 @@
 using Assets._Project.Architecture;
-using Assets._Project.Helpers;
-using System.Collections.Generic;
-using System.Linq;
+using Assets._Project.GameStateControl;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Pool;
 
 namespace Assets._Project.Systems.ChunkGeneration
 {
-    public class ChunkGenerationSystem : GameSystem
+    public class ChunkGenerationSystem : GameSystem, IGameStateSwitchHandler
     {
-        private readonly ChunkGenerationData _data;
-        private readonly LocalAssetLoader _assetLoader;
-        private readonly Transform _container;
-        private ChunkGenerationConfig _config;
-        private AssetLabelReference _emptyLabel, _obstaclebleLabel;
-        private List<Chunk> _emptyPrefabs;
-        private List<ObstaclebleChunk> _obstacleblePrefabs;
-        private ObjectPool<Chunk> _emptyPool;
-        private ObjectPool<ObstaclebleChunk> _obstacleblePool;
-        private Chunk _initial, _last;
-        private CheckPointChunk _checkPoint;
+        private readonly ChunkGenerationConfig _config;
+        private readonly ChunkSpawner _spawner;
+        private readonly GameState _gameState;
 
-        public ChunkGenerationSystem(ChunkGenerationData data, LocalAssetLoader assetLoader, Transform container)
+        public ChunkGenerationSystem(ChunkGenerationConfig config, ChunkSpawner spawner, GameState gameState)
         {
-            _data = data;
-            _assetLoader = assetLoader;
-            _container = container;
+            _config = config;
+            _spawner = spawner;
+            _gameState = gameState;
         }
 
         public override async Task InitializeAsync()
         {
-            _config = await _assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
-            _emptyLabel = _config.EmptyChunkAssetLabel;
-            _obstaclebleLabel = _config.ObstaclebleChunkAssetLabel;
-            IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>(_emptyLabel, OnEmptyPrefabLoaded);
-            _emptyPrefabs = new(emptyPrefabs.Select(chunk => chunk.GetComponent<Chunk>()));
-            _emptyPool = new(CreateEmpty, null, null, OnDestroy, true, defaultCapacity: 0, maxSize: 100);
-            IList<GameObject> obstacleblePrefabs = await _assetLoader.LoadAll<GameObject>(_obstaclebleLabel, OnObstacleblePrefabLoaded);
-            _obstacleblePrefabs = new(obstacleblePrefabs.Select(chunk => chunk.GetComponent<ObstaclebleChunk>()));
-            _obstacleblePool = new(CreateObstacleble, null, null, OnObstaclebleDestroy, true, defaultCapacity: 0, maxSize: 100);
-            _initial = await _assetLoader.LoadAndInstantiateAsync<Chunk>("Initial Chunk", _container);
-            _checkPoint = await _assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _container);
-            _checkPoint.gameObject.SetActive(false);
-            _last = _initial;
+            await _spawner.InitializeAsync();
+        }
+
+        public override void Enable()
+        {
+            _gameState.OnSwitched += OnSateSwitched;
+            _spawner.OnChunkPassed += OnPassed;
+            SpawnInitial();
+        }
+
+        public void OnSateSwitched(GameStates state)
+        {
+
+        }
+
+        private void SpawnInitial()
+        {
+            int afterCheckPointChunksAmount = 30;
 
             for (int i = 1; i < _config.InitialAmount; i++)
-            {
                 Spawn();
-            }
+
+            _spawner.SpawnCheckPoint();
+
+            for (int i = 1; i < afterCheckPointChunksAmount; i++)
+                Spawn();
         }
 
         private void Spawn()
         {
-            Chunk instance = _config.IsObstaclesEnabled && _config.GeneralObstacleDencity >= Random.value 
-                ? _obstacleblePool.Get()
-                : _emptyPool.Get();
-
-            instance.transform.position = _last.GetConnectPosition(instance);
-            _last = instance;
-        }
-
-        public override void Tick()
-        {
-            
+            if (_config.IsObstaclesEnabled && _config.GeneralObstacleDencity >= Random.value)
+            {
+                _spawner.SpawnObstacleable();
+            }
+            else
+            {
+                _spawner.SpawnEmpty();
+            }
         }
 
         private void OnPassed(Chunk chunk)
         {
-            _data.PassedChunksCount++;
             Spawn();
         }
 
-        private ObstaclebleChunk CreateObstacleble() => Create(_obstacleblePrefabs);
-
-        private void OnObstaclebleDestroy(ObstaclebleChunk chunk) => OnDestroy(chunk);
-
-        private Chunk CreateEmpty() => Create(_emptyPrefabs);
-
-        private T Create<T>(List<T> prefabs) where T : Chunk
+        public override void Disable()
         {
-            T prefab = prefabs.ElementAt(Random.Range(0, prefabs.Count()));
-            T instance = Object.Instantiate(prefab, _container);
-            instance.OnPassed += OnPassed;
-            return instance;
+            _gameState.OnSwitched -= OnSateSwitched;
+            _spawner.OnChunkPassed -= OnPassed;
         }
-
-        private void OnDestroy(Chunk chunk)
-        {
-            chunk.OnPassed -= OnPassed;
-        }
-
-        private void OnObstacleblePrefabLoaded(GameObject prefab) { }
-
-        private void OnEmptyPrefabLoaded(GameObject prefab) { }
     }
 }
