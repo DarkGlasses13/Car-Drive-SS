@@ -8,8 +8,10 @@ namespace Assets._Project.Input
 {
     public class UniversalPlayerInput : IPlayerInput
     {
+        public event Action OnInteract;
         public event Action<float> OnGasRegulate;
         public event Action<float> OnStear;
+
         private readonly IPlayerInputConfig _config;
         public float StearValue => _config.StearInputAction.ReadValue<float>();
         public float GasValue => _config.GasRegulationInputAction.ReadValue<float>();
@@ -22,11 +24,18 @@ namespace Assets._Project.Input
 
         public void Enable()
         {
+            _config.InteractAction.Enable();
             _config.GasRegulationInputAction.Enable();
             _config.StearInputAction.Enable();
+            _config.InteractAction.performed += Interact;
             _config.StearInputAction.performed += Stear;
             _config.GasRegulationInputAction.performed += RegulateGas;
             Touch.onFingerUp += Swipe;
+        }
+
+        private void Interact(InputAction.CallbackContext context)
+        {
+            OnInteract?.Invoke();
         }
 
         private void RegulateGas(InputAction.CallbackContext context)
@@ -51,6 +60,9 @@ namespace Assets._Project.Input
                 if (direction.y != 0)
                     OnGasRegulate?.Invoke(direction.y);
             }
+
+            if (finger.currentTouch.isTap)
+                OnInteract?.Invoke();
         }
 
         private void Stear(InputAction.CallbackContext context)
@@ -69,8 +81,10 @@ namespace Assets._Project.Input
 
         public void Disable()
         {
+            _config.InteractAction.Disable();
             _config.GasRegulationInputAction.Disable();
             _config.StearInputAction.Disable();
+            _config.InteractAction.performed -= Interact;
             _config.StearInputAction.performed -= Stear;
             _config.GasRegulationInputAction.performed -= RegulateGas;
             Touch.onFingerUp -= Swipe;

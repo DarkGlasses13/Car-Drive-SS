@@ -12,6 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131d45ae0987fc749bd2f321522dacaa, type: 3}
   m_Name: Player Input Config
   m_EditorClassIdentifier: 
+  <InteractAction>k__BackingField:
+    m_Name: Interact
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: b2a2eabf-5e4f-458e-97d8-7786c276d048
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 90238d6b-743f-4040-92ad-e75e4b1212cc
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
   <GasRegulationInputAction>k__BackingField:
     m_Name: Gas Regulation Input
     m_Type: 1
