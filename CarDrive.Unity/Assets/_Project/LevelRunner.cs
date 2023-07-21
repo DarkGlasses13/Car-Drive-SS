@@ -26,6 +26,7 @@ namespace Assets._Project
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
             GameState gameState = new(GameStates.Run);
+            Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
             IPlayerInput playerInput = projectContainer.Get<IPlayerInput>();
             Cinematographer cinematographer = projectContainer.Get<Cinematographer>();
             await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
@@ -45,8 +46,7 @@ namespace Assets._Project
             SpawnData characterCarSpawnData = new(_entityContainer, Vector3.zero + Vector3.up * 0.5f, Quaternion.identity);
             CharacterCar characterCar = new CharacterCarFactory(await assetLoader
                 .Load<GameObject>("Character Car")).Create(characterCarSpawnData);
-            DrivingSystem drivingSystem = new(await assetLoader
-                .Load<DrivingConfig>("Driving Config"), playerInput, characterCar, gameState);
+            DrivingSystem drivingSystem = new(assetLoader, playerInput, characterCar, gameState, coroutiner);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, characterCar);
             await damageSystem.InitializeAsync();
             await drivingSystem.InitializeAsync();

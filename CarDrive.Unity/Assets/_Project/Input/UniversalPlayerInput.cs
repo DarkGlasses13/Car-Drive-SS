@@ -25,7 +25,16 @@ namespace Assets._Project.Input
             _config.GasRegulationInputAction.Enable();
             _config.StearInputAction.Enable();
             _config.StearInputAction.performed += Stear;
+            _config.GasRegulationInputAction.performed += RegulateGas;
             Touch.onFingerUp += Swipe;
+        }
+
+        private void RegulateGas(InputAction.CallbackContext context)
+        {
+            float value = context.ReadValue<float>();
+
+            if (value != 0)
+                OnGasRegulate?.Invoke(value);
         }
 
         private void Swipe(Finger finger)
@@ -63,6 +72,7 @@ namespace Assets._Project.Input
             _config.GasRegulationInputAction.Disable();
             _config.StearInputAction.Disable();
             _config.StearInputAction.performed -= Stear;
+            _config.GasRegulationInputAction.performed -= RegulateGas;
             Touch.onFingerUp -= Swipe;
         }
     }
