@@ -7,6 +7,7 @@ namespace Assets._Project
 {
     public abstract class Runner : MonoBehaviour
     {
+        protected bool _isInitialized = false;
         protected List<IGameSystem> _systems;
 
         protected abstract Task CreateSystems();
@@ -14,21 +15,25 @@ namespace Assets._Project
         protected async virtual void Start()
         {
             await CreateSystems();
+            _isInitialized = true;
         }
 
         private void Update()
         {
-            _systems?.ForEach(system => system.Tick());
+            if (_isInitialized)
+                _systems?.ForEach(system => system.Tick());
         }
 
         private void FixedUpdate()
         {
-            _systems?.ForEach(system => system.FixedTick());
+            if (_isInitialized)
+                _systems?.ForEach(system => system.FixedTick());
         }
 
         private void OnDisable()
         {
-            _systems?.ForEach(system => system.Disable());
+            if (_isInitialized)
+                _systems?.ForEach(system => system.Disable());
         }
     }
 }

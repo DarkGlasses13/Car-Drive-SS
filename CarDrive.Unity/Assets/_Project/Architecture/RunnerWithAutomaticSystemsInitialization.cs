@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Architecture;
+using UnityEngine;
 
 namespace Assets._Project
 {
@@ -14,6 +15,11 @@ namespace Assets._Project
                 system.Initialize();
                 system.Enable();
             }
+
+            _isInitialized = true;
+            OnInitializationCompleted();
         }
+
+        protected abstract void OnInitializationCompleted();
     }
 }
