@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1202abded600904e8c502c436abd755, type: 3}
   m_Name: Driving Config
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 2000
+  <Speed>k__BackingField: 30
   <StartupAcceleration>k__BackingField: 5
   <GasRegulationRange>k__BackingField: {x: 0.5, y: 1.5}
   _roadReference: {fileID: 7708843001034744259, guid: 0db0d0f46957ae346bed902636eae62f,

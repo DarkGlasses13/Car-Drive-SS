@@ -22,7 +22,8 @@ namespace Assets._Project.Systems.Driving
         private float _gasRegulation = 1;
         private float[] _roadLines;
 
-        public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable, GameState gameState, Coroutiner coroutiner)
+        public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
+            GameState gameState, Coroutiner coroutiner)
         {
             _assetLoader = assetLoader;
             _playerInpu = playerInput;
@@ -78,10 +79,9 @@ namespace Assets._Project.Systems.Driving
 
         public override void Tick()
         {
-            _gasValue = _config.Speed * _gasRegulation;
-
             if (_gameState.Current == GameStates.Run)
             {
+                _gasValue = _config.Speed * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
             }
         }
