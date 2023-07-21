@@ -23,11 +23,16 @@ namespace Assets._Project.Entities.Character
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void ChangeLine(float shift, float duration, float stearAngle)
+        public void SetToLine(float position)
+        {
+            transform.position = new(position, transform.position.y, transform.position.z);
+        }
+
+        public void ChangeLine(float line, float duration, float stearAngle)
         {
             //_changeLineSequence = new Sequence();
             _moveTween?.Kill();
-            _moveTween = transform.DOMoveX(transform.position.x + shift, duration);
+            _moveTween = transform.DOMoveX(line, duration);
             //_rotationTween = transform.DORotate(shift * stearAngle * Vector3.up, duration / 2).SetLoops(2, LoopType.Yoyo);
             _moveTween?.Play();
         }

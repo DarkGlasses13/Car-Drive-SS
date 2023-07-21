@@ -16,9 +16,11 @@ namespace Assets._Project.Systems.Driving
         private readonly GameState _gameState;
         private readonly Coroutiner _coroutiner;
         private DrivingConfig _config;
+        private int _currentRoadLineIndex;
         private float _gasValue;
         private Coroutine _gasRegulationRoutine;
         private float _gasRegulation = 1;
+        private float[] _roadLines;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable, GameState gameState, Coroutiner coroutiner)
         {
@@ -32,6 +34,19 @@ namespace Assets._Project.Systems.Driving
         public override async Task InitializeAsync()
         {
             _config = await _assetLoader.Load<DrivingConfig>("Driving Config");
+            _currentRoadLineIndex = _config.RoadLines / 2;
+            _roadLines = new float[_config.RoadLines];
+            _roadLines[0] = _config.RoadLines / 2 * -_config.StearStep;
+
+            if (_config.RoadLines % 2 == 0)
+                _roadLines[0] += _config.StearStep / 2f;
+
+            for (int i = 1; i < _roadLines.Length; i++)
+            {
+                _roadLines[i] = _roadLines[i - 1] + _config.StearStep;
+            }
+
+            _drivable.SetToLine(_roadLines[_currentRoadLineIndex]);
         }
 
         public override void Enable()
@@ -55,7 +70,9 @@ namespace Assets._Project.Systems.Driving
         {
             if (_gameState.Current == GameStates.Run)
             {
-                _drivable?.ChangeLine(value * _config.StearStep, _config.StearDuration, _config.StearAngle);
+                _currentRoadLineIndex += (int)value;
+                _currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
+                _drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration, _config.StearAngle);
             }
         }
 

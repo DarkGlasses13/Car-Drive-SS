@@ -3,6 +3,7 @@
     public interface IDrivable
     {
         void Accelerate(float acceleration);
-        void ChangeLine(float shift, float duration, float stearAngle);
+        void ChangeLine(float line, float duration, float stearAngle);
+        void SetToLine(float position);
     }
 }
