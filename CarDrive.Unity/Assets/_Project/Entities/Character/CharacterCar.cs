@@ -27,18 +27,20 @@ namespace Assets._Project.Entities.Character
         {
             //_changeLineSequence = new Sequence();
             _moveTween?.Kill();
-            _moveTween = _rigidbody.DOMoveX(transform.position.x + shift, duration);
+            _moveTween = transform.DOMoveX(transform.position.x + shift, duration);
             //_rotationTween = transform.DORotate(shift * stearAngle * Vector3.up, duration / 2).SetLoops(2, LoopType.Yoyo);
             _moveTween?.Play();
         }
 
         public void Accelerate(float acceleration)
         {
-            _rigidbody.velocity = new(_rigidbody.velocity.x, _rigidbody.velocity.y, acceleration);
+            transform.position += transform.forward * acceleration;
+            //_rigidbody.velocity = new(_rigidbody.velocity.x, _rigidbody.velocity.y, acceleration);
         }
 
         public void Die()
         {
+            _rigidbody.isKinematic = false;
             _moveTween?.Kill();
             //_rotationTween?.Kill();
             transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);

@@ -62,13 +62,10 @@ namespace Assets._Project.Systems.Driving
         public override void Tick()
         {
             _gasValue = _config.Speed * _gasRegulation;
-        }
 
-        public override void FixedTick()
-        {
             if (_gameState.Current == GameStates.Run)
             {
-                _drivable?.Accelerate(_gasValue * Time.fixedDeltaTime);
+                _drivable?.Accelerate(_gasValue * Time.deltaTime);
             }
         }
 
