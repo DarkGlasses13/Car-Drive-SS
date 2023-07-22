@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a904f7285e48124088fa6116d0f9607, type: 3}
   m_Name: World Centring Config
   m_EditorClassIdentifier: 
-  <ChunksPassedBeforeCentering>k__BackingField: 10
+  <ChunksPassedBeforeCentering>k__BackingField: 50
