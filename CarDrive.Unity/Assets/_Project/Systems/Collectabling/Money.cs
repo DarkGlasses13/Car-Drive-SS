@@ -1,12 +1,12 @@
-namespace Assets._Project.Systems.MoneyControl
+namespace Assets._Project.Systems.Collectabling
 {
     public class Money
     {
-        private readonly MoneyControlConfig _config;
+        private readonly CollectablingConfig _config;
 
         public int Value { get; private set; }
 
-        public Money(MoneyControlConfig config, int initialAmount = 0)
+        public Money(CollectablingConfig config, int initialAmount = 0)
         {
             _config = config;
             Value = initialAmount;
@@ -14,8 +14,8 @@ namespace Assets._Project.Systems.MoneyControl
 
         public override string ToString()
         {
-            return Value > _config.Limit 
-                ? _config.Limit.ToString() + "+" 
+            return Value > _config.MoneyLimit
+                ? _config.MoneyLimit.ToString() + "+"
                 : Value.ToString();
         }
 

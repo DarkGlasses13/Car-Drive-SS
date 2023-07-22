@@ -1,6 +1,6 @@
+using Assets._Project.Systems.Collectabling;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
-using Assets._Project.Systems.MoneyControl;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Assets._Project.Entities.Character
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CharacterCar : Entity, IDrivable, IDamageable, IMoneyCollector
+    public class CharacterCar : Entity, IDrivable, IDamageable, ICanCollectItems
     {
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;

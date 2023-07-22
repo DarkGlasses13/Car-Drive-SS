@@ -2,18 +2,18 @@
 using Assets._Project.Architecture.UI;
 using UnityEngine;
 
-namespace Assets._Project.Systems.MoneyControl
+namespace Assets._Project.Systems.Collectabling
 {
-    public class LevelMoneyCollectingSystem : GameSystem
+    public class CollectingSystem : GameSystem
     {
-        private readonly MoneyControlConfig _config;
+        private readonly CollectablingConfig _config;
         private readonly Money _money;
-        private readonly IMoneyCollector _collector;
+        private readonly ICanCollectItems _collector;
         private readonly IUICounter _uiCounter;
         private float _collectingRadius = 2;
         private Collider[] _detecables = new Collider[50];
 
-        public LevelMoneyCollectingSystem(MoneyControlConfig config, Money money, IMoneyCollector collector, IUICounter uICounter)
+        public CollectingSystem(CollectablingConfig config, Money money, ICanCollectItems collector, IUICounter uICounter)
         {
             _config = config;
             _money = money;
@@ -33,9 +33,19 @@ namespace Assets._Project.Systems.MoneyControl
 
             for (int i = 0; i < detectablesCount; i++)
             {
-                _detecables[i].gameObject.SetActive(false);
-                _money.Add();
-                _uiCounter.Set(_money.ToString());
+                if (_detecables[i].TryGetComponent(out ItemObject item))
+                {
+                    item.gameObject.SetActive(false);
+
+                    if (item.ID == _config.MoneyID)
+                    {
+                        _money.Add();
+                        _uiCounter.Set(_money.ToString());
+                        continue;
+                    }
+
+                    
+                }
             }
         }
     }

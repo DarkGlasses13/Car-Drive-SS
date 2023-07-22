@@ -7,9 +7,9 @@ using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.ChunkGeneration;
+using Assets._Project.Systems.Collectabling;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
-using Assets._Project.Systems.MoneyControl;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using System.Threading.Tasks;
@@ -60,9 +60,9 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"), chunkSpawner);
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, gameState, coroutiner);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
-            MoneyControlConfig moneyControlConfig = await assetLoader.Load<MoneyControlConfig>("Money Control Config");
+            CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-            LevelMoneyCollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, _characterCar, uiMoneyCounter);
+            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, _characterCar, uiMoneyCounter);
 
             _systems = new()
             {
