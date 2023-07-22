@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets._Project.DI
+namespace Assets._Project.Architecture.DI
 {
     public class DIContainer : MonoBehaviour
     {

@@ -1,7 +1,4 @@
-﻿using Assets._Project.Architecture;
-using UnityEngine;
-
-namespace Assets._Project
+﻿namespace Assets._Project.Architecture
 {
     public abstract class RunnerWithAutomaticSystemsInitialization : Runner
     {
