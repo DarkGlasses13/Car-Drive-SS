@@ -1,12 +1,9 @@
 {
-    "name": "Entities",
+    "name": "MoneyCollecting",
     "rootNamespace": "",
     "references": [
-        "GUID:2e4677e5e7be7fe47bb1858b90cb600a",
-        "GUID:999e71f611b04ee42b0e9bcc72137165",
-        "GUID:54931d8469ed59242948fb67badf1a4b",
-        "GUID:0a84ad5d6aebc7d4385be6fc30493354",
-        "GUID:baab7e34829ef6e409f78dbfaf2cd388"
+        "GUID:be0d3019f3c593a4d8db8286e2c87e83",
+        "GUID:4c306f8a48189ff42a16bcf09cc2a8bc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

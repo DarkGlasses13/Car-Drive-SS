@@ -22,35 +22,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5d5cf7d1eb595184da4c46d43fbc657e
-    m_Address: Chunk 1.o
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Obstacleble Chunk
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: de4afaacabe51b248bd9cd5ca41f6176
-    m_Address: Chunk 1.e
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Empty Chunk
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d6afa6a0018d97441b30a94e266b7129
-    m_Address: Chunk 2.e
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Empty Chunk
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d356cbf4ec293ce4fb9fbda8149dfbb5
-    m_Address: Chunk 2.o
+    m_Address: Chunk 2.1
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Obstacleble Chunk
+    - Chunk
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3fbeaf5182565b84b840694747df95dc
-    m_Address: Chunk 2.o
+    m_Address: Chunk 2.2
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Obstacleble Chunk
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d5cf7d1eb595184da4c46d43fbc657e
+    m_Address: Chunk 1.1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74d3aa0d5e94ae4458eece4a62a0454a
     m_Address: Check Point Chunk

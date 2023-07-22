@@ -22,7 +22,7 @@ namespace Assets._Project.Helpers
 
         public async Task<C> LoadAndInstantiateAsync<C>(object key, Transform parent) where C : Component
         {
-            GameObject instance = await Addressables.InstantiateAsync(key).Task;
+            GameObject instance = await Addressables.InstantiateAsync(key, parent).Task;
 
             if (instance.TryGetComponent(out C component) == false)
             {
@@ -30,7 +30,6 @@ namespace Assets._Project.Helpers
                     $"There is no such component on the {instance.name}");
             }
 
-            instance.transform.SetParent(parent);
             return component;
         }
 

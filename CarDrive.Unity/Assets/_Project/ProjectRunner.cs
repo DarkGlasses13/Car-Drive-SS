@@ -1,8 +1,10 @@
-﻿using Assets._Project.CameraControl;
-using Assets._Project.DI;
+﻿using Assets._Project.Architecture;
+using Assets._Project.Architecture.DI;
+using Assets._Project.CameraControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.SceneChange;
+using Assets._Project.Systems.MoneyControl;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -24,10 +26,14 @@ namespace Assets._Project
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
+            MoneyControlConfig moneyControlConfig = await assetLoader.Load<MoneyControlConfig>("Money Control Config");
+            Money money = new(moneyControlConfig, 0);
             container.Bind(assetLoader);
             container.Bind(playerInput);
             container.Bind(_sceneChanger);
             container.Bind(coroutiner);
+            container.Bind(moneyControlConfig);
+            container.Bind(money);
             container.Bind(new Cinematographer());
 
             _systems = new()
