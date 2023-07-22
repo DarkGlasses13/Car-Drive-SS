@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Name
-      value: Chunk Template
+      value: Chunk 1
       objectReference: {fileID: 0}
     - target: {fileID: 8582516603581545008, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
@@ -71,5 +71,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6794325682830581494}
   m_SourcePrefab: {fileID: 100100000, guid: 8bfd35aef227ca741a2a125ac81e45c9, type: 3}
+--- !u!1 &1142148993672785488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6270150405203633118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6794325682830581494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142148993672785488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992856e2eb5dd634f8f87cc1aed25037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadMeshRenderer: {fileID: 7122586767842294183}
+  _isContainsMoney: 0
+  _isContainsObstacles: 0
+  _money: []
+  _obstacles: []
+--- !u!23 &7122586767842294183 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3881133655087389305, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6270150405203633118}
+  m_PrefabAsset: {fileID: 0}

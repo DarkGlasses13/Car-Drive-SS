@@ -50,14 +50,9 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void Spawn()
         {
-            if (_config.IsObstaclesEnabled && _config.GeneralObstacleDencity >= Random.value)
-            {
-                _spawner.SpawnObstacleable();
-            }
-            else
-            {
-                _spawner.SpawnEmpty();
-            }
+            bool withMoney = _config.IsMoneyEnabled && _config.MoneyDensity >= Random.value;
+            bool withObstacles = _config.IsObstaclesEnabled && _config.GeneralObstacleDensity >= Random.value;
+            _spawner.Spawn(withMoney, withObstacles);
         }
 
         private void OnPassed(Chunk chunk)

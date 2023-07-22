@@ -81,5 +81,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 568226789709276823}
   m_SourcePrefab: {fileID: 100100000, guid: 8bfd35aef227ca741a2a125ac81e45c9, type: 3}
+--- !u!1 &2880735671353571907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 9162532980891318221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &568226789709276823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880735671353571907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992856e2eb5dd634f8f87cc1aed25037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadMeshRenderer: {fileID: 5403005964840332724}
+  _isContainsMoney: 0
+  _moneyObjects: []
+--- !u!23 &5403005964840332724 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3881133655087389305, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 9162532980891318221}
+  m_PrefabAsset: {fileID: 0}
