@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9fa872637f0657438b9131791b4d202, type: 3}
-  m_Name: Money
+  m_Script: {fileID: 11500000, guid: 15192a09b4a2152419403f13ae084d1b, type: 3}
+  m_Name: Item Database
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: 
-  <Title>k__BackingField: 
-  <Description>k__BackingField: 
+  _items: []

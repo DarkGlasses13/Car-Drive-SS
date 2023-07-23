@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Systems.Collectabling
+namespace Assets._Project.Systems.Collecting
 {
-    public class ItemObject : MonoBehaviour 
+    public class ItemObject : MonoBehaviour
     {
         [SerializeField] private ItemReference _reference;
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Systems.Collectabling
+namespace Assets._Project.Systems.Collecting
 {
     [CreateAssetMenu(menuName = "Config/Money Control")]
     public class CollectablingConfig : ScriptableObject

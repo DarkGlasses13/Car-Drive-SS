@@ -1,4 +1,4 @@
-namespace Assets._Project.Systems.Collectabling
+namespace Assets._Project.Systems.Collecting
 {
     public class Money
     {

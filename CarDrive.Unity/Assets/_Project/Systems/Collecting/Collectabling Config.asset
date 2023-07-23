@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cad9acd88f8ad49a7fd0a6d47acb97, type: 3}
   m_Name: Collectabling Config
   m_EditorClassIdentifier: 
-  <Limit>k__BackingField: 9999999
+  _moneyReference: {fileID: 11400000, guid: ed93e8836c992814ab388a41bb439683, type: 2}
+  <MoneyLimit>k__BackingField: 9999999
   <LayerMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 256

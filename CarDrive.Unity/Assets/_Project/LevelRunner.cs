@@ -7,7 +7,7 @@ using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.ChunkGeneration;
-using Assets._Project.Systems.Collectabling;
+using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using Assets._Project.Systems.WorldCentring;
@@ -40,6 +40,7 @@ namespace Assets._Project
             GameState gameState = new(GameStates.Run);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
             Money money = projectContainer.Get<Money>();
+            IItemDatabase itemDatabase = projectContainer.Get<IItemDatabase>();
             _playerInput = projectContainer.Get<IPlayerInput>();
             _cinematographer = projectContainer.Get<Cinematographer>();
             await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
@@ -62,7 +63,10 @@ namespace Assets._Project
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
             CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, _characterCar, uiMoneyCounter);
+
+            IInventory inventory = new Inventory(16);
+            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase,
+                inventory, _characterCar, uiMoneyCounter);
 
             _systems = new()
             {

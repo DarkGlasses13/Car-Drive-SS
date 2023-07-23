@@ -1,4 +1,4 @@
-using Assets._Project.Systems.Collectabling;
+using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using DG.Tweening;
