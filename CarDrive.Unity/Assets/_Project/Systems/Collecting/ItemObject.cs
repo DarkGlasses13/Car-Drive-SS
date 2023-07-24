@@ -7,5 +7,6 @@ namespace Assets._Project.Systems.Collecting
         [SerializeField] private ItemReference _reference;
 
         public string ID => _reference.ID;
+        public ItemType Type => _reference.Type;
     }
 }

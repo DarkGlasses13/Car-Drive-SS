@@ -6,6 +6,7 @@ using Assets._Project.Entities.Character;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
+using Assets._Project.Systems.CheckPoint;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
@@ -56,14 +57,14 @@ namespace Assets._Project
             _characterCar.gameObject.SetActive(false);
 
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
-            ChunkSpawner chunkSpawner = new(assetLoader, chunkGenerationConfig, _chunksContainer);
-            ChunkGenerationSystem chunkGenerationSystem = new(chunkGenerationConfig, chunkSpawner, gameState);
-            WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"), chunkSpawner);
+            CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
+            ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
+            WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, gameState, coroutiner);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
             CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-
+            CheckPointSystem checkPointSystem = new(gameState, checkPoint, assetLoader, _popupContainer, uiMoneyCounter, _hudContainer);
             IInventory inventory = new Inventory(16);
             CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase,
                 inventory, _characterCar, uiMoneyCounter);
@@ -74,7 +75,8 @@ namespace Assets._Project
                 worldCentringSystem,
                 drivingSystem,
                 damageSystem,
-                levelMoneyCollectingSystem
+                levelMoneyCollectingSystem,
+                checkPointSystem
             };
         }
 

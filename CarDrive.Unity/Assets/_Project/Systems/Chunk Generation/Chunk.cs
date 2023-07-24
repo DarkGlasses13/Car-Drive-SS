@@ -1,5 +1,4 @@
-﻿using Assets._Project.Entities.Obstacles;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

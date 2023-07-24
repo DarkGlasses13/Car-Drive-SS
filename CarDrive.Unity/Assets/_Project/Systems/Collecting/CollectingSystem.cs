@@ -40,7 +40,7 @@ namespace Assets._Project.Systems.Collecting
             {
                 if (_detecables[i].TryGetComponent(out ItemObject itemObject))
                 {
-                    if (itemObject.ID == _config.MoneyID)
+                    if (itemObject.Type == ItemType.Money)
                     {
                         itemObject.gameObject.SetActive(false);
                         _money.Add();
