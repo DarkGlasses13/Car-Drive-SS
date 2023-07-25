@@ -64,8 +64,8 @@ namespace Assets._Project
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
             CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-            CheckPointSystem checkPointSystem = new(gameState, checkPoint, assetLoader, _popupContainer, uiMoneyCounter, _hudContainer);
             IInventory inventory = new Inventory(16);
+            CheckPointSystem checkPointSystem = new(gameState, checkPoint, assetLoader, _popupContainer, uiMoneyCounter, _hudContainer);
             CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase,
                 inventory, _characterCar, uiMoneyCounter);
 

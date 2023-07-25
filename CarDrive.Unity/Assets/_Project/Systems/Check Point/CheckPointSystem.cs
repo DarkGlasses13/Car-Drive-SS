@@ -3,7 +3,6 @@ using Assets._Project.Architecture.UI;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Systems.ChunkGeneration;
-using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,19 +15,25 @@ namespace Assets._Project.Systems.CheckPoint
         private readonly CheckPointChunk _checkPoint;
         private readonly LocalAssetLoader _assetLoader;
         private readonly Transform _container;
-        private readonly UICounter _moneyCounter;
+        private readonly UICounter _uiMoneyCounter;
+        private readonly RectTransform _uiMoneyCounterRectTransform;
+        private readonly Vector2 _defaultUIMoneyCounterSize;
+        private readonly Vector3 _defaultUIMoneyCounterPosition;
         private readonly Transform _hudContainer;
         private CheckPointPopup _popup;
         private Button _playButton;
 
         public CheckPointSystem(GameState gameState, CheckPointChunk checkpPoint, LocalAssetLoader assetLoader,
-            Transform popupContainer, UICounter moneyCounter, Transform hudContainer)
+            Transform popupContainer, UICounter uiMoneyCounter, Transform hudContainer)
         {
             _gameState = gameState;
             _checkPoint = checkpPoint;
             _assetLoader = assetLoader;
             _container = popupContainer;
-            _moneyCounter = moneyCounter;
+            _uiMoneyCounter = uiMoneyCounter;
+            _uiMoneyCounterRectTransform = uiMoneyCounter.GetComponent<RectTransform>();
+            _defaultUIMoneyCounterSize = _uiMoneyCounterRectTransform.sizeDelta;
+            _defaultUIMoneyCounterPosition = _uiMoneyCounterRectTransform.anchoredPosition;
             _hudContainer = hudContainer;
         }
 
@@ -50,14 +55,16 @@ namespace Assets._Project.Systems.CheckPoint
 
         private void OnPlayButtonClicked()
         {
-            _moneyCounter.transform.SetParent(_hudContainer);
+            _uiMoneyCounter.transform.SetParent(_hudContainer);
+            _uiMoneyCounterRectTransform.sizeDelta = _defaultUIMoneyCounterSize;
+            _uiMoneyCounterRectTransform.anchoredPosition = _defaultUIMoneyCounterPosition;
             _popup.Close(() => _gameState.Switch(GameStates.Run));
         }
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
             _gameState.Switch(GameStates.Finish);
-            _moneyCounter.transform.SetParent(_popup.MoneyBalanceAndPlayButtonPlace);
+            _uiMoneyCounter.transform.SetParent(_popup.MoneyBalanceAndPlayButtonPlace);
             _popup.Open();
         }
 
