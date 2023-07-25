@@ -1,9 +1,7 @@
 ﻿using Assets._Project.Architecture;
 using Assets._Project.Architecture.UI;
 using Assets._Project.GameStateControl;
-using Assets._Project.Helpers;
 using Assets._Project.Systems.ChunkGeneration;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +11,6 @@ namespace Assets._Project.Systems.CheckPoint
     {
         private readonly GameState _gameState;
         private readonly CheckPointChunk _checkPoint;
-        private readonly LocalAssetLoader _assetLoader;
-        private readonly Transform _container;
         private readonly UICounter _uiMoneyCounter;
         private readonly RectTransform _uiMoneyCounterRectTransform;
         private readonly Vector2 _defaultUIMoneyCounterSize;
@@ -23,27 +19,18 @@ namespace Assets._Project.Systems.CheckPoint
         private CheckPointPopup _popup;
         private Button _playButton;
 
-        public CheckPointSystem(GameState gameState, CheckPointChunk checkpPoint, LocalAssetLoader assetLoader,
-            Transform popupContainer, UICounter uiMoneyCounter, Transform hudContainer)
+        public CheckPointSystem(GameState gameState, Transform hudContainer, CheckPointChunk checkpPoint, 
+            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton)
         {
             _gameState = gameState;
+            _hudContainer = hudContainer;
             _checkPoint = checkpPoint;
-            _assetLoader = assetLoader;
-            _container = popupContainer;
+            _popup = popup;
             _uiMoneyCounter = uiMoneyCounter;
             _uiMoneyCounterRectTransform = uiMoneyCounter.GetComponent<RectTransform>();
             _defaultUIMoneyCounterSize = _uiMoneyCounterRectTransform.sizeDelta;
             _defaultUIMoneyCounterPosition = _uiMoneyCounterRectTransform.anchoredPosition;
-            _hudContainer = hudContainer;
-        }
-
-        public override async Task InitializeAsync()
-        {
-            _popup = await _assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _container);
-            _playButton = await _assetLoader.LoadAndInstantiateAsync<Button>("Play Button", _popup.MoneyBalanceAndPlayButtonPlace);
-            await _assetLoader.LoadAndInstantiateAsync<RectTransform>("Equipment", _popup.OtherElementsPlace);
-            await _assetLoader.LoadAndInstantiateAsync<RectTransform>("Merge", _popup.OtherElementsPlace);
-            await _assetLoader.LoadAndInstantiateAsync<RectTransform>("Shop", _popup.OtherElementsPlace);
+            _playButton = playButton;
             _popup.gameObject.SetActive(false);
         }
 
@@ -64,7 +51,7 @@ namespace Assets._Project.Systems.CheckPoint
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
             _gameState.Switch(GameStates.Finish);
-            _uiMoneyCounter.transform.SetParent(_popup.MoneyBalanceAndPlayButtonPlace);
+            _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);
             _popup.Open();
         }
 

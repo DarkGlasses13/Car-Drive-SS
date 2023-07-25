@@ -6,8 +6,9 @@ namespace Assets._Project.Systems.CheckPoint
 {
     public class CheckPointPopup : MonoBehaviour, IUIElement
     {
-        [field: SerializeField] public RectTransform MoneyBalanceAndPlayButtonPlace { get; private set; }
-        [field: SerializeField] public RectTransform OtherElementsPlace { get; private set; }
+        [field: SerializeField] public RectTransform BalanceAndPlayButtonSection { get; private set; }
+        [field: SerializeField] public RectTransform EquipmentSection { get; private set; }
+        [field: SerializeField] public RectTransform MergeAndBuyButtonSection { get; private set; }
 
         public void Open(Action callback = null)
         {

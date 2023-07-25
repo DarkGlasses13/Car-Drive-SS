@@ -11,10 +11,12 @@ using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
+using Assets._Project.Systems.Merge;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets._Project
 {
@@ -64,8 +66,13 @@ namespace Assets._Project
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
             CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-            IInventory inventory = new Inventory(16);
-            CheckPointSystem checkPointSystem = new(gameState, checkPoint, assetLoader, _popupContainer, uiMoneyCounter, _hudContainer);
+            CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
+            Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
+            await assetLoader.LoadAndInstantiateAsync<RectTransform>("Equipment", checkPointPopup.EquipmentSection);
+            MergeGrid mergeGrid = await assetLoader.LoadAndInstantiateAsync<MergeGrid>("Merge", checkPointPopup.MergeAndBuyButtonSection);
+            await assetLoader.LoadAndInstantiateAsync<RectTransform>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
+            IInventory inventory = new Inventory(mergeGrid.SlotsCount);
+            CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton);
             CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase,
                 inventory, _characterCar, uiMoneyCounter);
 
