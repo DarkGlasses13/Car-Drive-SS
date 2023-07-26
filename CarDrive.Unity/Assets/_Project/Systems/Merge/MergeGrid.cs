@@ -42,6 +42,9 @@ namespace Assets._Project.Systems.Merge
             if (FromSlot.Item == null)
                 return;
 
+            if (FromSlot == ToSlot)
+                return;
+
             int fromSlotIndex = FromSlot.transform.GetSiblingIndex();
             int toSlotIndex = ToSlot.transform.GetSiblingIndex();
 
