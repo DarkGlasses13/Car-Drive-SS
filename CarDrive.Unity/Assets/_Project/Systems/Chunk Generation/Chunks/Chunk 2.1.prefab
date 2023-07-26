@@ -540,6 +540,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
+      propertyPath: _isContainsCollectables
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: _collectables.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
       propertyPath: _obstacles.Array.data[0]
       value: 
       objectReference: {fileID: 5097554635809588177}
@@ -553,6 +563,21 @@ PrefabInstance:
       propertyPath: _obstacles.Array.data[2]
       value: 
       objectReference: {fileID: 4439204487265880707}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: _collectables.Array.data[0]
+      value: 
+      objectReference: {fileID: 8660056087021273062}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: _collectables.Array.data[1]
+      value: 
+      objectReference: {fileID: 3057671936251309167}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: _collectables.Array.data[2]
+      value: 
+      objectReference: {fileID: 2038735462339762619}
     - target: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
       propertyPath: m_RootOrder

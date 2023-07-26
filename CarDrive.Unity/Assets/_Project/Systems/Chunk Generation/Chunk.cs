@@ -10,8 +10,8 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         public Action<Chunk> OnPassed;
         [SerializeField] private MeshRenderer _roadMeshRenderer;
-        [SerializeField] private bool _isContainsMoney, _isContainsObstacles;
-        [SerializeField, ShowIf("_isContainsMoney")] private GameObject[] _money;
+        [SerializeField] private bool _isContainsCollectables, _isContainsObstacles;
+        [SerializeField, ShowIf("_isContainsCollectables")] private GameObject[] _collectables;
         [SerializeField, ShowIf("_isContainsObstacles")] private GameObject[] _obstacles;
 
         public Bounds Bounds => _roadMeshRenderer.bounds;
@@ -19,17 +19,19 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void OnEnable()
         {
-            if (_isContainsMoney)
-                Array.ForEach(_money, money => money.gameObject.SetActive(false));
+            if (_isContainsCollectables)
+                Array.ForEach(_collectables, money => money.gameObject.SetActive(false));
 
             if (_isContainsObstacles)
                 Array.ForEach(_obstacles, obstacle => obstacle.gameObject.SetActive(false));
         }
 
-        public void ShowMoney()
+        public void ShowCollectables()
         {
-            if (_isContainsMoney)
-                Array.ForEach(_money, money => money.gameObject.SetActive(true));
+            if (_isContainsCollectables)
+            {
+                Array.ForEach(_collectables, money => money.gameObject.SetActive(true));
+            }
         }
 
         public void ShowObstacles()

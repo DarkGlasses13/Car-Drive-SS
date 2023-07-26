@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9fa872637f0657438b9131791b4d202, type: 3}
-  m_Name: Money
+  m_Name: Loot box
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: it_Mny
-  <Title>k__BackingField: Coin
+  <ID>k__BackingField: it_Lbx
+  <Title>k__BackingField: Loot box
   <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 6661e486479b461428832d59d40f4b15,
+  <Icon>k__BackingField: {fileID: 21300000, guid: efc8b9c0a417c0340890ba54e90cc02c,
     type: 3}
-  <Type>k__BackingField: 1
+  <Type>k__BackingField: 0

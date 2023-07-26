@@ -2,6 +2,7 @@
 {
     public interface IItemDatabase
     {
+        IItem GetRandom();
         bool TryGetByID(string id, out IItem item);
     }
 }

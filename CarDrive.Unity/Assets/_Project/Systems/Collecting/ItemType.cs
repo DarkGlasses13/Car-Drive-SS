@@ -2,6 +2,7 @@
 {
     public enum ItemType
     {
+        LootBox,
         Money,
         Wheel,
         Engine,

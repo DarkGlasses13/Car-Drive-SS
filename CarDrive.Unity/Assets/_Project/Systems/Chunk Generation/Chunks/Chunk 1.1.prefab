@@ -600,6 +600,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
         type: 3}
+      propertyPath: _isContainsCollectables
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: _collectables.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
       propertyPath: _obstacles.Array.data[0]
       value: 
       objectReference: {fileID: 6124352172975462259}
@@ -613,6 +623,26 @@ PrefabInstance:
       propertyPath: _obstacles.Array.data[2]
       value: 
       objectReference: {fileID: 8547597378946101747}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: _collectables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1171542888758645529}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: _collectables.Array.data[1]
+      value: 
+      objectReference: {fileID: 4042945145188297075}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: _collectables.Array.data[2]
+      value: 
+      objectReference: {fileID: 959666248587053834}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: _collectables.Array.data[3]
+      value: 
+      objectReference: {fileID: 3428974436496253024}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

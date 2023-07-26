@@ -57,7 +57,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             }
         }
 
-        private Chunk SpawnInitial() => Spawn(withMoney: false, withObstacles: false);
+        private Chunk SpawnInitial() => Spawn(whithCollectables: false, withObstacles: false);
 
         private Chunk SpawnRandom()
         {
@@ -91,7 +91,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             }
         }
 
-        private Chunk Spawn(bool withMoney = false, bool withObstacles = false, bool isCheckpoint = false)
+        private Chunk Spawn(bool whithCollectables = false, bool withObstacles = false, bool isCheckpoint = false)
         {
             Chunk chunk;
 
@@ -103,8 +103,8 @@ namespace Assets._Project.Systems.ChunkGeneration
             {
                 chunk = _pool.Get();
 
-                if (withMoney)
-                    chunk.ShowMoney();
+                if (whithCollectables)
+                    chunk.ShowCollectables();
 
                 if (withObstacles)
                     chunk.ShowObstacles();
@@ -119,7 +119,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private CheckPointChunk SpawnCheckPoint()
         {
-            CheckPointChunk checkPoint = (CheckPointChunk)Spawn(withMoney: false, withObstacles: false, isCheckpoint: true);
+            CheckPointChunk checkPoint = (CheckPointChunk)Spawn(whithCollectables: false, withObstacles: false, isCheckpoint: true);
             checkPoint.gameObject.SetActive(true);
             return checkPoint;
         }

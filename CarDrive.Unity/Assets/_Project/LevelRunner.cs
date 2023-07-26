@@ -12,6 +12,7 @@ using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using Assets._Project.Systems.Merge;
+using Assets._Project.Systems.Shop;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using System.Threading.Tasks;
@@ -70,11 +71,13 @@ namespace Assets._Project
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
             await assetLoader.LoadAndInstantiateAsync<RectTransform>("Equipment", checkPointPopup.EquipmentSection);
             MergeGrid mergeGrid = await assetLoader.LoadAndInstantiateAsync<MergeGrid>("Merge", checkPointPopup.MergeAndBuyButtonSection);
-            await assetLoader.LoadAndInstantiateAsync<RectTransform>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
+            mergeGrid.Construct(_canvas, itemDatabase);
+            Button buyButton = await assetLoader.LoadAndInstantiateAsync<Button>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(mergeGrid.SlotsCount);
             CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton);
-            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase,
-                inventory, _characterCar, uiMoneyCounter);
+            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
+            MergeSystem mergeSystem = new(inventory, itemDatabase, mergeGrid, checkPointPopup);
+            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton);
 
             _systems = new()
             {
@@ -83,7 +86,9 @@ namespace Assets._Project
                 drivingSystem,
                 damageSystem,
                 levelMoneyCollectingSystem,
-                checkPointSystem
+                checkPointSystem,
+                mergeSystem,
+                shopSystem,
             };
         }
 

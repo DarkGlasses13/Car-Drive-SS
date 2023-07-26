@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9fa872637f0657438b9131791b4d202, type: 3}
-  m_Name: Money
+  m_Name: Wheel2
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: it_Mny
-  <Title>k__BackingField: Coin
+  <ID>k__BackingField: it_Mhl_2
+  <Title>k__BackingField: Folk Wheel
   <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 6661e486479b461428832d59d40f4b15,
+  <Icon>k__BackingField: {fileID: 392438147, guid: 552d721d5d92d5a4ebce2133a73debf5,
     type: 3}
-  <Type>k__BackingField: 1
+  <Type>k__BackingField: 2

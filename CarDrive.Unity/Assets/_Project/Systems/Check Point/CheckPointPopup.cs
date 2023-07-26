@@ -6,12 +6,15 @@ namespace Assets._Project.Systems.CheckPoint
 {
     public class CheckPointPopup : MonoBehaviour, IUIElement
     {
+        public event Action OnBeforeOpening;
+
         [field: SerializeField] public RectTransform BalanceAndPlayButtonSection { get; private set; }
         [field: SerializeField] public RectTransform EquipmentSection { get; private set; }
         [field: SerializeField] public RectTransform MergeAndBuyButtonSection { get; private set; }
 
         public void Open(Action callback = null)
         {
+            OnBeforeOpening?.Invoke();
             gameObject.SetActive(true);
             callback?.Invoke();
         }

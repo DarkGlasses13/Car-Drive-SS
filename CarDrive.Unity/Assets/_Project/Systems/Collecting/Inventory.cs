@@ -1,28 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets._Project.Systems.Collecting
 {
     public class Inventory : IInventory
     {
+        public event Action OnChenged;
+
         private IItem[] _items;
 
-        public int Capacity { get; }
         public int Length => _items.Length;
+
+        public IEnumerable<IItem> Items => _items.AsEnumerable();
 
         public Inventory(int capacity)
         {
-            Capacity = capacity;
-            _items = new IItem[Capacity];
+            _items = new IItem[capacity];
         }
 
         public bool TryAdd(IItem item)
         {
-            if (_items.Length < Capacity)
+            for (int i = 0; i < _items.Length; i++)
             {
-                _items[Array.IndexOf(_items, null)] = item;
-                return true;
+                if (_items[i] == null)
+                {
+                    _items[i] = item;
+                    OnChenged?.Invoke();
+                    return true;
+                }
             }
-
             return false;
         }
 
@@ -35,7 +42,14 @@ namespace Assets._Project.Systems.Collecting
             IItem toItem = _items[to];
             _items[from] = toItem;
             _items[to] = fromItem;
+            OnChenged?.Invoke();
             return true;
+        }
+
+        public void Swap(int slot, IItem item) 
+        {
+            _items[slot] = item;
+            OnChenged?.Invoke();
         }
 
         public bool TryRemove(int slot)
@@ -43,6 +57,7 @@ namespace Assets._Project.Systems.Collecting
             if (_items[slot] != null)
             {
                 _items[slot] = null;
+                OnChenged?.Invoke();
                 return true;
             }
 
