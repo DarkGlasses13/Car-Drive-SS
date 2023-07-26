@@ -6,7 +6,7 @@ namespace Assets._Project.Systems.Collecting
 {
     public class CollectingSystem : GameSystem
     {
-        private readonly CollectablingConfig _config;
+        private readonly CollectablesConfig _config;
         private readonly Money _money;
         private readonly IItemDatabase _database;
         private readonly IInventory _inventory;
@@ -15,7 +15,7 @@ namespace Assets._Project.Systems.Collecting
         private float _collectingRadius = 2;
         private Collider[] _detecables = new Collider[50];
 
-        public CollectingSystem(CollectablingConfig config, Money money, IItemDatabase database,
+        public CollectingSystem(CollectablesConfig config, Money money, IItemDatabase database,
             IInventory inventory,ICanCollectItems collector, IUICounter uiMoneyCounter)
         {
             _config = config;

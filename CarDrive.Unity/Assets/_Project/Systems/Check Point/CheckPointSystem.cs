@@ -2,6 +2,8 @@
 using Assets._Project.Architecture.UI;
 using Assets._Project.GameStateControl;
 using Assets._Project.Systems.ChunkGeneration;
+using Assets._Project.Systems.Collecting;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,11 +18,12 @@ namespace Assets._Project.Systems.CheckPoint
         private readonly Vector2 _defaultUIMoneyCounterSize;
         private readonly Vector3 _defaultUIMoneyCounterPosition;
         private readonly Transform _hudContainer;
-        private CheckPointPopup _popup;
-        private Button _playButton;
+        private readonly CheckPointPopup _popup;
+        private readonly Button _playButton;
+        private readonly Money _money;
 
         public CheckPointSystem(GameState gameState, Transform hudContainer, CheckPointChunk checkpPoint, 
-            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton)
+            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money)
         {
             _gameState = gameState;
             _hudContainer = hudContainer;
@@ -31,6 +34,7 @@ namespace Assets._Project.Systems.CheckPoint
             _defaultUIMoneyCounterSize = _uiMoneyCounterRectTransform.sizeDelta;
             _defaultUIMoneyCounterPosition = _uiMoneyCounterRectTransform.anchoredPosition;
             _playButton = playButton;
+            _money = money;
             _popup.gameObject.SetActive(false);
         }
 
@@ -38,6 +42,12 @@ namespace Assets._Project.Systems.CheckPoint
         {
             _checkPoint.OnEnter += OnCheckPointEnter;
             _playButton.onClick.AddListener(OnPlayButtonClicked);
+            _money.OnChanged += OnMoneyChanged;
+        }
+
+        private void OnMoneyChanged(int value)
+        {
+            _uiMoneyCounter.Set(_money.ToString());
         }
 
         private void OnPlayButtonClicked()

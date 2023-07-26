@@ -27,14 +27,14 @@ namespace Assets._Project
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
             IItemDatabase itemDatabase = await assetLoader.Load<ItemDatabase>("Item Database");
-            CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
+            CollectablesConfig collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
             container.Bind(assetLoader);
             container.Bind(playerInput);
             container.Bind(_sceneChanger);
             container.Bind(coroutiner);
             container.Bind(itemDatabase);
-            container.Bind(moneyControlConfig);
-            container.Bind(new Money(moneyControlConfig, 0));
+            container.Bind(collectablesConfig);
+            container.Bind(new Money(collectablesConfig, 0));
             container.Bind(new Cinematographer());
 
             _systems = new()

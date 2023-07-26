@@ -65,19 +65,20 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, gameState, coroutiner);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
-            CollectablingConfig moneyControlConfig = await assetLoader.Load<CollectablingConfig>("Money Control Config");
+            CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
             await assetLoader.LoadAndInstantiateAsync<RectTransform>("Equipment", checkPointPopup.EquipmentSection);
             MergeGrid mergeGrid = await assetLoader.LoadAndInstantiateAsync<MergeGrid>("Merge", checkPointPopup.MergeAndBuyButtonSection);
             mergeGrid.Construct(_canvas, itemDatabase);
-            Button buyButton = await assetLoader.LoadAndInstantiateAsync<Button>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
+            PriceTagButton buyButton = await assetLoader
+                .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(mergeGrid.SlotsCount);
-            CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton);
-            CollectingSystem levelMoneyCollectingSystem = new(moneyControlConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
+            CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton, money);
+            CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             MergeSystem mergeSystem = new(inventory, itemDatabase, mergeGrid, checkPointPopup);
-            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton);
+            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
 
             _systems = new()
             {

@@ -1,12 +1,15 @@
+using System;
+
 namespace Assets._Project.Systems.Collecting
 {
     public class Money
     {
-        private readonly CollectablingConfig _config;
+        private readonly CollectablesConfig _config;
 
+        public event Action<int> OnChanged;
         public int Value { get; private set; }
 
-        public Money(CollectablingConfig config, int initialAmount = 0)
+        public Money(CollectablesConfig config, int initialAmount = 0)
         {
             _config = config;
             Value = initialAmount;
@@ -21,9 +24,10 @@ namespace Assets._Project.Systems.Collecting
 
         public bool TrySpend(int amount = 1)
         {
-            if (Value - amount > 0)
+            if (Value - amount >= 0)
             {
                 Value -= amount;
+                OnChanged?.Invoke(Value);
                 return true;
             }
 
@@ -33,6 +37,7 @@ namespace Assets._Project.Systems.Collecting
         public void Add(int amount = 1)
         {
             Value += amount;
+            OnChanged?.Invoke(Value);
         }
     }
 }
