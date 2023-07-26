@@ -1,8 +1,6 @@
 using Assets._Project.Architecture;
 using Assets._Project.Systems.CheckPoint;
 using Assets._Project.Systems.Collecting;
-using System;
-using UnityEditor.Graphs;
 
 namespace Assets._Project.Systems.Merge
 {
@@ -30,10 +28,15 @@ namespace Assets._Project.Systems.Merge
             _grid.OnMerge += OnMerge;
         }
 
-        private void OnMerge(int from, int to, IItem mergeResult)
+        private void OnMerge(int from, int to, ItemType type, int mergeLevel)
         {
-            _inventory.Swap(from, null);
-            _inventory.Swap(to, mergeResult);
+            IItem item = _database.GetByMergeLevel(type, mergeLevel);
+
+            if (item != null)
+            {
+                _inventory.Swap(from, null);
+                _inventory.Swap(to, item);
+            }
         }
 
         private void OnAddNewItem(int slot)

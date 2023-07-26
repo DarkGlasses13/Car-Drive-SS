@@ -9,6 +9,6 @@ namespace Assets._Project.Systems.Collecting
         Sprite Icon { get; }
         string Description { get; }
         ItemType Type { get; }
-        IItem MergeResult { get; }
+        int MergeLevel { get; }
     }
 }

@@ -11,7 +11,7 @@ namespace Assets._Project.Systems.Merge
     {
         public event Action<int> OnAddNewItem;
         public event Action<int, int> OnSwap;
-        public event Action<int, int, IItem> OnMerge;
+        public event Action<int, int, ItemType, int> OnMerge;
 
         [SerializeField] private Image _dragableImage;
         private GridLayoutGroup _grid;
@@ -49,11 +49,12 @@ namespace Assets._Project.Systems.Merge
             {
                 if (FromSlot.Item.ID == ToSlot.Item.ID)
                 {
-                    IItem mergeResult = ToSlot.Item.MergeResult;
+                    ItemType type = ToSlot.Item.Type;
+                    int mergeLevel = ToSlot.Item.MergeLevel;
 
-                    if (mergeResult != null)
+                    if (mergeLevel > 0)
                     {
-                        OnMerge?.Invoke(fromSlotIndex, toSlotIndex, mergeResult);
+                        OnMerge?.Invoke(fromSlotIndex, toSlotIndex, type, mergeLevel + 1);
                         return;
                     }
                 }

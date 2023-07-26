@@ -2,6 +2,7 @@
 {
     public interface IItemDatabase
     {
+        IItem GetByMergeLevel(ItemType type, int mergeLevel);
         IItem GetRandom();
         bool TryGetByID(string id, out IItem item);
     }

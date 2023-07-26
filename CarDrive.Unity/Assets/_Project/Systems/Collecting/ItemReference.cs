@@ -10,7 +10,6 @@ namespace Assets._Project.Systems.Collecting
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public ItemType Type { get; private set; }
-        [SerializeField] private ItemReference _mergeResult;
-        public IItem MergeResult => _mergeResult;
+        [field: SerializeField] public int MergeLevel { get; private set; }
     }
 }
