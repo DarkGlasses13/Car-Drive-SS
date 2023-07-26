@@ -61,6 +61,8 @@ namespace Assets._Project.Systems.Merge
             }
 
             OnSwap?.Invoke(fromSlotIndex, toSlotIndex);
+            FromSlot = null;
+            ToSlot = null;
         }
 
         public void OpenLootBox(int slot)

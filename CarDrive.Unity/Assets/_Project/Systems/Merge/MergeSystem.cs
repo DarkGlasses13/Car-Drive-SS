@@ -41,7 +41,7 @@ namespace Assets._Project.Systems.Merge
 
         private void OnAddNewItem(int slot)
         {
-            _inventory.Swap(slot, _database.GetRandom());
+            _inventory.Swap(slot, _database.GetRandom(1));
         }
 
         private void OnSwap(int from, int to)
