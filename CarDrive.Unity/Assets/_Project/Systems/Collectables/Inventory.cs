@@ -8,15 +8,18 @@ namespace Assets._Project.Systems.Collecting
     {
         public event Action OnChenged;
 
-        private IItem[] _items;
+        private readonly IItem[] _items, _equipment;
 
-        public int Length => _items.Length;
+        public int SlotsCount => _items.Length;
+        public int EquipmentCount => _equipment.Length;
 
         public IEnumerable<IItem> Items => _items.AsEnumerable();
+        public IEnumerable<IItem> Equipment => _equipment.AsEnumerable();
 
-        public Inventory(int capacity)
+        public Inventory(int capacity, int equipmentCapacity)
         {
             _items = new IItem[capacity];
+            _equipment = new IItem[equipmentCapacity];
         }
 
         public bool TryAdd(IItem item)
@@ -33,17 +36,13 @@ namespace Assets._Project.Systems.Collecting
             return false;
         }
 
-        public bool TrySwap(int from, int to)
+        public void Swap(int from, int to)
         {
-            if (_items[from] == null)
-                return false;
-
             IItem fromItem = _items[from];
             IItem toItem = _items[to];
             _items[from] = toItem;
             _items[to] = fromItem;
             OnChenged?.Invoke();
-            return true;
         }
 
         public void Swap(int slot, IItem item) 
@@ -62,6 +61,24 @@ namespace Assets._Project.Systems.Collecting
             }
 
             return false;
+        }
+
+        public void Equip(int from, int to)
+        {
+            IItem fromItem = _items[from];
+            IItem equipment = _equipment[to];
+            _equipment[to] = fromItem;
+            _items[from] = equipment;
+            OnChenged?.Invoke();
+        }
+
+        public void UnEquip(int from, int to)
+        {
+            IItem equipment = _equipment[from];
+            IItem toItem = _items[to];
+            _items[to] = equipment;
+            _equipment[from] = toItem;
+            OnChenged?.Invoke();
         }
     }
 }

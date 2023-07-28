@@ -1,22 +1,24 @@
-﻿using Assets._Project.Systems.Collecting;
+﻿using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets._Project.Systems.Merge
+namespace Assets._Project.Systems.Collecting
 {
     public class UISlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         [SerializeField] private Image _itemIcon;
-        private MergeGrid _grid;
+        private UIInventory _uiInventory;
         private Image _dragableImage;
         private CanvasScaler _canvasScaler;
 
+        [field: SerializeField] public bool IsEquipment { get; private set; }
+        [field: SerializeField, ShowIf("IsEquipment")]public ItemType Type { get; private set; }
         public IItem Item { get; private set; }
 
-        public void Construct(MergeGrid grid, Image dragableImage, CanvasScaler canvasScaler)
+        public void Construct(UIInventory uiInventory, Image dragableImage, CanvasScaler canvasScaler)
         {
-            _grid = grid;
+            _uiInventory = uiInventory;
             _dragableImage = dragableImage;
             _canvasScaler = canvasScaler;
         }
@@ -37,12 +39,15 @@ namespace Assets._Project.Systems.Merge
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (Item == null)
+                return;
+
             if (Item.Type == ItemType.LootBox)
             {
-                _grid.OpenLootBox(transform.GetSiblingIndex());
+                _uiInventory.OpenLootBox(transform.GetSiblingIndex());
             }
 
-            _grid.FromSlot = this;
+            _uiInventory.FromSlot = this;
             _dragableImage.sprite = Item.Icon;
             _dragableImage.rectTransform.position = _itemIcon.rectTransform.position;
             _itemIcon.gameObject.SetActive(false);
@@ -56,17 +61,19 @@ namespace Assets._Project.Systems.Merge
 
         public void OnDrop(PointerEventData eventData)
         {
-            _grid.ToSlot = this;
+            _uiInventory.ToSlot = this;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             _dragableImage.gameObject.SetActive(false);
-            _itemIcon.gameObject.SetActive(true);
 
-            if (_grid.ToSlot != null)
+            if (Item != null)
+                _itemIcon.gameObject.SetActive(true);
+
+            if (_uiInventory.ToSlot != null)
             {
-                _grid.Swap();
+                _uiInventory.Swap();
             }
         }
     }

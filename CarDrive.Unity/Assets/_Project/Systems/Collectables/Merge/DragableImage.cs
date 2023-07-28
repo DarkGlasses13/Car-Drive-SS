@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets._Project.Systems.Merge
+namespace Assets._Project.Systems.Collecting
 {
     public class DragableImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHandler
     {
