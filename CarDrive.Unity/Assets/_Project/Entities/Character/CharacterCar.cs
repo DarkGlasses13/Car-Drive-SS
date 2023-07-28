@@ -43,6 +43,7 @@ namespace Assets._Project.Entities.Character
         {
             _rigidbody.isKinematic = false;
             _moveTween?.Kill();
+            _rigidbody.AddForce(Vector3.up * 10000, ForceMode.Impulse);
             transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
         }
     }
