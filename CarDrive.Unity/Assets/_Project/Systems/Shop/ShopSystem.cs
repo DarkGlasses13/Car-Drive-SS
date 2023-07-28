@@ -29,11 +29,11 @@ namespace Assets._Project.Systems.Shop
 
         private void OnBuyButtonCkick()
         {
-            if (_database.TryGetByID("it_Lbx", out IItem lootBox))
+            if (_database.TryGetByID("it_Lbx", out IItem lootBoxItem))
             {
                 if (_money.TrySpend(_config.LootBoxPrice))
                 {
-                    _inventory.TryAdd(lootBox);
+                    _inventory.TryAdd(lootBoxItem);
                 }
             }
         }

@@ -19,6 +19,7 @@ namespace Assets._Project
             DontDestroyOnLoad(this);
             Application.targetFrameRate = 60;
             DIContainer container = new GameObject("Project DI Container").AddComponent<DIContainer>();
+            Player player = new();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
             DontDestroyOnLoad(container);
             DontDestroyOnLoad(coroutiner);
@@ -31,10 +32,11 @@ namespace Assets._Project
             container.Bind(assetLoader);
             container.Bind(playerInput);
             container.Bind(_sceneChanger);
+            container.Bind(player);
             container.Bind(coroutiner);
             container.Bind(itemDatabase);
             container.Bind(collectablesConfig);
-            container.Bind(new Money(collectablesConfig, 0));
+            container.Bind(new Money(collectablesConfig, 1000));
             container.Bind(new Cinematographer());
 
             _systems = new()

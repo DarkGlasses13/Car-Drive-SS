@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9fa872637f0657438b9131791b4d202, type: 3}
+  m_Name: Wheel3
+  m_EditorClassIdentifier: 
+  <ID>k__BackingField: it_Mhl_3
+  <Title>k__BackingField: Expensive Wheel
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: -552090923, guid: 552d721d5d92d5a4ebce2133a73debf5,
+    type: 3}
+  <Type>k__BackingField: 2
+  <MergeLevel>k__BackingField: 3
+  <Stat>k__BackingField: 5
