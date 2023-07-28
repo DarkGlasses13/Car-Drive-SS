@@ -20,5 +20,5 @@ MonoBehaviour:
   <RoadLines>k__BackingField: 3
   <StearDuration>k__BackingField: 0.25
   <StearAngle>k__BackingField: 45
-  <ManeuverTime>k__BackingField: 2
-  <ManeuverCooldown>k__BackingField: 3
+  <ManeuverTime>k__BackingField: -1
+  <ManeuverCooldown>k__BackingField: 0
