@@ -2,6 +2,7 @@ using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
+using Assets._Project.Systems.Collecting;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -11,8 +12,9 @@ namespace Assets._Project.Systems.Driving
     public class DrivingSystem : GameSystem
     {
         private readonly LocalAssetLoader _assetLoader;
-        private readonly IPlayerInput _playerInpu;
+        private readonly IPlayerInput _playerInput;
         private readonly IDrivable _drivable;
+        private readonly Player _player;
         private readonly GameState _gameState;
         private readonly Coroutiner _coroutiner;
         private DrivingConfig _config;
@@ -21,13 +23,17 @@ namespace Assets._Project.Systems.Driving
         private Coroutine _gasRegulationRoutine;
         private float _gasRegulation = 1;
         private float[] _roadLines;
+        private bool _isMeneuver;
+        private float _maneuverCooldown;
+        private float _maneuverDirection;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
-            GameState gameState, Coroutiner coroutiner)
+            Player player, GameState gameState, Coroutiner coroutiner)
         {
             _assetLoader = assetLoader;
-            _playerInpu = playerInput;
+            _playerInput = playerInput;
             _drivable = drivable;
+            _player = player;
             _gameState = gameState;
             _coroutiner = coroutiner;
         }
@@ -52,18 +58,37 @@ namespace Assets._Project.Systems.Driving
 
         public override void Enable()
         {
-            _playerInpu.OnStear += Stear;
-            _playerInpu.OnGasRegulate += RegulateGas;
+            _playerInput.OnStear += Stear;
+            _playerInput.OnGasRegulate += RegulateGas;
         }
 
         private void RegulateGas(float value)
         {
             if (_gameState.Current == GameStates.Run)
             {
-                if (_gasRegulationRoutine != null)
-                    _coroutiner.StopCoroutine(_gasRegulationRoutine);
+                if (value == _maneuverDirection)
+                    return;
 
-                _gasRegulationRoutine = _coroutiner.StartCoroutine(RegulateGasRoutine(value));
+                if (_isMeneuver == false && _maneuverCooldown > 0)
+                    return;
+
+                if (_isMeneuver && value != _maneuverDirection)
+                {
+                    _coroutiner.StopCoroutine(_gasRegulationRoutine);
+                    _coroutiner.StartCoroutine(ResetGasRoutine());
+                    return;
+                }
+
+                float target = 0;
+
+                if (value > 0)
+                    target = _config.GasRegulationRange.y * _player.GetStat(ItemType.Accelerator);
+
+                if (value < 0)
+                    target = _config.GasRegulationRange.x / _player.GetStat(ItemType.Brakes);
+
+                _maneuverDirection = value;
+                _gasRegulationRoutine = _coroutiner.StartCoroutine(GasManeuverRoutine(target));
             }
         }
 
@@ -73,7 +98,8 @@ namespace Assets._Project.Systems.Driving
             {
                 _currentRoadLineIndex += (int)value;
                 _currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
-                _drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration, _config.StearAngle);
+                _drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration 
+                    / _player.GetStat(ItemType.Wheel), _config.StearAngle);
             }
         }
 
@@ -81,20 +107,17 @@ namespace Assets._Project.Systems.Driving
         {
             if (_gameState.Current == GameStates.Run)
             {
-                _gasValue = _config.Speed * _gasRegulation;
+                if (_isMeneuver == false)
+                    _maneuverCooldown -= Time.deltaTime;
+
+                _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
             }
         }
 
-        private IEnumerator RegulateGasRoutine(float value)
+        private IEnumerator GasManeuverRoutine(float target)
         {
-            float target = 0;
-
-            if (value > 0)
-                target = _config.GasRegulationRange.y;
-
-            if (value < 0)
-                target = _config.GasRegulationRange.x;
+            _isMeneuver = true;
 
             while (Mathf.Approximately(_gasRegulation, target) == false)
             {
@@ -102,19 +125,28 @@ namespace Assets._Project.Systems.Driving
                 yield return null;
             }
 
-            yield return new WaitForSeconds(_config.ManeuverTime);
+            float time = _config.ManeuverTime <= -1 ? float.PositiveInfinity : _config.ManeuverTime;
+            yield return new WaitForSeconds(time);
+            yield return ResetGasRoutine();
+        }
 
+        public IEnumerator ResetGasRoutine()
+        {
             while (Mathf.Approximately(_gasRegulation, 1) == false)
             {
                 _gasRegulation = Mathf.MoveTowards(_gasRegulation, 1, _config.Speed * Time.deltaTime);
                 yield return null;
             }
+
+            _maneuverCooldown = _config.ManeuverCooldown;
+            _maneuverDirection = 0;
+            _isMeneuver = false;
         }
 
         public override void Disable()
         {
-            _playerInpu.OnStear -= Stear;
-            _playerInpu.OnGasRegulate -= RegulateGas;
+            _playerInput.OnStear -= Stear;
+            _playerInput.OnGasRegulate -= RegulateGas;
         }
     }
 }

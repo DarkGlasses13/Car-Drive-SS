@@ -9,13 +9,15 @@ namespace Assets._Project.Systems.Collecting
         private readonly IItemDatabase _database;
         private readonly UIInventory _uiInventory;
         private readonly CheckPointPopup _popup;
+        private readonly Player _player;
 
-        public InventorySystem(IInventory inventory, IItemDatabase database, UIInventory grid, CheckPointPopup popup)
+        public InventorySystem(IInventory inventory, IItemDatabase database, UIInventory grid, CheckPointPopup popup, Player player)
         {
             _inventory = inventory;
             _database = database;
             _uiInventory = grid;
             _popup = popup;
+            _player = player;
         }
 
         public override void Enable()
@@ -51,7 +53,10 @@ namespace Assets._Project.Systems.Collecting
             if (to.IsEquipment)
             {
                 if (from.Item.Type == to.Type)
+                {
                     _inventory.Equip(fromSlotIndex, toSlotIndex);
+                    _player.SetStat(to.Type, to.Item.Stat);
+                }
 
                 return;
             }
@@ -59,7 +64,10 @@ namespace Assets._Project.Systems.Collecting
             if (from.IsEquipment)
             {
                 if (to.Item == null || to.Item.Type == from.Type)
+                {
                     _inventory.UnEquip(fromSlotIndex, toSlotIndex);
+                    _player.SetStat(from.Type, 1);
+                }
 
                 return;
             }

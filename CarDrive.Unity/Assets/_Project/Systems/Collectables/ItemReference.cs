@@ -11,5 +11,6 @@ namespace Assets._Project.Systems.Collecting
         [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public ItemType Type { get; private set; }
         [field: SerializeField] public int MergeLevel { get; private set; }
+        [field: SerializeField] public float Stat { get; private set; }
     }
 }

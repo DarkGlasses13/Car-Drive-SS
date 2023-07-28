@@ -10,5 +10,6 @@ namespace Assets._Project.Systems.Collecting
         string Description { get; }
         ItemType Type { get; }
         int MergeLevel { get; }
+        float Stat { get; }
     }
 }

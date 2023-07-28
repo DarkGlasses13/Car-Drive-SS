@@ -41,6 +41,7 @@ namespace Assets._Project
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
+            Player player = projectContainer.Get<Player>();
             GameState gameState = new(GameStates.Run);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
             Money money = projectContainer.Get<Money>();
@@ -63,7 +64,7 @@ namespace Assets._Project
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
-            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, gameState, coroutiner);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, gameState, coroutiner);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
@@ -77,7 +78,7 @@ namespace Assets._Project
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
             CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton, money);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
-            InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup);
+            InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, player);
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
 
             _systems = new()
