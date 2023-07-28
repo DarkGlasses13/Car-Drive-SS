@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791585790074417605}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 2, z: 0}
+  m_LocalPosition: {x: 8.14, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 4, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6205929959419497087}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7758668978951307069
 MeshFilter:
@@ -173,7 +173,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Check Point Chunk
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
@@ -217,3 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 1502042238009862710}
+  _isContainsCollectables: 0
+  _isContainsObstacles: 0
+  _collectables: []
+  _obstacles: []

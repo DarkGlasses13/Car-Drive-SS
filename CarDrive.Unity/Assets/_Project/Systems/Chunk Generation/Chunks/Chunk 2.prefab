@@ -11,12 +11,27 @@ PrefabInstance:
     - target: {fileID: 3833563624080843551, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Size.z
-      value: 20
+      value: 18.17312
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833563624080843551, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.0791769
       objectReference: {fileID: 0}
     - target: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Name
       value: Chunk 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602031829930266286, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7966846789551212890, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8582516603581545008, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
@@ -76,10 +91,12 @@ PrefabInstance:
     - target: {fileID: 8945802867604276770, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9084875524717907769, guid: 8bfd35aef227ca741a2a125ac81e45c9, type: 3}
+    - {fileID: 7166943642866489456, guid: 8bfd35aef227ca741a2a125ac81e45c9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
@@ -106,8 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 5403005964840332724}
-  _isContainsMoney: 0
-  _moneyObjects: []
+  _isContainsCollectables: 1
+  _isContainsObstacles: 1
+  _collectables: []
+  _obstacles: []
 --- !u!23 &5403005964840332724 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3881133655087389305, guid: 8bfd35aef227ca741a2a125ac81e45c9,
