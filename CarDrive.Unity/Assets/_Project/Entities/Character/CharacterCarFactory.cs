@@ -15,7 +15,8 @@ namespace Assets._Project.Entities.Character
         public CharacterCar Create(SpawnData spawnData)
         {
             CharacterCar instance = Object
-                .Instantiate(_prefab, spawnData.Position, spawnData.Rotation, spawnData.Parent).AddComponent<CharacterCar>();
+                .Instantiate(_prefab, spawnData.Position, spawnData.Rotation, spawnData.Parent)
+                .GetComponent<CharacterCar>();
             return instance;
         }
     }

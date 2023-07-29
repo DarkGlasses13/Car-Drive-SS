@@ -4,8 +4,6 @@ using Assets._Project.Systems.Driving;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets._Project.Entities.Character
@@ -13,8 +11,10 @@ namespace Assets._Project.Entities.Character
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class CharacterCar : Entity, IDrivable, IDamageable, ICanCollectItems
     {
+        [SerializeField] private ParticleSystem 
+            _explosionParticle,
+            _smokeParticle;
         private Rigidbody _rigidbody;
-        private Collider _collider;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
 
         public Vector3 Center => transform.position;
@@ -23,7 +23,6 @@ namespace Assets._Project.Entities.Character
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<Collider>();
         }
 
         public void SetToLine(float position)
@@ -47,6 +46,8 @@ namespace Assets._Project.Entities.Character
 
         public void OnDie()
         {
+            _explosionParticle.Play();
+            _smokeParticle.Play();
             _rigidbody.isKinematic = false;
             _moveTween?.Kill();
             _rigidbody.AddForce(Vector3.up * 10000, ForceMode.Impulse);
@@ -56,6 +57,7 @@ namespace Assets._Project.Entities.Character
         public void OnRestore()
         {
             _rigidbody.isKinematic = true;
+            _smokeParticle.Stop();
         }
     }
 }
