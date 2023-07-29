@@ -116,10 +116,16 @@ namespace Assets._Project.Systems.Driving
         {
             if (_canDrive)
             {
+                if (value < 0 && _currentRoadLineIndex == 0)
+                    return;
+
+                if (value > 0 && _currentRoadLineIndex == _roadLines.Length - 1)
+                    return;
+
                 _currentRoadLineIndex += (int)value;
                 _currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
                 _drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration 
-                    / _player.GetStat(ItemType.Wheel), _config.StearAngle);
+                    / _player.GetStat(ItemType.Wheel), value * _config.StearAngle);
             }
         }
 

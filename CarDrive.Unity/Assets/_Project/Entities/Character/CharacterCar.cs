@@ -24,6 +24,7 @@ namespace Assets._Project.Entities.Character
 
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
+        private Tweener _rotationTween;
 
         public Vector3 Center => transform.position;
         public Quaternion Rotation => transform.rotation;
@@ -43,13 +44,13 @@ namespace Assets._Project.Entities.Character
         public void ChangeLine(float line, float duration, float stearAngle)
         {
             _moveTween?.Kill();
+            _rotationTween?.Kill();
+            transform.rotation = Quaternion.identity;
             Break();
-            _moveTween = transform.DOMoveX(line, duration).OnComplete(() =>
-            {
-                EndBreak();
-            });
-
+            _moveTween = transform.DOMoveX(line, duration).OnComplete(() => EndBreak());
+            _rotationTween = transform.DOPunchRotation(Vector3.up * stearAngle, duration);
             _moveTween?.Play();
+            _rotationTween?.Play();
         }
 
         public void EndBreak()
@@ -87,7 +88,7 @@ namespace Assets._Project.Entities.Character
             ParticleSystem.MainModule ps = _windParticle.main;
             ps.maxParticles = (int)(acceleration * 50);
             ps.simulationSpeed = acceleration * 5;
-            transform.position += transform.forward * acceleration;
+            transform.position += Vector3.forward * acceleration;
         }
 
         public void OnDie()
