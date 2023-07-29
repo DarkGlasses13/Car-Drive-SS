@@ -20,9 +20,10 @@ namespace Assets._Project.Helpers
             return assets;
         }
 
-        public async Task<C> LoadAndInstantiateAsync<C>(object key, Transform parent) where C : Component
+        public async Task<C> LoadAndInstantiateAsync<C>(object key, Transform parent, bool isActive = true) where C : Component
         {
             GameObject instance = await Addressables.InstantiateAsync(key, parent).Task;
+            instance.SetActive(isActive);
 
             if (instance.TryGetComponent(out C component) == false)
             {
@@ -33,13 +34,13 @@ namespace Assets._Project.Helpers
             return component;
         }
 
-        public async Task<IList<C>> LoadAllAndInstantiate<C>(object[] keys, Transform parent) where C : Component
+        public async Task<IList<C>> LoadAllAndInstantiate<C>(object[] keys, Transform parent, bool isActive = true) where C : Component
         {
             IList<C> instances = new List<C>();
 
             foreach (object key in keys)
             {
-                instances.Add(await LoadAndInstantiateAsync<C>(key, parent));
+                instances.Add(await LoadAndInstantiateAsync<C>(key, parent, isActive));
             }
 
             return instances;
