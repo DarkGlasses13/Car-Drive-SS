@@ -117,7 +117,10 @@ namespace Assets._Project.Systems.Driving
 
                 _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
+                return;
             }
+
+            _drivable.Accelerate(0);
         }
 
         private IEnumerator GasManeuverRoutine(float target)

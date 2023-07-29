@@ -13,7 +13,9 @@ namespace Assets._Project.Entities.Character
     {
         [SerializeField] private ParticleSystem 
             _explosionParticle,
-            _smokeParticle;
+            _smokeParticle,
+            _windParticle;
+
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
 
@@ -41,6 +43,15 @@ namespace Assets._Project.Entities.Character
 
         public void Accelerate(float acceleration)
         {
+            if (_windParticle.isPlaying && acceleration < 0.5f)
+                _windParticle.Stop();
+
+            if (_windParticle.isPlaying == false && acceleration > 0.5f)
+                _windParticle.Play();
+
+            ParticleSystem.MainModule ps = _windParticle.main;
+            //ps.maxParticles = (int)(acceleration * 50);
+            ps.simulationSpeed = acceleration * 5;
             transform.position += transform.forward * acceleration;
         }
 
