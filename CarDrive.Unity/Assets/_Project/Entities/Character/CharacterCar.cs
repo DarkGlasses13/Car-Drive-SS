@@ -50,7 +50,7 @@ namespace Assets._Project.Entities.Character
                 _windParticle.Play();
 
             ParticleSystem.MainModule ps = _windParticle.main;
-            //ps.maxParticles = (int)(acceleration * 50);
+            ps.maxParticles = (int)(acceleration * 50);
             ps.simulationSpeed = acceleration * 5;
             transform.position += transform.forward * acceleration;
         }

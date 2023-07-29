@@ -65,7 +65,7 @@ namespace Assets._Project
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
-            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, gameState, coroutiner);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, gameState, coroutiner, _cinematographer);
             CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar, coroutiner);
             RestartSystem restartSystem = new(gameState, assetLoader, _popupContainer, this);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();

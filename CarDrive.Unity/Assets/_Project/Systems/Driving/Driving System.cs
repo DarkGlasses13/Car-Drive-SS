@@ -1,8 +1,10 @@
 using Assets._Project.Architecture;
+using Assets._Project.CameraControl;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.Collecting;
+using Cinemachine;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace Assets._Project.Systems.Driving
         private readonly Player _player;
         private readonly GameState _gameState;
         private readonly Coroutiner _coroutiner;
+        private readonly Cinematographer _conematographer;
         private DrivingConfig _config;
         private int _currentRoadLineIndex;
         private float _gasValue;
@@ -28,7 +31,7 @@ namespace Assets._Project.Systems.Driving
         private float _maneuverDirection;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
-            Player player, GameState gameState, Coroutiner coroutiner)
+            Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer)
         {
             _assetLoader = assetLoader;
             _playerInput = playerInput;
@@ -36,6 +39,7 @@ namespace Assets._Project.Systems.Driving
             _player = player;
             _gameState = gameState;
             _coroutiner = coroutiner;
+            _conematographer = cinematographer;
         }
 
         public override async Task InitializeAsync()
@@ -114,6 +118,9 @@ namespace Assets._Project.Systems.Driving
             {
                 if (_isMeneuver == false)
                     _maneuverCooldown -= Time.deltaTime;
+
+                var cameraShake = _conematographer.ActiveCamera.Instance.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                cameraShake.m_AmplitudeGain = _gasValue / 100;
 
                 _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
