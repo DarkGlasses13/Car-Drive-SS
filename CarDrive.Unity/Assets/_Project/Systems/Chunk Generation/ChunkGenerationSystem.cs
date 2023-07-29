@@ -21,6 +21,7 @@ namespace Assets._Project.Systems.ChunkGeneration
         private CheckPointChunk _checkPoint;
         private bool _isCheckPointPassed;
         private int _passedChunksCount;
+        private List<Chunk> _currentChunks = new(), _nextChunks = new();
 
         public ChunkGenerationSystem(LocalAssetLoader assetLoader, ChunkGenerationConfig config,
             Transform container, CheckPointChunk checkPoint)
@@ -42,18 +43,23 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public override void Enable()
         {
-            SpawnInitial();
+            SpawnLocation();
+        }
+
+        private void SpawnLocation()
+        {
+            _currentChunks.Add(SpawnInitial());
 
             for (int i = 1; i < _config.ChunksBetweenCheckPoints; i++)
             {
-                SpawnRandom();
+                _currentChunks.Add(SpawnRandom());
             }
 
             SpawnCheckPoint().OnPassed += OnPassed;
 
             for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
             {
-                SpawnRandom();
+                _nextChunks.Add(SpawnRandom());
             }
         }
 
@@ -63,7 +69,8 @@ namespace Assets._Project.Systems.ChunkGeneration
         {
             bool withMoney = _config.IsMoneyEnabled && _config.MoneyDensity >= Random.value;
             bool withObstacles = _config.IsObstaclesEnabled && _config.GeneralObstacleDensity >= Random.value;
-            return Spawn(withMoney, withObstacles);
+            Chunk instance = Spawn(withMoney, withObstacles);
+            return instance;
         }
 
         private void OnPassed(Chunk chunk)
@@ -82,12 +89,23 @@ namespace Assets._Project.Systems.ChunkGeneration
                     SpawnCheckPoint();
                     _passedChunksCount = 0;
                     _isCheckPointPassed = false;
-
+                    Despawn(_currentChunks);
+                    _currentChunks.Clear();
+                    _currentChunks.AddRange(_nextChunks);
+                    _nextChunks.Clear();
                     for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
                     {
-                        SpawnRandom();
+                        _nextChunks.Add(SpawnRandom());
                     }
                 }
+            }
+        }
+
+        private void Despawn(IEnumerable<Chunk> chunks)
+        {
+            foreach (Chunk chunk in chunks)
+            {
+                Despawn(chunk);
             }
         }
 
@@ -114,13 +132,13 @@ namespace Assets._Project.Systems.ChunkGeneration
 
             chunk.transform.position = _last != null ? _last.GetConnectPosition(chunk) : Vector3.zero;
             _last = chunk;
+            chunk.gameObject.SetActive(true);
             return chunk;
         }
 
         private CheckPointChunk SpawnCheckPoint()
         {
             CheckPointChunk checkPoint = (CheckPointChunk)Spawn(whithCollectables: false, withObstacles: false, isCheckpoint: true);
-            checkPoint.gameObject.SetActive(true);
             return checkPoint;
         }
 
@@ -132,6 +150,14 @@ namespace Assets._Project.Systems.ChunkGeneration
             {
                 _pool.Release(chunk);
             }
+        }
+
+        private void DespawnAll()
+        {
+            Despawn(_currentChunks);
+            Despawn(_nextChunks);
+            _currentChunks.Clear();
+            _nextChunks.Clear();
         }
 
         private Chunk Create() => Create(_prefabs);
