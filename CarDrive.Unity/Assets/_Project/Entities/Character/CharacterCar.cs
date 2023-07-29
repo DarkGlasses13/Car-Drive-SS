@@ -14,7 +14,9 @@ namespace Assets._Project.Entities.Character
         [SerializeField] private ParticleSystem 
             _explosionParticle,
             _smokeParticle,
-            _windParticle;
+            _windParticle,
+            _leftFire,
+            _rightFire;
 
         [SerializeField] private TrailRenderer 
             _leftWheelTrailRenderer,
@@ -62,6 +64,18 @@ namespace Assets._Project.Entities.Character
             _rightWheelTrailRenderer.emitting = true;
         }
 
+        public void Fire()
+        {
+            _leftFire.Play();
+            _rightFire.Play();
+        }
+
+        public void FireStop()
+        {
+            _leftFire.Stop();
+            _rightFire.Stop();
+        }
+
         public void Accelerate(float acceleration)
         {
             if (_windParticle.isPlaying && acceleration < 0.5f)
@@ -79,6 +93,7 @@ namespace Assets._Project.Entities.Character
         public void OnDie()
         {
             EndBreak();
+            FireStop();
             _explosionParticle.Play();
             _smokeParticle.Play();
             _rigidbody.isKinematic = false;

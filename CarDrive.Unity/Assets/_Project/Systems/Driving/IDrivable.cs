@@ -7,5 +7,7 @@
         void SetToLine(float position);
         void Break();
         void EndBreak();
+        void Fire();
+        void FireStop();
     }
 }

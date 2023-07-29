@@ -142,7 +142,13 @@ namespace Assets._Project.Systems.Driving
             _isMeneuver = true;
 
             if (target < _gasRegulation)
+            {
                 _drivable?.Break();
+                _drivable?.FireStop();
+            }
+
+            if (target > _gasRegulation)
+                _drivable?.Fire();
 
             while (Mathf.Approximately(_gasRegulation, target) == false)
             {
@@ -158,6 +164,8 @@ namespace Assets._Project.Systems.Driving
 
         public IEnumerator ResetGasRoutine()
         {
+            _drivable?.FireStop();
+
             while (Mathf.Approximately(_gasRegulation, 1) == false)
             {
                 _gasRegulation = Mathf.MoveTowards(_gasRegulation, 1, _config.Speed / 10 * Time.deltaTime);
@@ -176,6 +184,7 @@ namespace Assets._Project.Systems.Driving
             {
                 case GameStates.Run:
                 _coroutiner.StartCoroutine(AccelerationRoutine());
+                _coroutiner.StartCoroutine(ResetGasRoutine());
                 break;
                 case GameStates.WaitForRun:
                 case GameStates.Lose:
@@ -183,6 +192,7 @@ namespace Assets._Project.Systems.Driving
                 _canDrive = false;
                 _drivable?.Accelerate(0);
                 _cameraShake.m_AmplitudeGain = 0;
+                _drivable?.FireStop();
                 break;
             }
             
