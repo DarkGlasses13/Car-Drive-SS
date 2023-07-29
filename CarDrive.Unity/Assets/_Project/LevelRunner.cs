@@ -12,6 +12,7 @@ using Assets._Project.Systems.Collectables;
 using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
+using Assets._Project.Systems.Restart;
 using Assets._Project.Systems.Shop;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
@@ -65,7 +66,8 @@ namespace Assets._Project
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, gameState, coroutiner);
-            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar, coroutiner);
+            RestartSystem restartSystem = new(gameState, assetLoader, _popupContainer, this);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
@@ -87,6 +89,7 @@ namespace Assets._Project
                 worldCentringSystem,
                 drivingSystem,
                 damageSystem,
+                restartSystem,
                 levelMoneyCollectingSystem,
                 checkPointSystem,
                 inventorySystem,

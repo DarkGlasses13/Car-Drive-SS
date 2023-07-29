@@ -17,3 +17,4 @@ MonoBehaviour:
     m_Bits: 128
   <MaxLives>k__BackingField: 1
   <HitboxBounds>k__BackingField: {x: 2, y: 1, z: 5}
+  <ImpregnabilityTime>k__BackingField: 3

@@ -62,6 +62,11 @@ namespace Assets._Project.Systems.Driving
             _playerInput.OnGasRegulate += RegulateGas;
         }
 
+        public override void Restart()
+        {
+            _drivable.SetToLine(_roadLines[_currentRoadLineIndex]);
+        }
+
         private void RegulateGas(float value)
         {
             if (_gameState.Current == GameStates.Run)

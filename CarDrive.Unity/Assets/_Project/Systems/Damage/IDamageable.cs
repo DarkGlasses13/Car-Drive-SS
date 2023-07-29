@@ -6,7 +6,7 @@ namespace Assets._Project.Systems.Damage
     {
         Vector3 Center { get; }
         Quaternion Rotation { get; }
-
-        void Die();
+        void OnDie();
+        void OnRestore();
     }
 }

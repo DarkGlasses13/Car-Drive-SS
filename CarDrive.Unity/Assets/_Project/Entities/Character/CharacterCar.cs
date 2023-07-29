@@ -4,14 +4,17 @@ using Assets._Project.Systems.Driving;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets._Project.Entities.Character
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class CharacterCar : Entity, IDrivable, IDamageable, ICanCollectItems
     {
         private Rigidbody _rigidbody;
+        private Collider _collider;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
 
         public Vector3 Center => transform.position;
@@ -20,11 +23,14 @@ namespace Assets._Project.Entities.Character
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _collider = GetComponent<Collider>();
         }
 
         public void SetToLine(float position)
         {
-            transform.position = new(position, transform.position.y, transform.position.z);
+            Vector3 linePosition = new(position, 0.026f, transform.position.z);
+            Quaternion rotation = Quaternion.identity;
+            transform.SetPositionAndRotation(linePosition, rotation);
         }
 
         public void ChangeLine(float line, float duration, float stearAngle)
@@ -39,12 +45,17 @@ namespace Assets._Project.Entities.Character
             transform.position += transform.forward * acceleration;
         }
 
-        public void Die()
+        public void OnDie()
         {
             _rigidbody.isKinematic = false;
             _moveTween?.Kill();
             _rigidbody.AddForce(Vector3.up * 10000, ForceMode.Impulse);
             transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
+        }
+
+        public void OnRestore()
+        {
+            _rigidbody.isKinematic = true;
         }
     }
 }
