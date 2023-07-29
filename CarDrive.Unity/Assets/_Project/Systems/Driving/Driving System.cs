@@ -29,6 +29,7 @@ namespace Assets._Project.Systems.Driving
         private bool _isMeneuver;
         private float _maneuverCooldown;
         private float _maneuverDirection;
+        private CinemachineBasicMultiChannelPerlin _cameraShake;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
             Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer)
@@ -58,6 +59,9 @@ namespace Assets._Project.Systems.Driving
             }
 
             _drivable.SetToLine(_roadLines[_currentRoadLineIndex]);
+            _cameraShake = _conematographer
+                .GetCamera(GameCamera.Run).Instance
+                .GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
         public override void Enable()
@@ -118,9 +122,8 @@ namespace Assets._Project.Systems.Driving
             {
                 if (_isMeneuver == false)
                     _maneuverCooldown -= Time.deltaTime;
-
-                var cameraShake = _conematographer.ActiveCamera.Instance.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                cameraShake.m_AmplitudeGain = _gasValue / 100;
+                
+                _cameraShake.m_AmplitudeGain = _gasValue / 100;
 
                 _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
@@ -128,6 +131,7 @@ namespace Assets._Project.Systems.Driving
             }
 
             _drivable.Accelerate(0);
+            _cameraShake.m_AmplitudeGain = 0;
         }
 
         private IEnumerator GasManeuverRoutine(float target)
