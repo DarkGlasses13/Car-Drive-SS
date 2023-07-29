@@ -5,13 +5,14 @@ using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.Collecting;
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets._Project.Systems.Driving
 {
-    public class DrivingSystem : GameSystem
+    public class DrivingSystem : GameSystem, IGameStateSwitchHandler
     {
         private readonly LocalAssetLoader _assetLoader;
         private readonly IPlayerInput _playerInput;
@@ -30,6 +31,7 @@ namespace Assets._Project.Systems.Driving
         private float _maneuverCooldown;
         private float _maneuverDirection;
         private CinemachineBasicMultiChannelPerlin _cameraShake;
+        private bool _canDrive;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
             Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer)
@@ -68,6 +70,7 @@ namespace Assets._Project.Systems.Driving
         {
             _playerInput.OnStear += Stear;
             _playerInput.OnGasRegulate += RegulateGas;
+            _gameState.OnSwitched += OnSateSwitched;
         }
 
         public override void Restart()
@@ -88,6 +91,10 @@ namespace Assets._Project.Systems.Driving
                 if (_isMeneuver && value != _maneuverDirection)
                 {
                     _coroutiner.StopCoroutine(_gasRegulationRoutine);
+
+                    if (value < 0)
+                        _drivable?.Break();
+
                     _coroutiner.StartCoroutine(ResetGasRoutine());
                     return;
                 }
@@ -107,7 +114,7 @@ namespace Assets._Project.Systems.Driving
 
         private void Stear(float value)
         {
-            if (_gameState.Current == GameStates.Run)
+            if (_canDrive)
             {
                 _currentRoadLineIndex += (int)value;
                 _currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
@@ -124,26 +131,26 @@ namespace Assets._Project.Systems.Driving
                     _maneuverCooldown -= Time.deltaTime;
                 
                 _cameraShake.m_AmplitudeGain = _gasValue / 100;
-
                 _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
                 return;
             }
-
-            _drivable.Accelerate(0);
-            _cameraShake.m_AmplitudeGain = 0;
         }
 
         private IEnumerator GasManeuverRoutine(float target)
         {
             _isMeneuver = true;
 
+            if (target < _gasRegulation)
+                _drivable?.Break();
+
             while (Mathf.Approximately(_gasRegulation, target) == false)
             {
-                _gasRegulation = Mathf.MoveTowards(_gasRegulation, target, _config.Speed * Time.deltaTime);
+                _gasRegulation = Mathf.MoveTowards(_gasRegulation, target, _config.Speed / 10 * Time.deltaTime);
                 yield return null;
             }
 
+            _drivable?.EndBreak();
             float time = _config.ManeuverTime <= -1 ? float.PositiveInfinity : _config.ManeuverTime;
             yield return new WaitForSeconds(time);
             yield return ResetGasRoutine();
@@ -153,19 +160,48 @@ namespace Assets._Project.Systems.Driving
         {
             while (Mathf.Approximately(_gasRegulation, 1) == false)
             {
-                _gasRegulation = Mathf.MoveTowards(_gasRegulation, 1, _config.Speed * Time.deltaTime);
+                _gasRegulation = Mathf.MoveTowards(_gasRegulation, 1, _config.Speed / 10 * Time.deltaTime);
                 yield return null;
             }
 
+            _drivable?.EndBreak();
             _maneuverCooldown = _config.ManeuverCooldown;
             _maneuverDirection = 0;
             _isMeneuver = false;
+        }
+
+        public void OnSateSwitched(GameStates state)
+        {
+            switch (state)
+            {
+                case GameStates.Run:
+                _coroutiner.StartCoroutine(AccelerationRoutine());
+                break;
+                case GameStates.WaitForRun:
+                case GameStates.Lose:
+                case GameStates.Finish:
+                _canDrive = false;
+                _drivable?.Accelerate(0);
+                _cameraShake.m_AmplitudeGain = 0;
+                break;
+            }
+            
+        }
+
+        private IEnumerator AccelerationRoutine()
+        {
+            _canDrive = false;
+            _drivable?.Break();
+            yield return new WaitForSeconds(0.7f);
+            _drivable?.EndBreak();
+            _canDrive = true;
         }
 
         public override void Disable()
         {
             _playerInput.OnStear -= Stear;
             _playerInput.OnGasRegulate -= RegulateGas;
+            _gameState.OnSwitched -= OnSateSwitched;
         }
     }
 }

@@ -37,13 +37,14 @@ namespace Assets._Project
         private IPlayerInput _playerInput;
         private Cinematographer _cinematographer;
         private CharacterCar _characterCar;
+        private GameState _gameState;
 
         protected override async Task CreateSystems()
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
             Player player = projectContainer.Get<Player>();
-            GameState gameState = new(GameStates.Run);
+            _gameState = new(GameStates.WaitForRun);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
             Money money = projectContainer.Get<Money>();
             IItemDatabase itemDatabase = projectContainer.Get<IItemDatabase>();
@@ -65,9 +66,9 @@ namespace Assets._Project
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
-            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, gameState, coroutiner, _cinematographer);
-            CharacterCarDamageSystem damageSystem = new(assetLoader, gameState, _characterCar, coroutiner);
-            RestartSystem restartSystem = new(gameState, assetLoader, _popupContainer, this);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, _gameState, coroutiner, _cinematographer);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
@@ -78,7 +79,7 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
-            CheckPointSystem checkPointSystem = new(gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton, money);
+            CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton, money);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, player);
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
@@ -100,6 +101,7 @@ namespace Assets._Project
         protected override void OnInitializationCompleted()
         {
             _characterCar.gameObject.SetActive(true);
+            _gameState.Switch(GameStates.Run);
             _cinematographer.SwitchCamera(GameCamera.Run, isReset: true, _characterCar.transform, _characterCar.transform);
             _playerInput.Enable();
         }

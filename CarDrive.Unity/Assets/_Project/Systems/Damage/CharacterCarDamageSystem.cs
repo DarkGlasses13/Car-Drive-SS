@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets._Project.Systems.Damage
 {
-    public class CharacterCarDamageSystem : GameSystem
+    public class CharacterCarDamageSystem : GameSystem, IGameStateSwitchHandler
     {
         private readonly LocalAssetLoader _assetLoader;
         private readonly GameState _gameState;
@@ -35,6 +35,11 @@ namespace Assets._Project.Systems.Damage
         public override void Restart()
         {
             _coroutiner.StartCoroutine(RestoreRoutine());
+        }
+
+        public override void Enable()
+        {
+            _gameState.OnSwitched += OnSateSwitched;
         }
 
         public override void FixedTick()
@@ -75,6 +80,17 @@ namespace Assets._Project.Systems.Damage
             _isImpregnability = true;
             yield return new WaitForSeconds(_config.ImpregnabilityTime);
             _isImpregnability = false;
+        }
+
+        public void OnSateSwitched(GameStates state)
+        {
+            if (state == GameStates.Run)
+                _coroutiner.StartCoroutine(RestoreRoutine());
+        }
+
+        public override void Disable()
+        {
+            _gameState.OnSwitched -= OnSateSwitched;
         }
     }
 }

@@ -16,6 +16,10 @@ namespace Assets._Project.Entities.Character
             _smokeParticle,
             _windParticle;
 
+        [SerializeField] private TrailRenderer 
+            _leftWheelTrailRenderer,
+            _rightWheelTrailRenderer;
+
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
 
@@ -37,8 +41,25 @@ namespace Assets._Project.Entities.Character
         public void ChangeLine(float line, float duration, float stearAngle)
         {
             _moveTween?.Kill();
-            _moveTween = transform.DOMoveX(line, duration);
+            Break();
+            _moveTween = transform.DOMoveX(line, duration).OnComplete(() =>
+            {
+                EndBreak();
+            });
+
             _moveTween?.Play();
+        }
+
+        public void EndBreak()
+        {
+            _leftWheelTrailRenderer.emitting = false;
+            _rightWheelTrailRenderer.emitting = false;
+        }
+
+        public void Break()
+        {
+            _leftWheelTrailRenderer.emitting = true;
+            _rightWheelTrailRenderer.emitting = true;
         }
 
         public void Accelerate(float acceleration)
@@ -57,6 +78,7 @@ namespace Assets._Project.Entities.Character
 
         public void OnDie()
         {
+            EndBreak();
             _explosionParticle.Play();
             _smokeParticle.Play();
             _rigidbody.isKinematic = false;
