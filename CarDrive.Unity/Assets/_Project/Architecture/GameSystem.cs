@@ -9,6 +9,7 @@ namespace Assets._Project.Architecture
         public virtual void Enable() { }
         public virtual void FixedTick() { }
         public virtual void Tick() { }
+        public virtual void Restart() { }
         public virtual void Disable() { }
     }
 }

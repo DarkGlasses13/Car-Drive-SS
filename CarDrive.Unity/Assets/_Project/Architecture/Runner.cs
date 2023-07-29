@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets._Project
 {
-    public abstract class Runner : MonoBehaviour
+    public abstract class Runner : MonoBehaviour, IRestartable
     {
         protected bool _isInitialized = false;
         protected List<IGameSystem> _systems;
@@ -34,6 +34,11 @@ namespace Assets._Project
         {
             if (_isInitialized)
                 _systems?.ForEach(system => system.Disable());
+        }
+
+        public void Restart()
+        {
+            _systems.ForEach(system => system.Restart());
         }
     }
 }
