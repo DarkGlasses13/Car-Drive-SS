@@ -44,6 +44,7 @@ namespace Assets._Project.Systems.Collecting
                     {
                         itemObject.gameObject.SetActive(false);
                         _money.Add();
+                        _collector?.OnCollect();
                         _uiMoneyCounter.Set(_money.ToString());
                         continue;
                     }
@@ -52,6 +53,7 @@ namespace Assets._Project.Systems.Collecting
                     {
                         if (_inventory.TryAdd(item))
                         {
+                            _collector?.OnCollect();
                             itemObject.gameObject.SetActive(false);
                         }
                     }

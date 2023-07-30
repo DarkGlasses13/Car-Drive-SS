@@ -1,4 +1,7 @@
 ﻿using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Core.PathCore;
+using DG.Tweening.Plugins.Options;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -10,7 +13,11 @@ namespace Assets._Project.Entities.Obstacles
         [SerializeField] private Transform[] _waypoints;
         [SerializeField] private float _detectionDistance;
         [SerializeField] private float _duration;
+        [SerializeField]private AudioSource
+            _engineSound;
+
         private bool _isMove;
+        private TweenerCore<Vector3, Path, PathOptions> _pathTween;
         private Quaternion _startRotation;
 
         private void Awake()
@@ -25,12 +32,13 @@ namespace Assets._Project.Entities.Obstacles
 
         public void Translate(float duration)
         {
+            ResetPosition();
             _isMove = true;
-
-            transform
+            _pathTween?.Kill();
+            _pathTween = transform
                 .DOPath(_waypoints.Select(waypoint => waypoint.position).ToArray(), duration, PathType.CatmullRom)
-                .SetLookAt(0).Play()
-                .SetAutoKill(true);
+                .SetLookAt(0)
+                .Play();
         }
 
         private void ResetPosition()

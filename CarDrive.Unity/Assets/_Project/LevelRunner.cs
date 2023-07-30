@@ -34,6 +34,7 @@ namespace Assets._Project
             _loadingScreenContainer;
 
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private AudioSource _leveMusic;
         private IPlayerInput _playerInput;
         private Cinematographer _cinematographer;
         private CharacterCar _characterCar;
@@ -68,7 +69,7 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, _gameState, coroutiner, _cinematographer);
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
-            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
@@ -79,7 +80,8 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
-            CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint, checkPointPopup, uiMoneyCounter, playButton, money);
+            CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
+                checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, player);
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
@@ -104,6 +106,7 @@ namespace Assets._Project
             _gameState.Switch(GameStates.Run);
             _cinematographer.SwitchCamera(GameCamera.Run, isReset: true, _characterCar.transform, _characterCar.transform);
             _playerInput.Enable();
+            _leveMusic.Play();
         }
     }
 }

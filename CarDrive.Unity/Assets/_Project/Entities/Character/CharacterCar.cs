@@ -22,6 +22,13 @@ namespace Assets._Project.Entities.Character
             _leftWheelTrailRenderer,
             _rightWheelTrailRenderer;
 
+        [SerializeField] private AudioSource
+            _engineSound,
+            _crashSound,
+            _repairSound,
+            _breakSound,
+            _collectSound;
+
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
         private Tweener _rotationTween;
@@ -61,6 +68,7 @@ namespace Assets._Project.Entities.Character
 
         public void Break()
         {
+            _breakSound.Play();
             _leftWheelTrailRenderer.emitting = true;
             _rightWheelTrailRenderer.emitting = true;
         }
@@ -85,6 +93,7 @@ namespace Assets._Project.Entities.Character
             if (_windParticle.isPlaying == false && acceleration > 0.5f)
                 _windParticle.Play();
 
+            _engineSound.pitch = acceleration / 1.5f;
             ParticleSystem.MainModule ps = _windParticle.main;
             ps.maxParticles = (int)(acceleration * 50);
             ps.simulationSpeed = acceleration * 5;
@@ -93,6 +102,8 @@ namespace Assets._Project.Entities.Character
 
         public void OnDie()
         {
+            _engineSound.Stop();
+            _crashSound.Play();
             EndBreak();
             FireStop();
             _explosionParticle.Play();
@@ -105,8 +116,15 @@ namespace Assets._Project.Entities.Character
 
         public void OnRestore()
         {
+            _engineSound.Play();
+            _repairSound.Play();
             _rigidbody.isKinematic = true;
             _smokeParticle.Stop();
+        }
+
+        public void OnCollect()
+        {
+            _collectSound.Play();
         }
     }
 }

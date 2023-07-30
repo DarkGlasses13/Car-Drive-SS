@@ -13,6 +13,9 @@ namespace Assets._Project.Systems.Collecting
         public event Action<UISlot, UISlot> OnSwap;
 
         [SerializeField] private Image _dragableImage;
+        [SerializeField] private AudioSource
+            _lootBoxOpenSound;
+
         private GridLayoutGroup _grid;
         private UISlot[] _slots;
         private UISlot[] _equipmentSlots;
@@ -50,6 +53,10 @@ namespace Assets._Project.Systems.Collecting
             FromSlot = ToSlot = null;
         }
 
-        public void OpenLootBox(int slot) => OnLootBoxOpened?.Invoke(slot);
+        public void OpenLootBox(int slot)
+        {
+            OnLootBoxOpened?.Invoke(slot);
+            _lootBoxOpenSound.Play();
+        }
     }
 }

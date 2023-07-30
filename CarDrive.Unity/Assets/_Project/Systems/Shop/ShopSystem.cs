@@ -33,9 +33,13 @@ namespace Assets._Project.Systems.Shop
             {
                 if (_money.TrySpend(_config.LootBoxPrice))
                 {
+                    _buyButton.OnDeal();
                     _inventory.TryAdd(lootBoxItem);
                 }
+                return;
             }
+
+            _buyButton.OnFail();
         }
 
         public override void Disable()

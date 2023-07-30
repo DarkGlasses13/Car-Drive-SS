@@ -7,6 +7,10 @@ namespace Assets._Project.Systems.Shop
     public class PriceTagButton : MonoBehaviour
     {
         [SerializeField] private TMP_Text _price;
+        [SerializeField] private AudioSource 
+            _dealSound,
+            _failSound;
+
         public Button Button { get; private set; }
         public string Price { get => _price.text; set => _price.text = value; }
 
@@ -14,5 +18,9 @@ namespace Assets._Project.Systems.Shop
         {
             Button = GetComponent<Button>();
         }
+
+        public void OnDeal() => _dealSound.Play();
+
+        public void OnFail() => _failSound.Play();
     }
 }

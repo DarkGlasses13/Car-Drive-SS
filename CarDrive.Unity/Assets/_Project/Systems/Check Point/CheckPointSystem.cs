@@ -21,9 +21,10 @@ namespace Assets._Project.Systems.CheckPoint
         private readonly CheckPointPopup _popup;
         private readonly Button _playButton;
         private readonly Money _money;
+        private readonly AudioSource _levelMusic;
 
         public CheckPointSystem(GameState gameState, Transform hudContainer, CheckPointChunk checkpPoint, 
-            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money)
+            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money, AudioSource levelMusic)
         {
             _gameState = gameState;
             _hudContainer = hudContainer;
@@ -35,6 +36,7 @@ namespace Assets._Project.Systems.CheckPoint
             _defaultUIMoneyCounterPosition = _uiMoneyCounterRectTransform.anchoredPosition;
             _playButton = playButton;
             _money = money;
+            _levelMusic = levelMusic;
             _popup.gameObject.SetActive(false);
         }
 
@@ -56,12 +58,14 @@ namespace Assets._Project.Systems.CheckPoint
             _uiMoneyCounterRectTransform.sizeDelta = _defaultUIMoneyCounterSize;
             _uiMoneyCounterRectTransform.anchoredPosition = _defaultUIMoneyCounterPosition;
             _popup.Close(() => _gameState.Switch(GameStates.Run));
+            _levelMusic.Play();
         }
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
             _gameState.Switch(GameStates.Finish);
             _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);
+            _levelMusic.Stop();
             _popup.Open();
         }
 

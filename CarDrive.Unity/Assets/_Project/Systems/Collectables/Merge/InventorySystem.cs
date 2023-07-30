@@ -54,6 +54,7 @@ namespace Assets._Project.Systems.Collecting
             {
                 if (from.Item.Type == to.Type)
                 {
+                    _popup.PlayEquipSound();
                     _inventory.Equip(fromSlotIndex, toSlotIndex);
                     _player.SetStat(to.Type, to.Item.Stat);
                 }
@@ -85,6 +86,7 @@ namespace Assets._Project.Systems.Collecting
                     {
                         _inventory.Swap(fromSlotIndex, null);
                         _inventory.Swap(toSlotIndex, item);
+                        _popup.PlayMergeSound();
                     }
                     return;
                 }
