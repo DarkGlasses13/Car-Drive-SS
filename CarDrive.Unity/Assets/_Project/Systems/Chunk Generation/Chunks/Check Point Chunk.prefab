@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gas_station
       objectReference: {fileID: 0}
+    - target: {fileID: 6368686047752830889, guid: 29725390facc2bf4ea3ed90cfcb9164d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6368686047752830889, guid: 29725390facc2bf4ea3ed90cfcb9164d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6368686047752921993, guid: 29725390facc2bf4ea3ed90cfcb9164d,
         type: 3}
       propertyPath: m_LocalPosition.x

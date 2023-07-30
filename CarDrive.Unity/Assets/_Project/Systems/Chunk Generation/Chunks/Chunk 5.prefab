@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_101 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2996654347995920517, guid: 25ffa8978840b304a9afff0bcb55f34e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -87,6 +97,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Road_1_101
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996654347995920517, guid: 25ffa8978840b304a9afff0bcb55f34e,
         type: 3}
@@ -163,6 +183,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_101 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2996654347995920517, guid: 25ffa8978840b304a9afff0bcb55f34e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,6 +267,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sidewalk_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
@@ -467,6 +507,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sidewalk_2
       objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -545,6 +595,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Road_1_101 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512324610953667135, guid: 25ffa8978840b304a9afff0bcb55f34e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996654347995920517, guid: 25ffa8978840b304a9afff0bcb55f34e,
         type: 3}
@@ -670,6 +730,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Road_1_311
+      objectReference: {fileID: 0}
+    - target: {fileID: 737588972705324139, guid: 2fe2cd6a88681d04d95e08bf6477f71f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 737588972705324139, guid: 2fe2cd6a88681d04d95e08bf6477f71f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1214720666736514114, guid: 2fe2cd6a88681d04d95e08bf6477f71f, type: 3}

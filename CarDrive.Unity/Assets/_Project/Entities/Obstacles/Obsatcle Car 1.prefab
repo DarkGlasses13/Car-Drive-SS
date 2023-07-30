@@ -1213,7 +1213,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b9c536465434f274091f2f175187966b, type: 2}
-  - {fileID: 2100002, guid: 4610804de87a9a346a826d03287cc6f6, type: 3}
+  - {fileID: 2100000, guid: 085089598c54317408ea3393cd29d708, type: 2}
   - {fileID: 2100000, guid: 45c9ef9723c48434c945ca603532d0b0, type: 2}
   - {fileID: 2100000, guid: a08bd7a10141b7e40942b370509c7827, type: 2}
   - {fileID: 2100000, guid: 6f83bf8bf7b317c40a4f4b0394076bb7, type: 2}

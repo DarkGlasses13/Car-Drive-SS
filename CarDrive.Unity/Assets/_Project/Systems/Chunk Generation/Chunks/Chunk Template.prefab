@@ -127,6 +127,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}
     m_RemovedGameObjects: []
@@ -161,6 +166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
@@ -255,6 +265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
@@ -395,6 +410,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road Bounce
       objectReference: {fileID: 0}
+    - target: {fileID: 3064088164626434181, guid: 0db0d0f46957ae346bed902636eae62f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4908776068310782344, guid: 0db0d0f46957ae346bed902636eae62f,
         type: 3}
       propertyPath: m_Size.z
@@ -484,6 +504,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}
     m_RemovedGameObjects: []
@@ -563,6 +588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}

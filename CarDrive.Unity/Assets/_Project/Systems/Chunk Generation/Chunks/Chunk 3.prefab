@@ -78,6 +78,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_cartoon_4
       objectReference: {fileID: 0}
+    - target: {fileID: 5652009221926286865, guid: 57b3d1644300933459b80c0c1c00731f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652009221926286865, guid: 57b3d1644300933459b80c0c1c00731f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -101,6 +111,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Building_cartoon_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281261845270177300, guid: eee4f29697c2c834a9b9cf0843cbffdf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281261845270177300, guid: eee4f29697c2c834a9b9cf0843cbffdf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7946581470257052846, guid: eee4f29697c2c834a9b9cf0843cbffdf,
         type: 3}

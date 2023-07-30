@@ -65,8 +65,7 @@ namespace Assets._Project
 
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
-            ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint);
-            WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
+            ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, _gameState, coroutiner, _cinematographer);
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
@@ -85,6 +84,8 @@ namespace Assets._Project
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, player);
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
+            WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
+                _chunksContainer, _camerasContainer);
 
             _systems = new()
             {

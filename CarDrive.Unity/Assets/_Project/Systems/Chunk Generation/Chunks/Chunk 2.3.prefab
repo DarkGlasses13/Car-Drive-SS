@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_309
       objectReference: {fileID: 0}
+    - target: {fileID: 1563804505388120160, guid: 404707de2b6963e46bba117289b86dc7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563804505388120160, guid: 404707de2b6963e46bba117289b86dc7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2231655957830574810, guid: 404707de2b6963e46bba117289b86dc7,
         type: 3}
       propertyPath: m_LocalPosition.x

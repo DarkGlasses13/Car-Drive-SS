@@ -14,7 +14,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public Bounds Bounds => _roadMeshRenderer.bounds;
 
-        private void Awake()
+        public void Init()
         {
             _collectables = GetComponentsInChildren<ItemObject>();
             _obstacles = GetComponentsInChildren<Obstacle>();
@@ -23,15 +23,15 @@ namespace Assets._Project.Systems.ChunkGeneration
         public void ShowCollectables()
         {
             if (_collectables != null)
-            {
-                Array.ForEach(_collectables, money => money.gameObject.SetActive(true));
-            }
+                for (int i = 0; i < _collectables.Length; i++)
+                    _collectables[i].gameObject.SetActive(true);
         }
 
         public void ShowObstacles()
         {
             if (_obstacles != null)
-                Array.ForEach(_obstacles, obstacle => obstacle.gameObject.SetActive(true));
+                for (int i = 0; i < _obstacles.Length; i++)
+                    _obstacles[i].gameObject.SetActive(true);
         }
 
         public Vector3 GetConnectPosition(Chunk connecting)
@@ -42,6 +42,17 @@ namespace Assets._Project.Systems.ChunkGeneration
         private void OnTriggerExit(Collider other)
         {
             OnPassed?.Invoke(this);
+        }
+
+        public void HideAll()
+        {
+            if (_collectables != null)
+                for (int i = 0; i < _collectables.Length; i++)
+                    _collectables[i].gameObject.SetActive(false);
+
+            if (_obstacles != null)
+                for (int i = 0; i < _obstacles.Length; i++)
+                    _obstacles[i].gameObject.SetActive(false);
         }
     }
 }

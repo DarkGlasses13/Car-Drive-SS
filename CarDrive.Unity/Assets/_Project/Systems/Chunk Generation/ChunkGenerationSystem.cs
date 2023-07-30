@@ -1,4 +1,5 @@
 using Assets._Project.Architecture;
+using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +17,23 @@ namespace Assets._Project.Systems.ChunkGeneration
         private readonly LocalAssetLoader _assetLoader;
         private AssetLabelReference _assetLabel;
         private List<Chunk> _prefabs;
-        private ObjectPool<Chunk> _pool;
+        private int _prefabIndex;
+        private Pool<Chunk> _pool;
         private Chunk _last;
         private CheckPointChunk _checkPoint;
+        private readonly GameState _gameState;
         private bool _isCheckPointPassed;
         private int _passedChunksCount;
         private List<Chunk> _currentChunks = new(), _nextChunks = new();
 
         public ChunkGenerationSystem(LocalAssetLoader assetLoader, ChunkGenerationConfig config,
-            Transform container, CheckPointChunk checkPoint)
+            Transform container, CheckPointChunk checkPoint, GameState gameState)
         {
             _assetLoader = assetLoader;
             _config = config;
             _container = container;
             _checkPoint = checkPoint;
+            _gameState = gameState;
             _checkPoint.gameObject.SetActive(false);
         }
 
@@ -38,7 +42,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             _assetLabel = _config.ChunkAssetLabel;
             IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>(_assetLabel, OnPrefabLoaded);
             _prefabs = new(emptyPrefabs.Select(chunk => chunk.GetComponent<Chunk>()));
-            _pool = new(Create, null, null, null, true, defaultCapacity: 0, maxSize: 100);
+            _pool = new(Create, _container, 100);
         }
 
         public override void Enable()
@@ -75,6 +79,9 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void OnPassed(Chunk chunk)
         {
+            if (_gameState.Current == GameStates.Finish)
+                return;
+
             if (chunk is CheckPointChunk)
             {
                 _isCheckPointPassed = true;
@@ -145,27 +152,29 @@ namespace Assets._Project.Systems.ChunkGeneration
         private void Despawn(Chunk chunk)
         {
             chunk.gameObject.SetActive(false);
-
-            if (chunk is not CheckPointChunk)
-            {
-                _pool.Release(chunk);
-            }
         }
 
         private void DespawnAll()
         {
-            Despawn(_currentChunks);
-            Despawn(_nextChunks);
-            _currentChunks.Clear();
-            _nextChunks.Clear();
+            _checkPoint.gameObject.SetActive(false);
+            _pool.ReleaseAll();
         }
 
-        private Chunk Create() => Create(_prefabs);
-
-        private T Create<T>(List<T> prefabs) where T : Chunk
+        private void OnRelease(Chunk chunk)
         {
-            T prefab = prefabs.ElementAt(Random.Range(0, prefabs.Count()));
-            T instance = Object.Instantiate(prefab, _container);
+            chunk.HideAll();
+        }
+
+        private Chunk Create()
+        {
+            Chunk instance = Object.Instantiate(_prefabs[_prefabIndex], _container);
+            instance.Init();
+            instance.HideAll();
+            _prefabIndex++;
+
+            if (_prefabIndex >= _prefabs.Count)
+                _prefabIndex = 0;
+
             return instance;
         }
 
