@@ -1,7 +1,6 @@
-﻿using NaughtyAttributes;
+﻿using Assets._Project.Entities.Obstacles;
+using Assets._Project.Systems.Collecting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project.Systems.ChunkGeneration
@@ -10,25 +9,20 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         public Action<Chunk> OnPassed;
         [SerializeField] private MeshRenderer _roadMeshRenderer;
-        [SerializeField] private bool _isContainsCollectables, _isContainsObstacles;
-        [SerializeField, ShowIf("_isContainsCollectables")] private GameObject[] _collectables;
-        [SerializeField, ShowIf("_isContainsObstacles")] private GameObject[] _obstacles;
+        private ItemObject[] _collectables;
+        private Obstacle[] _obstacles;
 
         public Bounds Bounds => _roadMeshRenderer.bounds;
-        public IEnumerable<GameObject> Obstacles => _obstacles.AsEnumerable();
 
-        private void OnEnable()
+        private void Awake()
         {
-            if (_isContainsCollectables)
-                Array.ForEach(_collectables, money => money.gameObject.SetActive(false));
-
-            if (_isContainsObstacles)
-                Array.ForEach(_obstacles, obstacle => obstacle.gameObject.SetActive(false));
+            _collectables = GetComponentsInChildren<ItemObject>();
+            _obstacles = GetComponentsInChildren<Obstacle>();
         }
 
         public void ShowCollectables()
         {
-            if (_isContainsCollectables)
+            if (_collectables != null)
             {
                 Array.ForEach(_collectables, money => money.gameObject.SetActive(true));
             }
@@ -36,7 +30,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public void ShowObstacles()
         {
-            if (_isContainsObstacles)
+            if (_obstacles != null)
                 Array.ForEach(_obstacles, obstacle => obstacle.gameObject.SetActive(true));
         }
 

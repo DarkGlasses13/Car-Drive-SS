@@ -1,7 +1,6 @@
 ﻿namespace Assets._Project.Entities.Obstacles
 {
-    public abstract class Obstacle : Entity
+    public class Obstacle : Entity
     {
-
     }
 }

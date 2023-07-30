@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_302 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}
     m_RemovedGameObjects: []
@@ -142,10 +147,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8582516603581545008}
     m_Modifications:
+    - target: {fileID: -7173609311234973875, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
       propertyPath: m_Name
       value: Sidewalk_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
@@ -226,10 +241,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8582516603581545008}
     m_Modifications:
+    - target: {fileID: -7173609311234973875, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
       propertyPath: m_Name
       value: Sidewalk_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956436291366020715, guid: e718383ba5b81d84ba6f7a3433e56846,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4441610763045813457, guid: e718383ba5b81d84ba6f7a3433e56846,
         type: 3}
@@ -454,6 +479,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_302
       objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}
     m_RemovedGameObjects: []
@@ -528,6 +558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Road_1_302 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062013383165481939, guid: e88996b84028d5c4395ce77c3fe5c998,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5482266984970828724, guid: e88996b84028d5c4395ce77c3fe5c998, type: 3}

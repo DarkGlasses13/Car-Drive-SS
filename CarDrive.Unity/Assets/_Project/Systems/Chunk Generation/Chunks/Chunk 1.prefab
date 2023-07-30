@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bench_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,7 +68,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -86,6 +92,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -137,7 +148,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -160,6 +172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -211,7 +228,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -300,6 +318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_cartoon_13 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8952428848623382960, guid: 80b3e4355833af54cb52e2a2ddfdad69,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -323,6 +346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -374,7 +402,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -397,6 +426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -448,7 +482,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -471,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -522,7 +562,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -545,6 +586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -596,7 +642,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -684,6 +731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Building_cartoon_13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952428848623382960, guid: 80b3e4355833af54cb52e2a2ddfdad69,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -774,6 +826,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_cartoon_13 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8952428848623382960, guid: 80b3e4355833af54cb52e2a2ddfdad69,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -793,10 +850,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1319905801723545426, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6403475352705863054, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Name
       value: Chunk 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076288613511894036, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166943642866489456, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7333052465502819296, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8582516603581545008, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
@@ -852,6 +929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084875524717907769, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1023,6 +1105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_cartoon_13 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8952428848623382960, guid: 80b3e4355833af54cb52e2a2ddfdad69,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1046,6 +1133,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bench_2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658399401287839895, guid: 19e0ed0302b6b674da2900362817ff7e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5471351547215948333, guid: 19e0ed0302b6b674da2900362817ff7e,
         type: 3}
@@ -1097,7 +1189,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1407125561583868512, guid: 19e0ed0302b6b674da2900362817ff7e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

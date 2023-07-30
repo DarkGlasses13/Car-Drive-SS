@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1319905801723545426, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3833563624080843551, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
       propertyPath: m_Size.z
@@ -22,6 +27,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chunk 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076288613511894036, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7333052465502819296, guid: 8bfd35aef227ca741a2a125ac81e45c9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7602031829930266286, guid: 8bfd35aef227ca741a2a125ac81e45c9,
         type: 3}
@@ -123,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 5403005964840332724}
-  _isContainsCollectables: 1
-  _isContainsObstacles: 1
+  _isContainsCollectables: 0
+  _isContainsObstacles: 0
   _collectables: []
   _obstacles: []
 --- !u!23 &5403005964840332724 stripped
