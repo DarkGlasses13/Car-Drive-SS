@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Assets._Project.Systems.Collecting
 {
-    public class UISlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+    public class UISlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         [SerializeField] private Image _itemIcon;
         private UIInventory _uiInventory;
@@ -37,7 +37,7 @@ namespace Assets._Project.Systems.Collecting
             _itemIcon.gameObject.SetActive(false);
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventData)
         {
             if (Item == null)
                 return;
@@ -46,6 +46,12 @@ namespace Assets._Project.Systems.Collecting
             {
                 _uiInventory.OpenLootBox(transform.GetSiblingIndex());
             }
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (Item == null)
+                return;
 
             _uiInventory.FromSlot = this;
             _dragableImage.sprite = Item.Icon;
