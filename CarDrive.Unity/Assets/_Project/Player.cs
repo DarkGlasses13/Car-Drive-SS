@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Systems.Collecting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets._Project
 {
@@ -23,5 +24,13 @@ namespace Assets._Project
         public void SetStat(ItemType type, float value) => _stats[type] = value;
 
         public float GetStat(ItemType type) => _stats[type];
+
+        public void ResetSats()
+        {
+            foreach (var key in _stats.Keys.ToList())
+            {
+                _stats[key] = 1;
+            }
+        }
     }
 }

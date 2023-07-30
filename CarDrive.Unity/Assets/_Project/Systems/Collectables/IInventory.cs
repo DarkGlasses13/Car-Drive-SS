@@ -17,5 +17,6 @@ namespace Assets._Project.Systems.Collecting
         void Swap(int slot, IItem item);
         void Equip(int from, int to);
         void UnEquip(int fromSlotIndex, int toSlotIndex);
+        void Clear();
     }
 }

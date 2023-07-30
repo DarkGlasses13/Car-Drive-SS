@@ -5,7 +5,6 @@ using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.Collecting;
 using Cinemachine;
-using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;

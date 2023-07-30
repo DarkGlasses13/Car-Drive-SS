@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets._Project.Systems.Collecting
 {
@@ -78,6 +79,21 @@ namespace Assets._Project.Systems.Collecting
             IItem toItem = _items[to];
             _items[to] = equipment;
             _equipment[from] = toItem;
+            OnChenged?.Invoke();
+        }
+
+        public void Clear()
+        {
+            for (int i = 0; i < _equipment.Length; i++)
+            {
+                _equipment[i] = null;
+            }
+
+            for (int i = 0; i < _items.Length; i++)
+            {
+                _items[i] = null;
+            }
+
             OnChenged?.Invoke();
         }
     }

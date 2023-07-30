@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
+using Assets._Project.Systems.Collecting;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -13,16 +14,21 @@ namespace Assets._Project.Systems.Restart
         private readonly Transform _container;
         private readonly IRestartable _restarter;
         private readonly AudioSource _levelMusic;
+        private readonly IInventory _inventory;
+        private readonly Player _player;
         private RestartPopup _popup;
 
         public RestartSystem(GameState gameState, LocalAssetLoader assetLoader,
-            Transform container, IRestartable restarter, AudioSource levelMusic)
+            Transform container, IRestartable restarter, AudioSource levelMusic,
+            IInventory inventory, Player player)
         {
             _gameState = gameState;
             _assetLoader = assetLoader;
             _container = container;
             _restarter = restarter;
             _levelMusic = levelMusic;
+            _inventory = inventory;
+            _player = player;
         }
 
         public override async Task InitializeAsync()
@@ -50,6 +56,8 @@ namespace Assets._Project.Systems.Restart
             {
                 _levelMusic.Stop();
                 _popup.Open();
+                _inventory.Clear();
+                _player.ResetSats();
             }
         }
 

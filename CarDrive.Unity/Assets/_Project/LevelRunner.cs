@@ -69,7 +69,6 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(await assetLoader.Load<WorldCentringConfig>("World Centring Config"));
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, _gameState, coroutiner, _cinematographer);
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
-            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
@@ -80,6 +79,7 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, player);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
                 checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
