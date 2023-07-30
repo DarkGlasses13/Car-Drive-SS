@@ -17,7 +17,7 @@ namespace Assets._Project
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 90;
             DIContainer container = new GameObject("Project DI Container").AddComponent<DIContainer>();
             Player player = new();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
@@ -36,7 +36,7 @@ namespace Assets._Project
             container.Bind(coroutiner);
             container.Bind(itemDatabase);
             container.Bind(collectablesConfig);
-            container.Bind(new Money(collectablesConfig, 1000));
+            container.Bind(new Money(collectablesConfig, 0));
             container.Bind(new Cinematographer());
 
             _systems = new()

@@ -35,8 +35,8 @@ namespace Assets._Project.Systems.Shop
                 {
                     _buyButton.OnDeal();
                     _inventory.TryAdd(lootBoxItem);
+                    return;
                 }
-                return;
             }
 
             _buyButton.OnFail();
