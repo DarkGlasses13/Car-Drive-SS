@@ -29,9 +29,8 @@ namespace Assets._Project.Systems.Collecting
             _grid = GetComponentInChildren<GridLayoutGroup>();
             _slots = GetComponentsInChildren<UISlot>();
             _equipmentSlots = equipment.GetComponentsInChildren<UISlot>();
-            CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
-            Array.ForEach(_slots, slot => slot.Construct(this, _dragableImage, canvasScaler));
-            Array.ForEach(_equipmentSlots, slot => slot.Construct(this, _dragableImage, canvasScaler));
+            Array.ForEach(_slots, slot => slot.Construct(this, _dragableImage, canvas));
+            Array.ForEach(_equipmentSlots, slot => slot.Construct(this, _dragableImage, canvas));
         }
 
         public void UpdateView(IEnumerable<IItem> items, IEnumerable<IItem> equipment)

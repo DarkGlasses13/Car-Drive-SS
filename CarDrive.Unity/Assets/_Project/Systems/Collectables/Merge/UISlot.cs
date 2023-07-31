@@ -12,17 +12,17 @@ namespace Assets._Project.Systems.Collecting
         [SerializeField] private ParticleSystem _confetiParticle;
         private UIInventory _uiInventory;
         private Image _dragableImage;
-        private CanvasScaler _canvasScaler;
+        private Canvas _canvas;
 
         [field: SerializeField] public bool IsEquipment { get; private set; }
         [field: SerializeField, ShowIf("IsEquipment")]public ItemType Type { get; private set; }
         public IItem Item { get; private set; }
 
-        public void Construct(UIInventory uiInventory, Image dragableImage, CanvasScaler canvasScaler)
+        public void Construct(UIInventory uiInventory, Image dragableImage, Canvas canvas)
         {
             _uiInventory = uiInventory;
             _dragableImage = dragableImage;
-            _canvasScaler = canvasScaler;
+            _canvas = canvas;
         }
 
         public void SetSlot(IItem item)
@@ -65,7 +65,7 @@ namespace Assets._Project.Systems.Collecting
 
         public void OnDrag(PointerEventData eventData)
         {
-            _dragableImage.rectTransform.anchoredPosition += eventData.delta / _canvasScaler.scaleFactor;
+            _dragableImage.rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
 
         public void OnDrop(PointerEventData eventData)
