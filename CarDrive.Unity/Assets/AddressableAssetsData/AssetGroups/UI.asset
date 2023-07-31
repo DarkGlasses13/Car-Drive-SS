@@ -43,7 +43,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 92bcddc2c48ed9440b27b2d6709834ec
-    m_Address: Shop Buy Button
+    m_Address: Buy Loot Box Button
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

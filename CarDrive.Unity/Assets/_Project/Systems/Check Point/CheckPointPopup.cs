@@ -14,8 +14,7 @@ namespace Assets._Project.Systems.CheckPoint
             _mergeSound;
 
         [field: SerializeField] public RectTransform BalanceAndPlayButtonSection { get; private set; }
-        [field: SerializeField] public RectTransform EquipmentSection { get; private set; }
-        [field: SerializeField] public RectTransform MergeAndBuyButtonSection { get; private set; }
+        [field: SerializeField] public RectTransform OtherSection { get; private set; }
 
         public void Open(Action callback = null)
         {

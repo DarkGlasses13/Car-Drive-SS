@@ -1,4 +1,5 @@
 using Assets._Project.Architecture;
+using Assets._Project.Architecture.UI;
 using Assets._Project.Systems.Collecting;
 
 namespace Assets._Project.Systems.Shop
@@ -12,14 +13,14 @@ namespace Assets._Project.Systems.Shop
         private readonly CollectablesConfig _config;
 
         public ShopSystem(IInventory inventory, IItemDatabase database,
-            PriceTagButton buyButton, Money money, CollectablesConfig config)
+            PriceTagButton buyButton, Money money, CollectablesConfig config, UICounter lootBoxPrice)
         {
             _inventory = inventory;
             _database = database;
             _buyButton = buyButton;
             _money = money;
             _config = config;
-            _buyButton.Price = config.LootBoxPrice.ToString();
+            lootBoxPrice.Set(config.LootBoxPrice.ToString());
         }
 
         public override void Enable()

@@ -48,7 +48,8 @@ namespace Assets._Project
 
         protected override void OnInitializationCompleted()
         {
-            _sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
+            //_sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
+            _sceneChanger.Change("Level");
         }
     }
 }

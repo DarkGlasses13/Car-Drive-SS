@@ -77,18 +77,19 @@ namespace Assets._Project
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
-            UIEquipment equipment = await assetLoader.LoadAndInstantiateAsync<UIEquipment>("Equipment", checkPointPopup.EquipmentSection);
-            UIInventory uiInventory = await assetLoader.LoadAndInstantiateAsync<UIInventory>("Merge", checkPointPopup.MergeAndBuyButtonSection);
+            UIEquipment equipment = await assetLoader.LoadAndInstantiateAsync<UIEquipment>("Equipment", checkPointPopup.OtherSection);
+            UIInventory uiInventory = await assetLoader.LoadAndInstantiateAsync<UIInventory>("Merge", checkPointPopup.OtherSection);
             uiInventory.Construct(_canvas, equipment);
+            UICounter lootBoxPrice = await assetLoader.LoadAndInstantiateAsync<UICounter>("Loot Box Price", checkPointPopup.OtherSection);
             PriceTagButton buyButton = await assetLoader
-                .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
+                .LoadAndInstantiateAsync<PriceTagButton>("Buy Loot Box Button", checkPointPopup.OtherSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
             RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, _player, money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
                 checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, _player);
-            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
+            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig, lootBoxPrice);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());

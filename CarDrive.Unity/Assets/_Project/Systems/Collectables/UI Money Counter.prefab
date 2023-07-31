@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1728527291479777859, guid: c42112fffa7db364ca05fb6478f55421,
+        type: 3}
+      propertyPath: m_Spacing
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2407964780990192051, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -52,7 +57,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6661e486479b461428832d59d40f4b15,
+      objectReference: {fileID: 21300000, guid: 108c3f9e07ae25f448c41e0a23bb48fc,
         type: 3}
     - target: {fileID: 4623192817567256975, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
@@ -202,22 +207,22 @@ PrefabInstance:
     - target: {fileID: 6990693769475745132, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
       propertyPath: m_fontColor.b
-      value: 0
+      value: 0.11320752
       objectReference: {fileID: 0}
     - target: {fileID: 6990693769475745132, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
       propertyPath: m_fontColor.g
-      value: 0
+      value: 0.06537364
       objectReference: {fileID: 0}
     - target: {fileID: 6990693769475745132, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
       propertyPath: m_fontColor.r
-      value: 0
+      value: 0.040049832
       objectReference: {fileID: 0}
     - target: {fileID: 6990693769475745132, guid: c42112fffa7db364ca05fb6478f55421,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4280094986
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
