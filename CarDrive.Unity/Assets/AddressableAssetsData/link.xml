@@ -3,6 +3,7 @@
     <type fullname="Assets._Project.Entities.Character.CharacterCar" preserve="all" />
     <type fullname="Assets._Project.Entities.Obstacles.Obstacle" preserve="all" />
     <type fullname="Assets._Project.Entities.Obstacles.ObstacleCar" preserve="all" />
+    <type fullname="Assets._Project.LevelRunner" preserve="all" />
     <type fullname="Assets._Project.ProjectRunner" preserve="all" />
     <type fullname="Assets._Project.Systems.CheckPoint.CheckPointPopup" preserve="all" />
     <type fullname="Assets._Project.Systems.ChunkGeneration.CheckPointChunk" preserve="all" />
@@ -56,8 +57,19 @@
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
     <type fullname="UnityEngine.AddressableAssets.AssetLabelReference" preserve="nothing" serialized="true" />
   </assembly>
+  <assembly fullname="Unity.InputSystem, Version=1.6.3.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.InputSystem.InputActionAsset" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.InputActionReference" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.UI.InputSystemUIInputModule" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputActionMap" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputBinding" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputControlScheme" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.InputSystem.InputControlScheme/DeviceRequirement" preserve="nothing" serialized="true" />
+  </assembly>
   <assembly fullname="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalCameraData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalLightData" preserve="all" />
     <type fullname="UnityEngine.Rendering.Universal.TemporalAA/Settings" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
@@ -95,7 +107,10 @@
     <type fullname="UnityEngine.Camera" preserve="all" />
     <type fullname="UnityEngine.Cubemap" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.LightingSettings" preserve="all" />
     <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.LightProbes" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
     <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshFilter" preserve="all" />
@@ -124,8 +139,11 @@
     <type fullname="UnityEngine.Font" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
     <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
     <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
     <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
@@ -138,12 +156,9 @@
     <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
     <type fullname="UnityEngine.CanvasGroup" preserve="all" />
     <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
-  </assembly>
-  <assembly fullname="Unity.InputSystem">
-    <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.InputSystem.InputBinding" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.TextCoreFontEngineModule">
     <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />

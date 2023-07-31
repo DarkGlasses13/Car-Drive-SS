@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ namespace Assets._Project.Systems.Collecting
     public class UISlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         [SerializeField] private Image _itemIcon;
+        [SerializeField] private ParticleSystem _confetiParticle;
         private UIInventory _uiInventory;
         private Image _dragableImage;
         private CanvasScaler _canvasScaler;
@@ -45,6 +47,7 @@ namespace Assets._Project.Systems.Collecting
             if (Item.Type == ItemType.LootBox)
             {
                 _uiInventory.OpenLootBox(transform.GetSiblingIndex());
+                EmitMergeparticle();
             }
         }
 
@@ -82,5 +85,7 @@ namespace Assets._Project.Systems.Collecting
                 _uiInventory.Swap();
             }
         }
+
+        public void EmitMergeparticle() => _confetiParticle.Play();
     }
 }

@@ -14,9 +14,7 @@ namespace Assets._Project.CameraControl
         public TypedCamera ActiveCamera { get; private set; }
         public int ActiveCameraIndex { get; private set; }
 
-        public Cinematographer()
-        {
-        }
+        public Cinematographer() { }
 
         public Cinematographer(IEnumerable<TypedCamera> cameras)
         {

@@ -18,6 +18,7 @@ using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Assets._Project
@@ -31,6 +32,7 @@ namespace Assets._Project
             _entityContainer,
             _hudContainer,
             _popupContainer,
+            _fxContainer,
             _loadingScreenContainer;
 
         [SerializeField] private Canvas _canvas;
@@ -51,9 +53,10 @@ namespace Assets._Project
             IItemDatabase itemDatabase = projectContainer.Get<IItemDatabase>();
             _playerInput = projectContainer.Get<IPlayerInput>();
             _cinematographer = projectContainer.Get<Cinematographer>();
-            await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
+            Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
             Camera uiCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("UI Camera", _camerasContainer);
             _canvas.worldCamera = uiCamera;
+            playerCamera.GetComponent<UniversalAdditionalCameraData>().cameraStack.Add(uiCamera);
             _cinematographer.AddCamera(GameCamera.Run, await assetLoader
                 .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
             _cinematographer.AddCamera(GameCamera.Lose, await assetLoader
@@ -78,7 +81,7 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
-            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, player);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, player, money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
                 checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
@@ -86,6 +89,7 @@ namespace Assets._Project
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
+
 
             _systems = new()
             {
@@ -104,10 +108,10 @@ namespace Assets._Project
         protected override void OnInitializationCompleted()
         {
             _characterCar.gameObject.SetActive(true);
-            _gameState.Switch(GameStates.Run);
             _cinematographer.SwitchCamera(GameCamera.Run, isReset: true, _characterCar.transform, _characterCar.transform);
             _playerInput.Enable();
             _leveMusic.Play();
+            _gameState.Switch(GameStates.Run);
         }
     }
 }

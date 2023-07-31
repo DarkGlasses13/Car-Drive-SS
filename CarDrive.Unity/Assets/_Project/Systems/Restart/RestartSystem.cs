@@ -16,11 +16,12 @@ namespace Assets._Project.Systems.Restart
         private readonly AudioSource _levelMusic;
         private readonly IInventory _inventory;
         private readonly Player _player;
+        private readonly Money _money;
         private RestartPopup _popup;
 
         public RestartSystem(GameState gameState, LocalAssetLoader assetLoader,
             Transform container, IRestartable restarter, AudioSource levelMusic,
-            IInventory inventory, Player player)
+            IInventory inventory, Player player, Money money)
         {
             _gameState = gameState;
             _assetLoader = assetLoader;
@@ -29,6 +30,7 @@ namespace Assets._Project.Systems.Restart
             _levelMusic = levelMusic;
             _inventory = inventory;
             _player = player;
+            _money = money;
         }
 
         public override async Task InitializeAsync()
@@ -58,6 +60,7 @@ namespace Assets._Project.Systems.Restart
                 _popup.Open();
                 _inventory.Clear();
                 _player.ResetSats();
+                _money.SpendAll();
             }
         }
 
