@@ -1,4 +1,5 @@
 using Assets._Project.Architecture.UI;
+using Assets._Project.Systems.Collecting;
 using System;
 using UnityEngine;
 
@@ -39,6 +40,11 @@ namespace Assets._Project.Systems.CheckPoint
         public void PlayMergeSound()
         {
             _mergeSound.Play();
+        }
+
+        public void EmitMergeParticle(UISlot to)
+        {
+            to.EmitMergeparticle();
         }
     }
 }

@@ -87,6 +87,7 @@ namespace Assets._Project.Systems.Collecting
                         _inventory.Swap(fromSlotIndex, null);
                         _inventory.Swap(toSlotIndex, item);
                         _popup.PlayMergeSound();
+                        _popup.EmitMergeParticle(to);
                     }
                     return;
                 }

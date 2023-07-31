@@ -39,5 +39,7 @@ namespace Assets._Project.Systems.Collecting
             Value += amount;
             OnChanged?.Invoke(Value);
         }
+
+        public void SpendAll() => TrySpend(Value);
     }
 }
