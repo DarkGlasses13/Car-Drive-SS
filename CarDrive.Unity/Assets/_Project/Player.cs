@@ -9,6 +9,7 @@ namespace Assets._Project
         private readonly Dictionary<ItemType, float> _stats;
 
         public int Level { get; set; }
+        public bool IsTutorialCompleted { get; set; }
 
         public Player()
         {

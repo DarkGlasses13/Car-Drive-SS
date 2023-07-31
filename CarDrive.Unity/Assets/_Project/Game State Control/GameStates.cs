@@ -5,6 +5,7 @@
         WaitForRun,
         Run,
         Lose,
-        Finish
+        Finish,
+        Tutorial
     }
 }

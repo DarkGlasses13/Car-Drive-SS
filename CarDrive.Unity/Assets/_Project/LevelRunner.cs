@@ -41,13 +41,14 @@ namespace Assets._Project
         private IPlayerInput _playerInput;
         private Cinematographer _cinematographer;
         private CharacterCar _characterCar;
+        private Player _player;
         private GameState _gameState;
 
         protected override async Task CreateSystems()
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
-            Player player = projectContainer.Get<Player>();
+            _player = projectContainer.Get<Player>();
             _gameState = new(GameStates.WaitForRun);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
             Money money = projectContainer.Get<Money>();
@@ -70,7 +71,7 @@ namespace Assets._Project
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
-            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, player, _gameState, coroutiner, _cinematographer);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, _player, _gameState, coroutiner, _cinematographer);
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
@@ -82,11 +83,11 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Shop Buy Button", checkPointPopup.MergeAndBuyButtonSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
-            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, player, money);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, _player, money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
                 checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
-            InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, player);
+            InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, _player);
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);

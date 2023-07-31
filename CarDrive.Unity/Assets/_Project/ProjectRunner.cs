@@ -13,13 +13,14 @@ namespace Assets._Project
     public class ProjectRunner : RunnerWithAutomaticSystemsInitialization
     {
         private ISceneChanger _sceneChanger;
+        private Player _player;
 
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
             Application.targetFrameRate = 90;
             DIContainer container = new GameObject("Project DI Container").AddComponent<DIContainer>();
-            Player player = new();
+            _player = new();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
             DontDestroyOnLoad(container);
             DontDestroyOnLoad(coroutiner);
@@ -32,7 +33,7 @@ namespace Assets._Project
             container.Bind(assetLoader);
             container.Bind(playerInput);
             container.Bind(_sceneChanger);
-            container.Bind(player);
+            container.Bind(_player);
             container.Bind(coroutiner);
             container.Bind(itemDatabase);
             container.Bind(collectablesConfig);
@@ -47,7 +48,7 @@ namespace Assets._Project
 
         protected override void OnInitializationCompleted()
         {
-            _sceneChanger.Change("Level");
+            _sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
         }
     }
 }
