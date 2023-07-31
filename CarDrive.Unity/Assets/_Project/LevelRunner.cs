@@ -14,6 +14,7 @@ using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
 using Assets._Project.Systems.Restart;
 using Assets._Project.Systems.Shop;
+using Assets._Project.Systems.Sound;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using System.Threading.Tasks;
@@ -89,7 +90,7 @@ namespace Assets._Project
             ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
-
+            SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
 
             _systems = new()
             {
@@ -102,6 +103,7 @@ namespace Assets._Project
                 checkPointSystem,
                 inventorySystem,
                 shopSystem,
+                soundSystem,
             };
         }
 
