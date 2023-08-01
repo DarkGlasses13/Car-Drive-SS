@@ -18,6 +18,7 @@ namespace Assets._Project.Tutorial
     {
         [SerializeField] private Camera _uiCamera;
         private PlayableDirector _director;
+        private Player _player;
         private UniversalAdditionalCameraData _additionalCameraData;
         private LoadingScreen _loadingScreen;
         private SceneChanger _sceneChanger;
@@ -33,6 +34,7 @@ namespace Assets._Project.Tutorial
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             Camera playerCamera = projectContainer.Get<Camera>();
+            _player = projectContainer.Get<Player>();
             _additionalCameraData = playerCamera.GetComponent<UniversalAdditionalCameraData>();
             _additionalCameraData.cameraStack.Add(_uiCamera);
             _loadingScreen = projectContainer.Get<LoadingScreen>();
@@ -72,6 +74,7 @@ namespace Assets._Project.Tutorial
 
         public void OnFinal()
         {
+            _player.IsTutorialCompleted = true;
             _loadingScreen.FadeIn(OnFadeIn);
         }
 

@@ -22,9 +22,11 @@ namespace Assets._Project.Systems.CheckPoint
         private readonly Button _playButton;
         private readonly Money _money;
         private readonly AudioSource _levelMusic;
+        private readonly Player _player;
 
         public CheckPointSystem(GameState gameState, Transform hudContainer, CheckPointChunk checkpPoint, 
-            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money, AudioSource levelMusic)
+            CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money,
+            AudioSource levelMusic, Player player)
         {
             _gameState = gameState;
             _hudContainer = hudContainer;
@@ -37,6 +39,7 @@ namespace Assets._Project.Systems.CheckPoint
             _playButton = playButton;
             _money = money;
             _levelMusic = levelMusic;
+            _player = player;
             _popup.gameObject.SetActive(false);
         }
 
@@ -67,6 +70,7 @@ namespace Assets._Project.Systems.CheckPoint
             _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);
             _levelMusic.Stop();
             _popup.Show();
+            _player.Money = _money.Value;
         }
 
         public override void Disable()

@@ -88,13 +88,13 @@ namespace Assets._Project
             UICounter lootBoxPrice = await assetLoader.LoadAndInstantiateAsync<UICounter>("Loot Box Price", checkPointPopup.OtherSection);
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Buy Loot Box Button", checkPointPopup.OtherSection);
-            IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount);
+            IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount, _player.Equipment, _player.Items);
             RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, _player, money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
-                checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic);
+                checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic, _player);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, _player);
-            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig, lootBoxPrice);
+            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig, lootBoxPrice, _player);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());

@@ -11,15 +11,18 @@ namespace Assets._Project.Systems.Shop
         private readonly PriceTagButton _buyButton;
         private readonly Money _money;
         private readonly CollectablesConfig _config;
+        private readonly Player _player;
 
         public ShopSystem(IInventory inventory, IItemDatabase database,
-            PriceTagButton buyButton, Money money, CollectablesConfig config, UICounter lootBoxPrice)
+            PriceTagButton buyButton, Money money, CollectablesConfig config,
+            UICounter lootBoxPrice, Player player)
         {
             _inventory = inventory;
             _database = database;
             _buyButton = buyButton;
             _money = money;
             _config = config;
+            _player = player;
             lootBoxPrice.Set(config.LootBoxPrice.ToString());
         }
 
@@ -30,14 +33,12 @@ namespace Assets._Project.Systems.Shop
 
         private void OnBuyButtonCkick()
         {
-            if (_database.TryGetByID("it_Lbx", out IItem lootBoxItem))
+            if (_inventory.TryAdd(_database.GetByID("it_Lbx")))
             {
-                if (_money.TrySpend(_config.LootBoxPrice))
-                {
-                    _buyButton.OnDeal();
-                    _inventory.TryAdd(lootBoxItem);
-                    return;
-                }
+                _money.TrySpend(_config.LootBoxPrice);
+                _buyButton.OnDeal();
+                _player.Money = _money.Value;
+                return;
             }
 
             _buyButton.OnFail();

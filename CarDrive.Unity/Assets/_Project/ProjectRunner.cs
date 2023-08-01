@@ -4,8 +4,10 @@ using Assets._Project.Architecture.UI;
 using Assets._Project.CameraControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
+using Assets._Project.SaveLoad;
 using Assets._Project.SceneChange;
 using Assets._Project.Systems.Collecting;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -14,21 +16,29 @@ namespace Assets._Project
 {
     public class ProjectRunner : RunnerWithAutomaticSystemsInitialization
     {
+        [SerializeField] private string _saveVersion;
+        private DIContainer _container;
         private ISceneChanger _sceneChanger;
+        private CollectablesConfig _collectablesConfig;
+        private Storage _storage;
         private Player _player;
+        private PlayerSave _defaultData;
         private LoadingScreen _loadingScreen;
 
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
             Application.targetFrameRate = 90;
-            DIContainer container = new GameObject("Project DI Container").AddComponent<DIContainer>();
-            _player = new();
+            _container = new GameObject("Project DI Container").AddComponent<DIContainer>();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
-            DontDestroyOnLoad(container);
+            _storage = new();
+            DontDestroyOnLoad(_container);
             DontDestroyOnLoad(coroutiner);
             LocalAssetLoader assetLoader = new();
             Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", null);
+            IItemDatabase itemDatabase = await assetLoader.Load<ItemDatabase>("Item Database");
+            _player = new(itemDatabase);
+            _defaultData = _player.GetSave();
             DontDestroyOnLoad(playerCamera);
             _loadingScreen = await assetLoader.LoadAndInstantiateAsync<LoadingScreen>("Loading Screen", null);
             DontDestroyOnLoad(_loadingScreen);
@@ -36,19 +46,18 @@ namespace Assets._Project
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
-            IItemDatabase itemDatabase = await assetLoader.Load<ItemDatabase>("Item Database");
-            CollectablesConfig collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
-            container.Bind(playerCamera);
-            container.Bind(_loadingScreen);
-            container.Bind(assetLoader);
-            container.Bind(playerInput);
-            container.Bind(_sceneChanger);
-            container.Bind(_player);
-            container.Bind(coroutiner);
-            container.Bind(itemDatabase);
-            container.Bind(collectablesConfig);
-            container.Bind(new Money(collectablesConfig, 0));
-            container.Bind(new Cinematographer());
+            _collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
+            _container.Bind(_storage);
+            _container.Bind(playerCamera);
+            _container.Bind(_loadingScreen);
+            _container.Bind(assetLoader);
+            _container.Bind(playerInput);
+            _container.Bind(_sceneChanger);
+            _container.Bind(_player);
+            _container.Bind(coroutiner);
+            _container.Bind(itemDatabase);
+            _container.Bind(_collectablesConfig);
+            _container.Bind(new Cinematographer());
 
             _systems = new()
             {
@@ -58,8 +67,27 @@ namespace Assets._Project
 
         protected override void OnInitializationCompleted()
         {
-            //_sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
-            _sceneChanger.Change("Level");
+            _storage.Load(_saveVersion, _defaultData, OnLoaded);
+        }
+
+        private void OnLoaded(string save)
+        {
+            _player.Update(JsonUtility.FromJson<PlayerSave>(save));
+            _container.Bind(new Money(_collectablesConfig, _player.Money));
+            _sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
+        }
+
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause)
+            {
+                _storage.Save(_saveVersion, _player.GetSave());
+            }
+        }
+
+        private void OnApplicationQuit()
+        {
+            _storage.Save(_saveVersion, _player.GetSave());
         }
     }
 }

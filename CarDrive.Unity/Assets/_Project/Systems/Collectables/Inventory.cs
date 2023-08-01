@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Assets._Project.Systems.Collecting
 {
@@ -17,10 +16,16 @@ namespace Assets._Project.Systems.Collecting
         public IEnumerable<IItem> Items => _items.AsEnumerable();
         public IEnumerable<IItem> Equipment => _equipment.AsEnumerable();
 
-        public Inventory(int capacity, int equipmentCapacity)
+        public Inventory(int capacity, int equipmentCapacity, IEnumerable<IItem> equipment, IEnumerable<IItem> items)
         {
             _items = new IItem[capacity];
             _equipment = new IItem[equipmentCapacity];
+
+            for (int i = 0; i < equipment.Count(); i++)
+                _equipment[i] = equipment.ElementAt(i);
+
+            for (int i = 0; i < items.Count(); i++)
+                _items[i] = items.ElementAt(i);
         }
 
         public bool TryAdd(IItem item)

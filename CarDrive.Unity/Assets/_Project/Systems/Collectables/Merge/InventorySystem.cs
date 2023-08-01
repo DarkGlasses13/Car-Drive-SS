@@ -122,6 +122,8 @@ namespace Assets._Project.Systems.Collecting
         private void OnInventoryChanged()
         {
             _uiInventory.UpdateView(_inventory.Items, _inventory.Equipment);
+            _player.Equipment = _inventory.Equipment;
+            _player.Items = _inventory.Items;
         }
 
         public override void Disable()

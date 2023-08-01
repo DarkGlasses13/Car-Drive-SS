@@ -30,7 +30,7 @@ namespace Assets._Project.Systems.Collecting
 
         public bool TryGetByID(string id, out IItem item)
         {
-            item = _items.SingleOrDefault(itm => itm.ID == id);
+            item = GetByID(id);
             return item != null;
         }
 
@@ -38,6 +38,11 @@ namespace Assets._Project.Systems.Collecting
         {
             IEnumerable<ItemReference> items = _items.Where(itm => itm.Type == type);
             return items.SingleOrDefault(itm => itm.MergeLevel == mergeLevel);
+        }
+
+        public IItem GetByID(string id)
+        {
+            return _items.SingleOrDefault(itm => itm.ID == id);
         }
     }
 }

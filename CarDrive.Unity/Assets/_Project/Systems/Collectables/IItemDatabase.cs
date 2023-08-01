@@ -5,6 +5,6 @@
         IItem GetByMergeLevel(ItemType type, int mergeLevel);
         IItem GetRandom();
         IItem GetRandom(int mergeLevel);
-        bool TryGetByID(string id, out IItem item);
+        IItem GetByID(string id);
     }
 }

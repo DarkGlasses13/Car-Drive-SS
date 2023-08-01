@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Architecture;
 using Assets._Project.Architecture.UI;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Assets._Project.Systems.Collecting
@@ -49,13 +50,10 @@ namespace Assets._Project.Systems.Collecting
                         continue;
                     }
 
-                    if (_database.TryGetByID(itemObject.ID, out IItem item))
+                    if (_inventory.TryAdd(_database.GetByID(itemObject.ID)))
                     {
-                        if (_inventory.TryAdd(item))
-                        {
-                            _collector?.OnCollect();
-                            itemObject.gameObject.SetActive(false);
-                        }
+                        _collector?.OnCollect();
+                        itemObject.gameObject.SetActive(false);
                     }
                 }
             }
