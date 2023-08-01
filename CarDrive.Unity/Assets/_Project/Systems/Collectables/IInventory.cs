@@ -10,7 +10,7 @@ namespace Assets._Project.Systems.Collecting
         int EquipmentCount { get; }
         IEnumerable<IItem> Items { get; }
         IEnumerable<IItem> Equipment { get; }
-
+        bool HasEmptySlots { get; }
         bool TryAdd(IItem item);
         bool TryRemove(int slot);
         void Swap(int from, int to);

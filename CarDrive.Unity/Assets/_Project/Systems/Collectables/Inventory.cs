@@ -16,6 +16,8 @@ namespace Assets._Project.Systems.Collecting
         public IEnumerable<IItem> Items => _items.AsEnumerable();
         public IEnumerable<IItem> Equipment => _equipment.AsEnumerable();
 
+        public bool HasEmptySlots => _items.Contains(null);
+
         public Inventory(int capacity, int equipmentCapacity, IEnumerable<IItem> equipment, IEnumerable<IItem> items)
         {
             _items = new IItem[capacity];

@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Timeline;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets._Project.Tutorial
 {
@@ -68,6 +69,38 @@ namespace Assets._Project.Tutorial
             {
                 _playerInput.Disable();
                 _playerInput.OnStear -= OnStear;
+                _director.Resume();
+            }
+        }
+
+        public void OnBeforeAcceleration()
+        {
+            _playerInput.Enable();
+            _playerInput.OnGasRegulate += OnAccelerate;
+        }
+
+        private void OnAccelerate(float value)
+        {
+            if (value > 0)
+            {
+                _playerInput.Disable();
+                _playerInput.OnGasRegulate -= OnAccelerate;
+                _director.Resume();
+            }
+        }
+
+        public void OnBeforeBreak()
+        {
+            _playerInput.Enable();
+            _playerInput.OnGasRegulate += OnBreak;
+        }
+
+        private void OnBreak(float value)
+        {
+            if (value < 0)
+            {
+                _playerInput.Disable();
+                _playerInput.OnGasRegulate -= OnBreak;
                 _director.Resume();
             }
         }

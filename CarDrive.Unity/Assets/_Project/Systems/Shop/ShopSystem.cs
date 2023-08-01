@@ -33,12 +33,15 @@ namespace Assets._Project.Systems.Shop
 
         private void OnBuyButtonCkick()
         {
-            if (_inventory.TryAdd(_database.GetByID("it_Lbx")))
+            if (_inventory.HasEmptySlots)
             {
-                _money.TrySpend(_config.LootBoxPrice);
-                _buyButton.OnDeal();
-                _player.Money = _money.Value;
-                return;
+                if (_money.TrySpend(_config.LootBoxPrice))
+                {
+                    _buyButton.OnDeal();
+                    _player.Money = _money.Value;
+                    _inventory.TryAdd(_database.GetByID("it_Lbx"));
+                    return;
+                }
             }
 
             _buyButton.OnFail();
