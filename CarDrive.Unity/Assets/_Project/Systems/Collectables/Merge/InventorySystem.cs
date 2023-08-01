@@ -54,6 +54,9 @@ namespace Assets._Project.Systems.Collecting
             {
                 if (from.Item.Type == to.Type)
                 {
+                    if (to.Item != null && from.Item.ID == to.Item.ID)
+                        return;
+
                     _popup.PlayEquipSound();
                     _inventory.Equip(fromSlotIndex, toSlotIndex);
                     _player.SetStat(to.Type, to.Item.Stat);
@@ -66,6 +69,18 @@ namespace Assets._Project.Systems.Collecting
             {
                 if (to.Item == null || to.Item.Type == from.Type)
                 {
+                    ItemType type = to.Item.Type;
+                    int mergeLevel = to.Item.MergeLevel;
+                    IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
+
+                    if (mergeLevel > 0)
+                    {
+                        _inventory.UnEquipMerge(fromSlotIndex, toSlotIndex, mergeResult);
+                        _popup.PlayMergeSound();
+                        _popup.EmitMergeParticle(to);
+                        return;
+                    }
+
                     _inventory.UnEquip(fromSlotIndex, toSlotIndex);
                     _player.SetStat(from.Type, 1);
                 }
@@ -80,12 +95,12 @@ namespace Assets._Project.Systems.Collecting
 
                 if (mergeLevel > 0)
                 {
-                    IItem item = _database.GetByMergeLevel(type, mergeLevel + 1);
+                    IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
 
-                    if (item != null)
+                    if (mergeResult != null)
                     {
                         _inventory.Swap(fromSlotIndex, null);
-                        _inventory.Swap(toSlotIndex, item);
+                        _inventory.Swap(toSlotIndex, mergeResult);
                         _popup.PlayMergeSound();
                         _popup.EmitMergeParticle(to);
                     }

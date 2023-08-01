@@ -18,5 +18,6 @@ namespace Assets._Project.Systems.Collecting
         void Equip(int from, int to);
         void UnEquip(int fromSlotIndex, int toSlotIndex);
         void Clear();
+        void UnEquipMerge(int fromSlotIndex, int toSlotIndex, IItem item);
     }
 }

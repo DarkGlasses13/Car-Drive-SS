@@ -82,6 +82,13 @@ namespace Assets._Project.Systems.Collecting
             OnChenged?.Invoke();
         }
 
+        public void UnEquipMerge(int from, int to, IItem mergeResult)
+        {
+            _equipment[from] = null;
+            _items[to] = mergeResult;
+            OnChenged?.Invoke();
+        }
+
         public void Clear()
         {
             for (int i = 0; i < _equipment.Length; i++)
