@@ -17,6 +17,6 @@ MonoBehaviour:
   <ChunksBetweenCheckPoints>k__BackingField: 30
   <ChunksPassedBeforeDespawn>k__BackingField: 3
   <IsObstaclesEnabled>k__BackingField: 1
-  <GeneralObstacleDensity>k__BackingField: 0.5
+  <GeneralObstacleDensity>k__BackingField: 0.8
   <IsMoneyEnabled>k__BackingField: 1
   <MoneyDensity>k__BackingField: 0.8
