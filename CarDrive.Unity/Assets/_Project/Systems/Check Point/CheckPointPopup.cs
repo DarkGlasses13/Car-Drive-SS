@@ -16,7 +16,7 @@ namespace Assets._Project.Systems.CheckPoint
         [field: SerializeField] public RectTransform BalanceAndPlayButtonSection { get; private set; }
         [field: SerializeField] public RectTransform OtherSection { get; private set; }
 
-        public void Open(Action callback = null)
+        public void Show(Action callback = null)
         {
             OnBeforeOpening?.Invoke();
             gameObject.SetActive(true);
@@ -24,7 +24,7 @@ namespace Assets._Project.Systems.CheckPoint
             callback?.Invoke();
         }
 
-        public void Close(Action callback = null)
+        public void Hide(Action callback = null)
         {
             gameObject.SetActive(false);
             _music.Stop();

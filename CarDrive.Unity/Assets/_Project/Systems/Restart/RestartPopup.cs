@@ -16,14 +16,14 @@ namespace Assets._Project.Systems.Restart
             RestartButton = GetComponentInChildren<Button>();
         }
 
-        public void Open(Action callback = null)
+        public void Show(Action callback = null)
         {
             gameObject.SetActive(true);
             _failMusic.Play();
             callback?.Invoke();
         }
 
-        public void Close(Action callback = null)
+        public void Hide(Action callback = null)
         {
             _failMusic.Stop();
             gameObject.SetActive(false);

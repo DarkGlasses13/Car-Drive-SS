@@ -57,7 +57,7 @@ namespace Assets._Project.Systems.CheckPoint
             _uiMoneyCounter.transform.SetParent(_hudContainer);
             _uiMoneyCounterRectTransform.sizeDelta = _defaultUIMoneyCounterSize;
             _uiMoneyCounterRectTransform.anchoredPosition = _defaultUIMoneyCounterPosition;
-            _popup.Close(() => _gameState.Switch(GameStates.Run));
+            _popup.Hide(() => _gameState.Switch(GameStates.Run));
             _levelMusic.Play();
         }
 
@@ -66,7 +66,7 @@ namespace Assets._Project.Systems.CheckPoint
             _gameState.Switch(GameStates.Finish);
             _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);
             _levelMusic.Stop();
-            _popup.Open();
+            _popup.Show();
         }
 
         public override void Disable()

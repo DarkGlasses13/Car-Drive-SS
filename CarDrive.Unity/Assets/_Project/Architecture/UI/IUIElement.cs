@@ -4,7 +4,7 @@ namespace Assets._Project.Architecture.UI
 {
     public interface IUIElement
     {
-        void Open(Action callback = null);
-        void Close(Action callback = null);
+        void Show(Action callback = null);
+        void Hide(Action callback = null);
     }
 }

@@ -47,7 +47,7 @@ namespace Assets._Project.Systems.Restart
         private void OnRestartButtonClicked()
         {
             _restarter.Restart();
-            _popup.Close();
+            _popup.Hide();
             _levelMusic.Play();
             _gameState.Switch(GameStates.Run);
         }
@@ -57,7 +57,7 @@ namespace Assets._Project.Systems.Restart
             if (state == GameStates.Lose)
             {
                 _levelMusic.Stop();
-                _popup.Open();
+                _popup.Show();
                 _inventory.Clear();
                 _player.ResetSats();
                 _money.SpendAll();

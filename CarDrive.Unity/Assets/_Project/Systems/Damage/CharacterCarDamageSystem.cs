@@ -77,9 +77,11 @@ namespace Assets._Project.Systems.Damage
         private IEnumerator RestoreRoutine()
         {
             _damageable.OnRestore();
+            _damageable.ShowAura();
             _isImpregnability = true;
             yield return new WaitForSeconds(_config.ImpregnabilityTime);
             _isImpregnability = false;
+            _damageable.HideAura();
         }
 
         public void OnSateSwitched(GameStates state)

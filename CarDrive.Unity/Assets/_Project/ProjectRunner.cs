@@ -1,5 +1,6 @@
 ﻿using Assets._Project.Architecture;
 using Assets._Project.Architecture.DI;
+using Assets._Project.Architecture.UI;
 using Assets._Project.CameraControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
@@ -7,6 +8,7 @@ using Assets._Project.SceneChange;
 using Assets._Project.Systems.Collecting;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Assets._Project
 {
@@ -14,6 +16,7 @@ namespace Assets._Project
     {
         private ISceneChanger _sceneChanger;
         private Player _player;
+        private LoadingScreen _loadingScreen;
 
         protected override async Task CreateSystems()
         {
@@ -25,11 +28,18 @@ namespace Assets._Project
             DontDestroyOnLoad(container);
             DontDestroyOnLoad(coroutiner);
             LocalAssetLoader assetLoader = new();
+            Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", null);
+            DontDestroyOnLoad(playerCamera);
+            _loadingScreen = await assetLoader.LoadAndInstantiateAsync<LoadingScreen>("Loading Screen", null);
+            DontDestroyOnLoad(_loadingScreen);
+            playerCamera.GetComponent<UniversalAdditionalCameraData>().cameraStack.Add(_loadingScreen.Camera);
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
             IItemDatabase itemDatabase = await assetLoader.Load<ItemDatabase>("Item Database");
             CollectablesConfig collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
+            container.Bind(playerCamera);
+            container.Bind(_loadingScreen);
             container.Bind(assetLoader);
             container.Bind(playerInput);
             container.Bind(_sceneChanger);

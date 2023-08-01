@@ -43,11 +43,13 @@ namespace Assets._Project
         private CharacterCar _characterCar;
         private Player _player;
         private GameState _gameState;
+        private LoadingScreen _loadingScreen;
 
         protected override async Task CreateSystems()
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
+            _loadingScreen = projectContainer.Get<LoadingScreen>();
             _player = projectContainer.Get<Player>();
             _gameState = new(GameStates.WaitForRun);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
@@ -55,10 +57,12 @@ namespace Assets._Project
             IItemDatabase itemDatabase = projectContainer.Get<IItemDatabase>();
             _playerInput = projectContainer.Get<IPlayerInput>();
             _cinematographer = projectContainer.Get<Cinematographer>();
-            Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", _camerasContainer);
+            Camera playerCamera = projectContainer.Get<Camera>();
+            UniversalAdditionalCameraData additionalCameraData = playerCamera.GetComponent<UniversalAdditionalCameraData>();
             Camera uiCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("UI Camera", _camerasContainer);
             _canvas.worldCamera = uiCamera;
-            playerCamera.GetComponent<UniversalAdditionalCameraData>().cameraStack.Add(uiCamera);
+            additionalCameraData.cameraStack.Add(uiCamera);
+            additionalCameraData.cameraStack.Reverse();
             _cinematographer.AddCamera(GameCamera.Run, await assetLoader
                 .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
             _cinematographer.AddCamera(GameCamera.Lose, await assetLoader
@@ -67,7 +71,6 @@ namespace Assets._Project
             SpawnData characterCarSpawnData = new(_entityContainer, Vector3.zero + Vector3.up * 0.026f, Quaternion.identity);
             _characterCar = new CharacterCarFactory(await assetLoader.Load<GameObject>("Character Car")).Create(characterCarSpawnData);
             _characterCar.gameObject.SetActive(false);
-
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
@@ -113,8 +116,13 @@ namespace Assets._Project
         {
             _characterCar.gameObject.SetActive(true);
             _cinematographer.SwitchCamera(GameCamera.Run, isReset: true, _characterCar.transform, _characterCar.transform);
-            _playerInput.Enable();
             _leveMusic.Play();
+            _loadingScreen.FadeOut(OnFadeOut);
+        }
+
+        private void OnFadeOut()
+        {
+            _playerInput.Enable();
             _gameState.Switch(GameStates.Run);
         }
     }

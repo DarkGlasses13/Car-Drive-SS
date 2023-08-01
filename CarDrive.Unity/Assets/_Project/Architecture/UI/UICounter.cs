@@ -13,13 +13,13 @@ namespace Assets._Project.Architecture.UI
 
         public Sprite Icon { get => _icon.sprite; set => _icon.sprite = value; }
 
-        public virtual void Open(Action callback)
+        public virtual void Show(Action callback)
         {
             _canvasGroup.alpha = 0;
             callback?.Invoke();
         }
 
-        public virtual void Close(Action callback)
+        public virtual void Hide(Action callback)
         {
             _canvasGroup.alpha = 1;
             callback?.Invoke();

@@ -16,7 +16,8 @@ namespace Assets._Project.Entities.Character
             _smokeParticle,
             _windParticle,
             _leftFire,
-            _rightFire;
+            _rightFire,
+            _impregnabilityAura;
 
         [SerializeField] private TrailRenderer 
             _leftWheelTrailRenderer,
@@ -125,6 +126,16 @@ namespace Assets._Project.Entities.Character
         public void OnCollect()
         {
             _collectSound.Play();
+        }
+
+        public void ShowAura()
+        {
+            _impregnabilityAura.Play();
+        }
+
+        public void HideAura()
+        {
+            _impregnabilityAura.Stop();
         }
     }
 }
