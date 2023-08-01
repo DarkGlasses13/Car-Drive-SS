@@ -69,16 +69,19 @@ namespace Assets._Project.Systems.Collecting
             {
                 if (to.Item == null || to.Item.Type == from.Type)
                 {
-                    ItemType type = to.Item.Type;
-                    int mergeLevel = to.Item.MergeLevel;
-                    IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
-
-                    if (mergeLevel > 0)
+                    if (to.Item != null)
                     {
-                        _inventory.UnEquipMerge(fromSlotIndex, toSlotIndex, mergeResult);
-                        _popup.PlayMergeSound();
-                        _popup.EmitMergeParticle(to);
-                        return;
+                        ItemType type = to.Item.Type;
+                        int mergeLevel = to.Item.MergeLevel;
+                        IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
+
+                        if (mergeLevel > 0)
+                        {
+                            _inventory.UnEquipMerge(fromSlotIndex, toSlotIndex, mergeResult);
+                            _popup.PlayMergeSound();
+                            _popup.EmitMergeParticle(to);
+                            return;
+                        }
                     }
 
                     _inventory.UnEquip(fromSlotIndex, toSlotIndex);
