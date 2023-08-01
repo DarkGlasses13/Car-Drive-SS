@@ -138,6 +138,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             }
 
             chunk.transform.position = _last != null ? _last.GetConnectPosition(chunk) : Vector3.zero;
+            chunk.InvokeOnSpawn();
             _last = chunk;
             chunk.gameObject.SetActive(true);
             return chunk;

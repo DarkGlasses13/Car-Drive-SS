@@ -12,6 +12,7 @@ using Assets._Project.Systems.Collectables;
 using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Damage;
 using Assets._Project.Systems.Driving;
+using Assets._Project.Systems.Progress;
 using Assets._Project.Systems.Restart;
 using Assets._Project.Systems.Shop;
 using Assets._Project.Systems.Sound;
@@ -78,6 +79,7 @@ namespace Assets._Project
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
+            Slider progressBar = await assetLoader.LoadAndInstantiateAsync<Slider>("Progress Bar", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
             UIEquipment equipment = await assetLoader.LoadAndInstantiateAsync<UIEquipment>("Equipment", checkPointPopup.OtherSection);
@@ -96,6 +98,7 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
+            ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform);
 
             _systems = new()
             {
@@ -109,6 +112,7 @@ namespace Assets._Project
                 inventorySystem,
                 shopSystem,
                 soundSystem,
+                progressSystem,
             };
         }
 

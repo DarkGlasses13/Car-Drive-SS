@@ -7,6 +7,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 {
     public class Chunk : MonoBehaviour
     {
+        public Action OnSpawned;
         public Action<Chunk> OnPassed;
         [SerializeField] private MeshRenderer _roadMeshRenderer;
         private ItemObject[] _collectables;
@@ -53,6 +54,11 @@ namespace Assets._Project.Systems.ChunkGeneration
             if (_obstacles != null)
                 for (int i = 0; i < _obstacles.Length; i++)
                     _obstacles[i].gameObject.SetActive(false);
+        }
+
+        public void InvokeOnSpawn()
+        {
+            OnSpawned?.Invoke();
         }
     }
 }
