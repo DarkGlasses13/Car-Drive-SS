@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ae537bc8eac07b149b532b26c61fb148
   m_SerializeEntries:
-  - m_GUID: 56f24c2734ebe7f4c9b6749d54b9a6e2
-    m_Address: Chunk 3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 04adc31d6cdd5f24d8d9f9ebbb8d3087
     m_Address: Chunk 3.2
     m_ReadOnly: 0
@@ -39,12 +33,6 @@ MonoBehaviour:
     m_Address: Check Point Chunk
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: deb3304004a80a14cad814cf93c39b4f
-    m_Address: Chunk 2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1c49bc71684d674b864bcc7b746bd9e
     m_Address: Initial Chunk
@@ -75,12 +63,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Chunk
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17c3516b5213a1a4c9b77362fd5cf775
-    m_Address: Chunk 1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e3d5d6b149d1f7439db926a890f552b
     m_Address: Chunk 1.3
     m_ReadOnly: 0
@@ -99,12 +81,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Chunk
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e24450d64d214e54e804a5ae4219506f
-    m_Address: Chunk 4
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9df175f70168664fb1bff3cc3559f1d
     m_Address: Chunk 1.2.1
     m_ReadOnly: 0
@@ -113,12 +89,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1962f10655d804e429b5e41fbdece3c5
     m_Address: Chunk 5.1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 52952e9140661a34a8dfb3719d414c40
-    m_Address: Chunk 5
     m_ReadOnly: 0
     m_SerializedLabels:
     - Chunk
@@ -167,6 +137,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4c6a504145e11a04e9002cc13ab08874
     m_Address: Chunk 3.3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdd6a0eff934acd4b8e2ced13531b0d1
+    m_Address: Chunk 2.3.1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dfd1b0156e006b43bcd3cc22978e4a3
+    m_Address: Chunk 2.4.1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3c96d543a848a540a5035cd2f6e7034
+    m_Address: Chunk 2.5
     m_ReadOnly: 0
     m_SerializedLabels:
     - Chunk
