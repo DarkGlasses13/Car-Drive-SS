@@ -44,5 +44,17 @@ namespace Assets._Project.Systems.Collecting
         {
             return _items.SingleOrDefault(itm => itm.ID == id);
         }
+
+        IItem[] IItemDatabase.GetByIDs(params string[] ids)
+        {
+            IItem[] items = new IItem[ids.Length];
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                items[i] = GetByID(ids[i]);
+            }
+
+            return items;
+        }
     }
 }

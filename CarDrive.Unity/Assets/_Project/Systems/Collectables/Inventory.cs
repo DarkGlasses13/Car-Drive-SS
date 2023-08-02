@@ -32,6 +32,9 @@ namespace Assets._Project.Systems.Collecting
 
         public bool TryAdd(IItem item)
         {
+            if (_items.Contains(null) == false)
+                return false;
+
             for (int i = 0; i < _items.Length; i++)
             {
                 if (_items[i] == null)
@@ -109,6 +112,14 @@ namespace Assets._Project.Systems.Collecting
             }
 
             OnChenged?.Invoke();
+        }
+
+        public void Add(IItem[] items)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                TryAdd(items[i]);
+            }
         }
     }
 }
