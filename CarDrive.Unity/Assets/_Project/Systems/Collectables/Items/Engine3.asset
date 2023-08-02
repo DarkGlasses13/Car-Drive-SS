@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Engine3
   m_EditorClassIdentifier: 
   <ID>k__BackingField: it_Egn_3
-  <Title>k__BackingField: Expensive Engine
+  <Title>k__BackingField: Engine
   <Description>k__BackingField: 
   <Icon>k__BackingField: {fileID: 21300000, guid: c8aadb4099ff658489e46e53a807e7e8,
     type: 3}
   <Type>k__BackingField: 3
   <MergeLevel>k__BackingField: 3
-  <Stat>k__BackingField: 2
+  <Stat>k__BackingField: 1.375

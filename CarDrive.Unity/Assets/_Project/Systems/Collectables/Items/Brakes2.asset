@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Brakes2
   m_EditorClassIdentifier: 
   <ID>k__BackingField: it_Bks_2
-  <Title>k__BackingField: Folk Brakes
+  <Title>k__BackingField: Brakes
   <Description>k__BackingField: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 5fc9f47fab605d54082c50db6df21f35,
     type: 3}
   <Type>k__BackingField: 4
   <MergeLevel>k__BackingField: 2
-  <Stat>k__BackingField: 2
+  <Stat>k__BackingField: 1.25
