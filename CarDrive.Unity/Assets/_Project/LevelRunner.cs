@@ -18,6 +18,7 @@ using Assets._Project.Systems.Shop;
 using Assets._Project.Systems.Sound;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
+using NaughtyAttributes;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -45,6 +46,7 @@ namespace Assets._Project
         private Player _player;
         private GameState _gameState;
         private LoadingScreen _loadingScreen;
+        private Money _money;
 
         protected override async Task CreateSystems()
         {
@@ -54,7 +56,7 @@ namespace Assets._Project
             _player = projectContainer.Get<Player>();
             _gameState = new(GameStates.WaitForRun);
             Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
-            Money money = projectContainer.Get<Money>();
+            _money = projectContainer.Get<Money>();
             IItemDatabase itemDatabase = projectContainer.Get<IItemDatabase>();
             _playerInput = projectContainer.Get<IPlayerInput>();
             _cinematographer = projectContainer.Get<Cinematographer>();
@@ -89,12 +91,12 @@ namespace Assets._Project
             PriceTagButton buyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Buy Loot Box Button", checkPointPopup.OtherSection);
             IInventory inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount, _player.Equipment, _player.Items);
-            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, _player, money);
+            RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, inventory, _player, _money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
-                checkPointPopup, uiMoneyCounter, playButton, money, _leveMusic, _player);
-            CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
+                checkPointPopup, uiMoneyCounter, playButton, _money, _leveMusic, _player);
+            CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, _money, itemDatabase, inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(inventory, itemDatabase, uiInventory, checkPointPopup, _player);
-            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, money, collectablesConfig, lootBoxPrice, _player);
+            ShopSystem shopSystem = new(inventory, itemDatabase, buyButton, _money, collectablesConfig, lootBoxPrice, _player);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
@@ -128,6 +130,12 @@ namespace Assets._Project
         {
             _playerInput.Enable();
             _gameState.Switch(GameStates.Run);
+        }
+
+        [Button("Get 100 coins")]
+        public void GetMoney()
+        {
+            _money.Add(100);
         }
     }
 }
