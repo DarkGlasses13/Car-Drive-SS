@@ -9808,6 +9808,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5800428177594042989}
   - component: {fileID: 213649667167763756}
+  - component: {fileID: 6347112729672304769}
+  - component: {fileID: 4558251064697421362}
   m_Layer: 5
   m_Name: Check Point Popup
   m_TagString: Untagged
@@ -9856,6 +9858,44 @@ MonoBehaviour:
   _mergeSound: {fileID: 6403089134933743218}
   <BalanceAndPlayButtonSection>k__BackingField: {fileID: 6936683164335871832}
   <OtherSection>k__BackingField: {fileID: 313410215303410805}
+--- !u!222 &6347112729672304769
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020936894404452663}
+  m_CullTransparentMesh: 1
+--- !u!114 &4558251064697421362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020936894404452663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d732c2243257de342b5996c67d1ae7ba, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2942043285341803519
 GameObject:
   m_ObjectHideFlags: 0
@@ -20017,11 +20057,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313410215303410805}
+  - component: {fileID: 1270143023452482750}
   - component: {fileID: 555232540315809987}
-  - component: {fileID: 2897128554926063939}
   - component: {fileID: 4275975502399723751}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20048,15 +20088,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &555232540315809987
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6430182216804195768}
-  m_CullTransparentMesh: 1
---- !u!114 &2897128554926063939
+--- !u!114 &1270143023452482750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20065,27 +20097,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6430182216804195768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 441cb1fb3131edd42a9b376e3c32d21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d732c2243257de342b5996c67d1ae7ba, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &555232540315809987
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430182216804195768}
+  m_CullTransparentMesh: 1
 --- !u!114 &4275975502399723751
 MonoBehaviour:
   m_ObjectHideFlags: 0
