@@ -3,7 +3,7 @@
 namespace Assets._Project.Architecture.UI
 {
     [RequireComponent(typeof(RectTransform))]
-    public class SaveAreaFormater : MonoBehaviour
+    public class SafeAreaFormater : MonoBehaviour
     {
         private RectTransform _rectTRansform;
 
