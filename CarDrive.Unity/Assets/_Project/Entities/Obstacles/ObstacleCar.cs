@@ -43,16 +43,18 @@ namespace Assets._Project.Entities.Obstacles
 
         private void ResetPosition()
         {
-            _isMove = false;
+            if (_waypoints == null || _waypoints.Length == 0)
+                return;
 
-            if (_waypoints != null)
-            {
-                transform.SetPositionAndRotation(_waypoints[0].position, _startRotation);
-            }
+            _isMove = false;
+            transform.SetPositionAndRotation(_waypoints[0].position, _startRotation);
         }
 
         private void Update()
         {
+            if (_waypoints == null || _waypoints.Length == 0)
+                return;
+
             if (Vector3.Distance(Camera.main.transform.position, transform.position) <= _detectionDistance && _isMove == false)
             {
                 Translate(_duration);
