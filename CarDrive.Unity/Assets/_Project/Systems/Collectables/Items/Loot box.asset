@@ -15,6 +15,8 @@ MonoBehaviour:
   <ID>k__BackingField: it_Lbx
   <Title>k__BackingField: Loot box
   <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: efc8b9c0a417c0340890ba54e90cc02c,
+  <Icon>k__BackingField: {fileID: 21300000, guid: 07303c94124ce344eabb8266a689f697,
     type: 3}
   <Type>k__BackingField: 0
+  <MergeLevel>k__BackingField: 0
+  <Stat>k__BackingField: 0
