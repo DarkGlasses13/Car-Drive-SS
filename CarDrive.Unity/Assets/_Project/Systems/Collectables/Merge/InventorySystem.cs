@@ -73,13 +73,17 @@ namespace Assets._Project.Systems.Collecting
                     {
                         ItemType type = to.Item.Type;
                         int mergeLevel = to.Item.MergeLevel;
-                        IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
 
-                        if (mergeLevel > 0)
+                        if (mergeLevel == from.Item.MergeLevel)
                         {
-                            _inventory.UnEquipMerge(fromSlotIndex, toSlotIndex, mergeResult);
-                            _popup.PlayMergeSound();
-                            _popup.EmitMergeParticle(to);
+                            IItem mergeResult = _database.GetByMergeLevel(type, mergeLevel + 1);
+
+                            if (mergeResult != null)
+                            {
+                                _inventory.UnEquipMerge(fromSlotIndex, toSlotIndex, mergeResult);
+                                _popup.PlayMergeSound();
+                                _popup.EmitMergeParticle(to);
+                            }
                             return;
                         }
                     }
@@ -91,7 +95,7 @@ namespace Assets._Project.Systems.Collecting
                 return;
             }
 
-            if (to.Item != null && from.Item.ID == to.Item.ID)
+            if (from.Item.ID == to.Item.ID)
             {
                 ItemType type = to.Item.Type;
                 int mergeLevel = to.Item.MergeLevel;
