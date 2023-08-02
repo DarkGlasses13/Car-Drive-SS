@@ -1,5 +1,5 @@
 ﻿using NaughtyAttributes;
-using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,9 +9,11 @@ namespace Assets._Project.Systems.Collecting
     public class UISlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         [SerializeField] private Image _itemIcon;
+        [SerializeField] private TMP_Text _mergeLevel;
         [SerializeField] private ParticleSystem _confetiParticle;
         private UIInventory _uiInventory;
         private Image _dragableImage;
+        private TMP_Text _dragableImageMergeLevel;
         private Canvas _canvas;
 
         [field: SerializeField] public bool IsEquipment { get; private set; }
@@ -22,6 +24,7 @@ namespace Assets._Project.Systems.Collecting
         {
             _uiInventory = uiInventory;
             _dragableImage = dragableImage;
+            _dragableImageMergeLevel = dragableImage.GetComponentInChildren<TMP_Text>(includeInactive: true);
             _canvas = canvas;
         }
 
@@ -31,11 +34,12 @@ namespace Assets._Project.Systems.Collecting
 
             if (item != null)
             {
+                _mergeLevel.transform.parent.gameObject.SetActive(item.Type != ItemType.LootBox);
+                _mergeLevel.text = item.MergeLevel.ToString();
                 _itemIcon.gameObject.SetActive(true);
                 _itemIcon.sprite = item.Icon;
                 return;
             }
-
             _itemIcon.gameObject.SetActive(false);
         }
 
@@ -60,6 +64,7 @@ namespace Assets._Project.Systems.Collecting
             _dragableImage.sprite = Item.Icon;
             _dragableImage.rectTransform.position = _itemIcon.rectTransform.position;
             _itemIcon.gameObject.SetActive(false);
+            _dragableImageMergeLevel.text = Item.MergeLevel.ToString();
             _dragableImage.gameObject.SetActive(true);
         }
 
@@ -81,9 +86,7 @@ namespace Assets._Project.Systems.Collecting
                 _itemIcon.gameObject.SetActive(true);
 
             if (_uiInventory.ToSlot != null)
-            {
                 _uiInventory.Swap();
-            }
         }
 
         public void EmitMergeparticle() => _confetiParticle.Play();

@@ -15,6 +15,8 @@ MonoBehaviour:
   <ID>k__BackingField: it_Mny
   <Title>k__BackingField: Coin
   <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 6661e486479b461428832d59d40f4b15,
+  <Icon>k__BackingField: {fileID: 21300000, guid: 108c3f9e07ae25f448c41e0a23bb48fc,
     type: 3}
   <Type>k__BackingField: 1
+  <MergeLevel>k__BackingField: 0
+  <Stat>k__BackingField: 0
