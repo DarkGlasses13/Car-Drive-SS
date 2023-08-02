@@ -95,7 +95,7 @@ namespace Assets._Project.Systems.Collecting
                 return;
             }
 
-            if (from.Item.ID == to.Item.ID)
+            if (to.Item != null && from.Item.ID == to.Item.ID)
             {
                 ItemType type = to.Item.Type;
                 int mergeLevel = to.Item.MergeLevel;
