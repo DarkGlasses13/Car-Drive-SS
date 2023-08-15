@@ -28,11 +28,15 @@ namespace Assets._Project.Systems.WorldCentring
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
             float shift = _referens.position.z;
+
             _cameraBrain.enabled = false;
 
             for (int i = 0; i < _containers.Length; i++)
             {
-                _containers[i].position += Vector3.back * shift;
+                for (int c = 0; c < _containers[i].childCount; c++)
+                {
+                    _containers[i].GetChild(c).position += Vector3.back * shift;
+                }
             }
 
             _cameraBrain.enabled = true;
