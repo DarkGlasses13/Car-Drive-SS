@@ -8,6 +8,7 @@ namespace Assets._Project.Input
         event Action OnInteract;
         event Action<Vector2> OnSwipeEnded;
         event Action<Vector2> OnSwipe;
+        event Action<float> OnVerticalSwipeWithThreshold;
         void Enable();
         void Disable();
     }

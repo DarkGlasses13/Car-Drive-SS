@@ -73,6 +73,7 @@ namespace Assets._Project.Systems.Driving
         {
             _playerInput.OnSwipe += OnSwipe;
             _playerInput.OnSwipeEnded += OnSwipeEnded;
+            _playerInput.OnVerticalSwipeWithThreshold += RegulateGas;
             _gameState.OnSwitched += OnSateSwitched;
         }
 
@@ -242,6 +243,7 @@ namespace Assets._Project.Systems.Driving
         {
             _playerInput.OnSwipe -= OnSwipe;
             _playerInput.OnSwipeEnded -= OnSwipeEnded;
+            _playerInput.OnVerticalSwipeWithThreshold -= RegulateGas;
             _gameState.OnSwitched -= OnSateSwitched;
         }
     }

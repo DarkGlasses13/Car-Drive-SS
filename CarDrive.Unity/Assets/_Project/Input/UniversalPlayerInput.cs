@@ -11,6 +11,7 @@ namespace Assets._Project.Input
         public event Action OnInteract;
         public event Action<Vector2> OnSwipeEnded;
         public event Action<Vector2> OnSwipe;
+        public event Action<float> OnVerticalSwipeWithThreshold;
 
         private readonly IPlayerInputConfig _config;
         private Vector2 _swipeDelta;
@@ -43,18 +44,18 @@ namespace Assets._Project.Input
             Vector2 swipeDirection = finger.screenPosition - finger.currentTouch.startScreenPosition;
             OnSwipeEnded?.Invoke(swipeDirection);
 
-            //if (swipeDirection.magnitude >= _config.DeadZone)
-            //{
-            //    //Vector2Int direction = CalculateDirection(swipeDirection.normalized);
+            if (swipeDirection.magnitude >= _config.DeadZone)
+            {
+                Vector2Int direction = CalculateDirection(swipeDirection.normalized);
 
-            //    //if (direction.x != 0)
-            //    //    OnStear?.Invoke(direction.x);
+                //if (direction.x != 0)
+                //    OnStear?.Invoke(direction.x);
 
-            //    //OnStear?.Invoke(0);
+                //OnStear?.Invoke(0);
 
-            //    //if (direction.y != 0)
-            //    //    OnSwipeEnded?.Invoke(direction);
-            //}
+                if (direction.y != 0)
+                    OnVerticalSwipeWithThreshold?.Invoke(direction.y);
+            }
 
             if (finger.currentTouch.isTap)
                 OnInteract?.Invoke();

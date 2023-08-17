@@ -34,6 +34,8 @@ namespace Assets._Project.Entities.Character
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
         private Tweener _rotationTween;
         private float _stearLerp = 0;
+        private bool _isBreaking;
+        private Vector2 _roadWidth;
 
         public Vector3 Center => transform.position;
         public Quaternion Rotation => transform.rotation;
@@ -62,11 +64,22 @@ namespace Assets._Project.Entities.Character
             _rotationTween?.Play();
         }
 
-        public void Stear(float clampedValue, float speed, float stearAngle, Vector2 roadWidth)
+        public void Stear(float value, float speed, float stearAngle, Vector2 roadWidth)
         {
             //_stear = Mathf.Lerp(_stear, clampedValue * speed, _stearLerp);
             //transform.position += clampedValue * speed * Time.deltaTime * Vector3.right;
-            transform.Rotate(clampedValue * (speed * 5) * Time.deltaTime * Vector3.up);
+
+            _roadWidth = roadWidth;
+
+            float rotation = Mathf.Clamp(value, -stearAngle, stearAngle);
+            transform.Rotate(rotation * (speed * 3) * Time.deltaTime * Vector3.up);
+
+            if (Mathf.Abs(rotation) >= 10 && _isBreaking == false)
+                Break();
+
+            if (Mathf.Abs(rotation) < 10 && _isBreaking)
+                EndBreak();
+
             //_stearLerp += 0.1f * Time.deltaTime;
 
             //if (_stearLerp >= 1)
@@ -89,12 +102,14 @@ namespace Assets._Project.Entities.Character
 
         public void EndBreak()
         {
+            _isBreaking = false;
             _leftWheelTrailRenderer.emitting = false;
             _rightWheelTrailRenderer.emitting = false;
         }
 
         public void Break()
         {
+            _isBreaking = true;
             _breakSound.Play();
             _leftWheelTrailRenderer.emitting = true;
             _rightWheelTrailRenderer.emitting = true;
@@ -162,6 +177,15 @@ namespace Assets._Project.Entities.Character
         public void HideAura()
         {
             _impregnabilityAura.Stop();
+        }
+
+        private void Update()
+        {
+            if (transform.position.x >= _roadWidth.y)
+                transform.position = new(_roadWidth.y, transform.position.y, transform.position.z);
+
+            if (transform.position.x <= _roadWidth.x)
+                transform.position = new(_roadWidth.x, transform.position.y, transform.position.z);
         }
     }
 }
