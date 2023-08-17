@@ -22,3 +22,4 @@ MonoBehaviour:
   <StearAngle>k__BackingField: 12
   <ManeuverTime>k__BackingField: -1
   <ManeuverCooldown>k__BackingField: 0
+  <DeltaInputLimit>k__BackingField: 50

@@ -7,7 +7,6 @@ using Assets._Project.Input;
 using Assets._Project.SaveLoad;
 using Assets._Project.SceneChange;
 using Assets._Project.Systems.Collecting;
-using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -61,7 +60,7 @@ namespace Assets._Project
 
             _systems = new()
             {
-
+                new InputSystem(playerInput as IPlayerInputHandler)
             };
         }
 

@@ -31,9 +31,12 @@ namespace Assets._Project.Systems.Driving
         private float _maneuverDirection;
         private CinemachineBasicMultiChannelPerlin _cameraShake;
         private bool _canDrive;
+        private Vector2 _roadWidth;
+        private float _stearInput;
+        private bool _isStearing;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
-            Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer)
+            Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer, Vector2 roadWidth)
         {
             _assetLoader = assetLoader;
             _playerInput = playerInput;
@@ -42,6 +45,7 @@ namespace Assets._Project.Systems.Driving
             _gameState = gameState;
             _coroutiner = coroutiner;
             _conematographer = cinematographer;
+            _roadWidth = roadWidth;
         }
 
         public override async Task InitializeAsync()
@@ -67,9 +71,44 @@ namespace Assets._Project.Systems.Driving
 
         public override void Enable()
         {
-            _playerInput.OnStear += Stear;
-            _playerInput.OnGasRegulate += RegulateGas;
+            _playerInput.OnSwipe += OnSwipe;
+            _playerInput.OnSwipeEnded += OnSwipeEnded;
             _gameState.OnSwitched += OnSateSwitched;
+        }
+
+        private void OnSwipe(Vector2 value)
+        {
+            if (_canDrive)
+            {
+                if (Mathf.Approximately(value.x, 0))
+                {
+                    if (_isStearing != false)
+                        OnSwipeEnded(value);
+
+                    return;
+                }
+
+                _isStearing = true;
+                _stearInput = Mathf.Clamp(value.x, -_config.DeltaInputLimit, _config.DeltaInputLimit);
+                _drivable?.Stear(_stearInput, _player.GetStat(ItemType.Wheel), _config.StearAngle, _roadWidth);
+
+                //if (value < 0 && _currentRoadLineIndex == 0)
+                //    return;
+
+                //if (value > 0 && _currentRoadLineIndex == _roadLines.Length - 1)
+                //    return;
+
+                //_currentRoadLineIndex += (int)value;
+                //_currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
+                //_drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration 
+                //    / _player.GetStat(ItemType.Wheel), value * _config.StearAngle);
+            }
+        }
+
+        private void OnSwipeEnded(Vector2 value)
+        {
+            _isStearing = false;
+            _drivable?.EndStear();
         }
 
         public override void Restart()
@@ -111,23 +150,6 @@ namespace Assets._Project.Systems.Driving
             }
         }
 
-        private void Stear(float value)
-        {
-            if (_canDrive)
-            {
-                if (value < 0 && _currentRoadLineIndex == 0)
-                    return;
-
-                if (value > 0 && _currentRoadLineIndex == _roadLines.Length - 1)
-                    return;
-
-                _currentRoadLineIndex += (int)value;
-                _currentRoadLineIndex = Mathf.Clamp(_currentRoadLineIndex, 0, _roadLines.Length - 1);
-                _drivable?.ChangeLine(_roadLines[_currentRoadLineIndex], _config.StearDuration 
-                    / _player.GetStat(ItemType.Wheel), value * _config.StearAngle);
-            }
-        }
-
         public override void Tick()
         {
             if (_gameState.Current == GameStates.Run)
@@ -138,6 +160,10 @@ namespace Assets._Project.Systems.Driving
                 _cameraShake.m_AmplitudeGain = _gasValue / 100;
                 _gasValue = _config.Speed * _player.GetStat(ItemType.Engine) * _gasRegulation;
                 _drivable?.Accelerate(_gasValue * Time.deltaTime);
+
+                if (_isStearing == false)
+                    _drivable?.ResetStear();
+
                 return;
             }
         }
@@ -214,8 +240,8 @@ namespace Assets._Project.Systems.Driving
 
         public override void Disable()
         {
-            _playerInput.OnStear -= Stear;
-            _playerInput.OnGasRegulate -= RegulateGas;
+            _playerInput.OnSwipe -= OnSwipe;
+            _playerInput.OnSwipeEnded -= OnSwipeEnded;
             _gameState.OnSwitched -= OnSateSwitched;
         }
     }

@@ -6,15 +6,14 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace Assets._Project.Input
 {
-    public class UniversalPlayerInput : IPlayerInput
+    public class UniversalPlayerInput : IPlayerInputHandler, IPlayerInput
     {
         public event Action OnInteract;
-        public event Action<float> OnGasRegulate;
-        public event Action<float> OnStear;
+        public event Action<Vector2> OnSwipeEnded;
+        public event Action<Vector2> OnSwipe;
 
         private readonly IPlayerInputConfig _config;
-        public float StearValue => _config.StearInputAction.ReadValue<float>();
-        public float GasValue => _config.GasRegulationInputAction.ReadValue<float>();
+        private Vector2 _swipeDelta;
 
         public UniversalPlayerInput(IPlayerInputConfig config)
         {
@@ -26,11 +25,50 @@ namespace Assets._Project.Input
         {
             _config.InteractAction.Enable();
             _config.GasRegulationInputAction.Enable();
-            _config.StearInputAction.Enable();
+            //_config.StearInputAction.Enable();
             _config.InteractAction.performed += Interact;
-            _config.StearInputAction.performed += Stear;
+            //_config.StearInputAction.performed += Stear;
             _config.GasRegulationInputAction.performed += RegulateGas;
-            Touch.onFingerUp += Swipe;
+            //Touch.onFingerMove += Swipe;
+            Touch.onFingerUp += EndSwipe;
+        }
+
+        private void Swipe(Finger finger)
+        {
+            OnSwipe?.Invoke(_swipeDelta);
+        }
+
+        private void EndSwipe(Finger finger)
+        {
+            Vector2 swipeDirection = finger.screenPosition - finger.currentTouch.startScreenPosition;
+            OnSwipeEnded?.Invoke(swipeDirection);
+
+            //if (swipeDirection.magnitude >= _config.DeadZone)
+            //{
+            //    //Vector2Int direction = CalculateDirection(swipeDirection.normalized);
+
+            //    //if (direction.x != 0)
+            //    //    OnStear?.Invoke(direction.x);
+
+            //    //OnStear?.Invoke(0);
+
+            //    //if (direction.y != 0)
+            //    //    OnSwipeEnded?.Invoke(direction);
+            //}
+
+            if (finger.currentTouch.isTap)
+                OnInteract?.Invoke();
+        }
+
+        public void Read()
+        {
+            if (Touch.activeTouches.Count > 0)
+            {
+                _swipeDelta = Touch.activeTouches[0].delta;
+                OnSwipe?.Invoke(_swipeDelta);
+            }
+
+            OnSwipe?.Invoke(Vector2.zero);
         }
 
         private void Interact(InputAction.CallbackContext context)
@@ -43,31 +81,15 @@ namespace Assets._Project.Input
             float value = context.ReadValue<float>();
 
             if (value != 0)
-                OnGasRegulate?.Invoke(value);
-        }
-
-        private void Swipe(Finger finger)
-        {
-            Vector2 swipeDirection = finger.screenPosition - finger.currentTouch.startScreenPosition;
-
-            if (swipeDirection.magnitude >= _config.DeadZone)
-            {
-                Vector2Int direction = CalculateDirection(swipeDirection.normalized);
-
-                if (direction.x != 0)
-                    OnStear?.Invoke(direction.x);
-
-                if (direction.y != 0)
-                    OnGasRegulate?.Invoke(direction.y);
-            }
-
-            if (finger.currentTouch.isTap)
-                OnInteract?.Invoke();
+                OnSwipeEnded?.Invoke(Vector2.up * value);
         }
 
         private void Stear(InputAction.CallbackContext context)
         {
-            OnStear?.Invoke(context.ReadValue<float>());
+            //float value = context.ReadValue<float>();
+
+            //if (value != 0)
+            //    OnStear?.Invoke(Vector2.up * value);
         }
 
         private Vector2Int CalculateDirection(Vector2 normalizedSwipeDirection)
@@ -83,11 +105,12 @@ namespace Assets._Project.Input
         {
             _config.InteractAction.Disable();
             _config.GasRegulationInputAction.Disable();
-            _config.StearInputAction.Disable();
+            //_config.StearInputAction.Disable();
             _config.InteractAction.performed -= Interact;
-            _config.StearInputAction.performed -= Stear;
+            //_config.StearInputAction.performed -= Stear;
             _config.GasRegulationInputAction.performed -= RegulateGas;
-            Touch.onFingerUp -= Swipe;
+            //Touch.onFingerMove -= Swipe;
+            Touch.onFingerUp -= EndSwipe;
         }
     }
 }

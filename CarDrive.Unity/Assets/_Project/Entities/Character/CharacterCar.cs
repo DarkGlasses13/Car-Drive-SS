@@ -33,6 +33,7 @@ namespace Assets._Project.Entities.Character
         private Rigidbody _rigidbody;
         private TweenerCore<Vector3, Vector3, VectorOptions> _moveTween;
         private Tweener _rotationTween;
+        private float _stearLerp = 0;
 
         public Vector3 Center => transform.position;
         public Quaternion Rotation => transform.rotation;
@@ -59,6 +60,31 @@ namespace Assets._Project.Entities.Character
             _rotationTween = transform.DOPunchRotation(Vector3.up * stearAngle, duration);
             _moveTween?.Play();
             _rotationTween?.Play();
+        }
+
+        public void Stear(float clampedValue, float speed, float stearAngle, Vector2 roadWidth)
+        {
+            //_stear = Mathf.Lerp(_stear, clampedValue * speed, _stearLerp);
+            transform.position += clampedValue * speed * Time.deltaTime * Vector3.right;
+            transform.Rotate(clampedValue * (speed * 5) * Time.deltaTime * Vector3.up);
+            //_stearLerp += 0.1f * Time.deltaTime;
+
+            //if (_stearLerp >= 1)
+            //    _stearLerp = 0;
+        }
+
+        public void EndStear()
+        {
+            _stearLerp = 0;
+        }
+
+        public void ResetStear()
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, _stearLerp);
+            _stearLerp += 3f * Time.deltaTime;
+
+            if (_stearLerp >= 1)
+                _stearLerp = 0;
         }
 
         public void EndBreak()

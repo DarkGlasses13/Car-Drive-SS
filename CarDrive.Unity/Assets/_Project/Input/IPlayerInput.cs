@@ -1,14 +1,13 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets._Project.Input
 {
     public interface IPlayerInput
     {
         event Action OnInteract;
-        event Action<float> OnGasRegulate;
-        event Action<float> OnStear;
-        float StearValue { get; }
-        float GasValue { get; }
+        event Action<Vector2> OnSwipeEnded;
+        event Action<Vector2> OnSwipe;
         void Enable();
         void Disable();
     }

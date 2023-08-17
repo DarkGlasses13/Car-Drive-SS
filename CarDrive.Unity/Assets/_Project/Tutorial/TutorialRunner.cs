@@ -60,7 +60,7 @@ namespace Assets._Project.Tutorial
         public void OnBeforeAvoid()
         {
             _playerInput.Enable();
-            _playerInput.OnStear += OnStear;
+            //_playerInput.OnSwipe += OnStear;
         }
 
         private void OnStear(float value)
@@ -68,7 +68,7 @@ namespace Assets._Project.Tutorial
             if (value > 0)
             {
                 _playerInput.Disable();
-                _playerInput.OnStear -= OnStear;
+                //_playerInput.OnSwipe -= OnStear;
                 _director.Resume();
             }
         }
@@ -76,7 +76,7 @@ namespace Assets._Project.Tutorial
         public void OnBeforeAcceleration()
         {
             _playerInput.Enable();
-            _playerInput.OnGasRegulate += OnAccelerate;
+            //_playerInput.OnSwipeEnded += OnAccelerate;
         }
 
         private void OnAccelerate(float value)
@@ -84,7 +84,7 @@ namespace Assets._Project.Tutorial
             if (value > 0)
             {
                 _playerInput.Disable();
-                _playerInput.OnGasRegulate -= OnAccelerate;
+                //_playerInput.OnSwipeEnded -= OnAccelerate;
                 _director.Resume();
             }
         }
@@ -92,7 +92,7 @@ namespace Assets._Project.Tutorial
         public void OnBeforeBreak()
         {
             _playerInput.Enable();
-            _playerInput.OnGasRegulate += OnBreak;
+            //_playerInput.OnSwipeEnded += OnBreak;
         }
 
         private void OnBreak(float value)
@@ -100,7 +100,7 @@ namespace Assets._Project.Tutorial
             if (value < 0)
             {
                 _playerInput.Disable();
-                _playerInput.OnGasRegulate -= OnBreak;
+                //_playerInput.OnSwipeEnded -= OnBreak;
                 _director.Resume();
             }
         }

@@ -79,7 +79,9 @@ namespace Assets._Project
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
-            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar, _player, _gameState, coroutiner, _cinematographer);
+            DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
+                _player, _gameState, coroutiner, _cinematographer, new(-5.5f, 5.5f));
+
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);

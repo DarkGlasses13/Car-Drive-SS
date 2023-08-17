@@ -16,5 +16,6 @@ namespace Assets._Project.Systems.Driving
         public float StearStep => _roadReference.bounds.size.x / RoadLines;
         [field: SerializeField] public float ManeuverTime { get; private set; }
         [field: SerializeField] public float ManeuverCooldown { get; private set; }
+        [field: SerializeField] public int DeltaInputLimit { get; private set; }
     }
 }
