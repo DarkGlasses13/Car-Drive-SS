@@ -65,7 +65,7 @@ namespace Assets._Project.Entities.Character
         public void Stear(float clampedValue, float speed, float stearAngle, Vector2 roadWidth)
         {
             //_stear = Mathf.Lerp(_stear, clampedValue * speed, _stearLerp);
-            transform.position += clampedValue * speed * Time.deltaTime * Vector3.right;
+            //transform.position += clampedValue * speed * Time.deltaTime * Vector3.right;
             transform.Rotate(clampedValue * (speed * 5) * Time.deltaTime * Vector3.up);
             //_stearLerp += 0.1f * Time.deltaTime;
 
@@ -124,7 +124,7 @@ namespace Assets._Project.Entities.Character
             ParticleSystem.MainModule ps = _windParticle.main;
             ps.maxParticles = (int)(acceleration * 50);
             ps.simulationSpeed = acceleration * 5;
-            transform.position += Vector3.forward * acceleration;
+            transform.position += transform.forward * acceleration;
         }
 
         public void OnDie()
