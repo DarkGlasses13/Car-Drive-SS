@@ -168,9 +168,7 @@ namespace Assets._Project.Entities.Character
         public void OnCollect()
         {
             _collectSound.Play();
-
-            if (_collectParticle.isStopped)
-                _collectParticle.Play();
+            _collectParticle.Play();
         }
 
         public void ShowAura()
