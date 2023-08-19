@@ -91,7 +91,7 @@ namespace Assets._Project.Systems.Driving
 
                 _isStearing = true;
                 _stearInput = Mathf.Clamp(value.x, -_config.DeltaInputLimit, _config.DeltaInputLimit);
-                _drivable?.Stear(_stearInput, _player.GetStat(ItemType.Wheel), _config.StearAngle, _roadWidth);
+                _drivable?.Stear(_stearInput, _player.GetStat(ItemType.Wheel) * 2, _config.StearAngle, _roadWidth);
 
                 //if (value < 0 && _currentRoadLineIndex == 0)
                 //    return;
