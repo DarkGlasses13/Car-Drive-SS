@@ -5,6 +5,7 @@ using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.Systems.Collecting;
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -34,6 +35,7 @@ namespace Assets._Project.Systems.Driving
         private Vector2 _roadWidth;
         private float _stearInput;
         private bool _isStearing;
+        private bool _isGasregulationEnabled;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
             Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer, Vector2 roadWidth)
@@ -69,7 +71,7 @@ namespace Assets._Project.Systems.Driving
                 .GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _playerInput.OnSwipe += OnSwipe;
             _playerInput.OnSwipeEnded += OnSwipeEnded;
@@ -119,6 +121,9 @@ namespace Assets._Project.Systems.Driving
 
         private void RegulateGas(float value)
         {
+            if (_isGasregulationEnabled == false)
+                return;
+
             if (_gameState.Current == GameStates.Run)
             {
                 if (value == _maneuverDirection)
@@ -227,7 +232,6 @@ namespace Assets._Project.Systems.Driving
                 _drivable?.FireStop();
                 break;
             }
-            
         }
 
         private IEnumerator AccelerationRoutine()
@@ -239,12 +243,23 @@ namespace Assets._Project.Systems.Driving
             _canDrive = true;
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _playerInput.OnSwipe -= OnSwipe;
             _playerInput.OnSwipeEnded -= OnSwipeEnded;
             _playerInput.OnVerticalSwipeWithThreshold -= RegulateGas;
             _gameState.OnSwitched -= OnSateSwitched;
+            _drivable.Accelerate(0);
+        }
+
+        public void DisableGasRegulation()
+        {
+            _isGasregulationEnabled = false;
+        }
+
+        internal void EnableGasRegulation()
+        {
+            throw new NotImplementedException();
         }
     }
 }

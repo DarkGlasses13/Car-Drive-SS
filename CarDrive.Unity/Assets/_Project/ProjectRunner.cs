@@ -73,20 +73,20 @@ namespace Assets._Project
         {
             _player.Update(JsonUtility.FromJson<PlayerSave>(save));
             _container.Bind(new Money(_collectablesConfig, _player.Money));
-            _sceneChanger.Change(_player.IsTutorialCompleted ? "Level" : "Tutorial");
+            _sceneChanger.Change("Level");
         }
 
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause)
-            {
-                _storage.Save(_saveVersion, _player.GetSave());
-            }
-        }
+        //private void OnApplicationPause(bool pause)
+        //{
+        //    if (pause)
+        //    {
+        //        _storage.Save(_saveVersion, _player.GetSave());
+        //    }
+        //}
 
-        private void OnApplicationQuit()
-        {
-            _storage.Save(_saveVersion, _player.GetSave());
-        }
+        //private void OnApplicationQuit()
+        //{
+        //    _storage.Save(_saveVersion, _player.GetSave());
+        //}
     }
 }

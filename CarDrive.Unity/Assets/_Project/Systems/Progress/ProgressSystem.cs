@@ -22,7 +22,7 @@ namespace Assets._Project.Systems.Progress
             _characterTransform = characterTransform;
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _checkPoint.OnSpawned += OnCheckpointSpawned;
             _checkPoint.OnEnter += OnCheckPointEnter;
@@ -48,7 +48,7 @@ namespace Assets._Project.Systems.Progress
             _barCanvasGroup.DOFade(1, 0.25f).Play().SetAutoKill(true);
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _checkPoint.OnSpawned -= OnCheckpointSpawned;
             _checkPoint.OnEnter -= OnCheckPointEnter;

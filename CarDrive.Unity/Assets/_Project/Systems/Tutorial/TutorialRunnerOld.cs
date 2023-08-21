@@ -4,18 +4,16 @@ using Assets._Project.Architecture.UI;
 using Assets._Project.Input;
 using Assets._Project.SceneChange;
 using Cinemachine;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Timeline;
-using static UnityEngine.Rendering.DebugUI;
 
-namespace Assets._Project.Tutorial
+namespace Assets._Project.Systems.Tutorial
 {
-    public class TutorialRunner : RunnerWithAutomaticSystemsInitialization
+    public class TutorialRunnerOld : RunnerWithAutomaticSystemsInitialization
     {
         [SerializeField] private Camera _uiCamera;
         private PlayableDirector _director;

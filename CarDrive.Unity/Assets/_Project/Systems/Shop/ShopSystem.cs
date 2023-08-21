@@ -26,7 +26,7 @@ namespace Assets._Project.Systems.Shop
             lootBoxPrice.Set(config.LootBoxPrice.ToString());
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _buyButton.Button.onClick.AddListener(OnBuyButtonCkick);
         }
@@ -47,7 +47,7 @@ namespace Assets._Project.Systems.Shop
             _buyButton.OnFail();
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _buyButton.Button.onClick.RemoveListener(OnBuyButtonCkick);
         }

@@ -130,10 +130,10 @@ namespace Assets._Project.Entities.Character
 
         public void Accelerate(float acceleration)
         {
-            if (_windParticle.isPlaying && acceleration < 0.5f)
+            if (_windParticle && _windParticle.isPlaying && acceleration < 0.5f)
                 _windParticle.Stop();
 
-            if (_windParticle.isPlaying == false && acceleration > 0.5f)
+            if (_windParticle && _windParticle.isPlaying == false && acceleration > 0.5f)
                 _windParticle.Play();
 
             _engineSound.pitch = acceleration / 1.5f;

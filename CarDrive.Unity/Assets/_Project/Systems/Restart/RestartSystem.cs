@@ -38,7 +38,7 @@ namespace Assets._Project.Systems.Restart
             _popup = await _assetLoader.LoadAndInstantiateAsync<RestartPopup>("Restart Popup", _container, isActive: false);
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _gameState.OnSwitched += OnSateSwitched;
             _popup.RestartButton.onClick.AddListener(OnRestartButtonClicked);
@@ -64,7 +64,7 @@ namespace Assets._Project.Systems.Restart
             }
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _gameState.OnSwitched -= OnSateSwitched;
             _popup.RestartButton.onClick.RemoveListener(OnRestartButtonClicked);

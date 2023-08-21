@@ -45,7 +45,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             _pool = new(Create, _container, 100);
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             SpawnLocation();
         }

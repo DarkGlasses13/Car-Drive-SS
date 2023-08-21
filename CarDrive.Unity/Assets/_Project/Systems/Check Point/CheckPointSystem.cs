@@ -43,7 +43,7 @@ namespace Assets._Project.Systems.CheckPoint
             _popup.gameObject.SetActive(false);
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _checkPoint.OnEnter += OnCheckPointEnter;
             _playButton.onClick.AddListener(OnPlayButtonClicked);
@@ -73,7 +73,7 @@ namespace Assets._Project.Systems.CheckPoint
             _player.Money = _money.Value;
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _checkPoint.OnEnter -= OnCheckPointEnter;
             _playButton.onClick.RemoveListener(OnPlayButtonClicked);

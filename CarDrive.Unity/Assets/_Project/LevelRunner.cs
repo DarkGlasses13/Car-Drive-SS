@@ -16,6 +16,7 @@ using Assets._Project.Systems.Progress;
 using Assets._Project.Systems.Restart;
 using Assets._Project.Systems.Shop;
 using Assets._Project.Systems.Sound;
+using Assets._Project.Systems.Tutorial;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
 using NaughtyAttributes;
@@ -105,9 +106,16 @@ namespace Assets._Project
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
             ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform);
+            TutorialSystem tutorialSystem = new(_gameState);
+            StearState stearState = new(tutorialSystem, drivingSystem, _playerInput, 
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false));
+            GasRegulationState gasRegulationState = new(tutorialSystem, drivingSystem, _playerInput,
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Gas Reguation Popup", _popupContainer, isActive: false));
+            tutorialSystem.AddStates(stearState, gasRegulationState);
 
             _systems = new()
             {
+                tutorialSystem,
                 chunkGenerationSystem,
                 worldCentringSystem,
                 drivingSystem,

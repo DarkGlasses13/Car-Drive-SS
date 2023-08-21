@@ -5,9 +5,8 @@ namespace Assets._Project.Input
 {
     public interface IPlayerInput
     {
-        event Action OnInteract;
-        event Action<Vector2> OnSwipeEnded;
-        event Action<Vector2> OnSwipe;
+        event Action OnAnyInput, OnInteract;
+        event Action<Vector2> OnSwipe, OnSwipeEnded;
         event Action<float> OnVerticalSwipeWithThreshold;
         void Enable();
         void Disable();

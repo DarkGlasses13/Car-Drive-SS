@@ -21,24 +21,40 @@ namespace Assets._Project
         private void Update()
         {
             if (_isInitialized)
-                _systems?.ForEach(system => system.Tick());
+                _systems?.ForEach(system => 
+                {
+                    if (system.Enabled)
+                        system?.Tick();
+                });
         }
 
         private void FixedUpdate()
         {
             if (_isInitialized)
-                _systems?.ForEach(system => system.FixedTick());
+                _systems?.ForEach(system =>
+                {
+                    if (system.Enabled)
+                        system?.FixedTick();
+                });
         }
 
         private void OnDisable()
         {
             if (_isInitialized)
-                _systems?.ForEach(system => system.Disable());
+                _systems?.ForEach(system => 
+                {
+                    if (system.Enabled) 
+                        system?.OnDisable(); 
+                });
         }
 
         public void Restart()
         {
-            _systems.ForEach(system => system.Restart());
+            _systems.ForEach(system => 
+            {
+                if (system.Enabled) 
+                    system?.Restart(); 
+            });
         }
     }
 }

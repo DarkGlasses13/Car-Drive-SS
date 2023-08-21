@@ -8,9 +8,10 @@ namespace Assets._Project.Input
 {
     public class UniversalPlayerInput : IPlayerInputHandler, IPlayerInput
     {
+        public event Action OnAnyInput;
         public event Action OnInteract;
-        public event Action<Vector2> OnSwipeEnded;
         public event Action<Vector2> OnSwipe;
+        public event Action<Vector2> OnSwipeEnded;
         public event Action<float> OnVerticalSwipeWithThreshold;
 
         private readonly IPlayerInputConfig _config;
@@ -31,12 +32,13 @@ namespace Assets._Project.Input
             //_config.StearInputAction.performed += Stear;
             _config.GasRegulationInputAction.performed += RegulateGas;
             //Touch.onFingerMove += Swipe;
+            Touch.onFingerDown += OnFingerDown;
             Touch.onFingerUp += EndSwipe;
         }
 
-        private void Swipe(Finger finger)
+        private void OnFingerDown(Finger finger)
         {
-            OnSwipe?.Invoke(_swipeDelta);
+            OnAnyInput?.Invoke();
         }
 
         private void EndSwipe(Finger finger)
@@ -63,6 +65,9 @@ namespace Assets._Project.Input
 
         public void Read()
         {
+            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+                OnAnyInput?.Invoke();
+
             if (Touch.activeTouches.Count > 0)
             {
                 _swipeDelta = Touch.activeTouches[0].delta;
@@ -111,6 +116,7 @@ namespace Assets._Project.Input
             //_config.StearInputAction.performed -= Stear;
             _config.GasRegulationInputAction.performed -= RegulateGas;
             //Touch.onFingerMove -= Swipe;
+            Touch.onFingerDown -= OnFingerDown;
             Touch.onFingerUp -= EndSwipe;
         }
     }

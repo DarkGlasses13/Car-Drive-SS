@@ -20,7 +20,7 @@ namespace Assets._Project.Systems.Collecting
             _player = player;
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _popup.OnBeforeOpening += OnPopupOpening;
             _inventory.OnChenged += OnInventoryChanged;
@@ -130,7 +130,7 @@ namespace Assets._Project.Systems.Collecting
             _player.Items = _inventory.Items;
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _popup.OnBeforeOpening -= OnPopupOpening;
             _inventory.OnChenged -= OnInventoryChanged;

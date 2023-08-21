@@ -19,7 +19,7 @@ namespace Assets._Project.Systems.WorldCentring
             _containers = containers;
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _cameraBrain = Camera.main.GetComponent<CinemachineBrain>();
             _checkPoint.OnEnter += OnCheckPointEnter;
@@ -42,7 +42,7 @@ namespace Assets._Project.Systems.WorldCentring
             _cameraBrain.enabled = true;
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _checkPoint.OnEnter -= OnCheckPointEnter;
         }

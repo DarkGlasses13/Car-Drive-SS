@@ -25,7 +25,7 @@ namespace Assets._Project.Systems.Sound
             _toggle = await _assetLoader.LoadAndInstantiateAsync<Toggle>("Sound Toggle", _container);
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _toggle.onValueChanged.AddListener(OnSwitched);
         }
@@ -35,7 +35,7 @@ namespace Assets._Project.Systems.Sound
             AudioListener.volume = isOn ? 1 : 0;
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _toggle.onValueChanged.RemoveListener(OnSwitched);
         }

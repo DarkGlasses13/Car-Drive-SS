@@ -37,7 +37,7 @@ namespace Assets._Project.Systems.Damage
             _coroutiner.StartCoroutine(RestoreRoutine());
         }
 
-        public override void Enable()
+        public override void OnEnable()
         {
             _gameState.OnSwitched += OnSateSwitched;
         }
@@ -90,7 +90,7 @@ namespace Assets._Project.Systems.Damage
                 _coroutiner.StartCoroutine(RestoreRoutine());
         }
 
-        public override void Disable()
+        public override void OnDisable()
         {
             _gameState.OnSwitched -= OnSateSwitched;
         }
