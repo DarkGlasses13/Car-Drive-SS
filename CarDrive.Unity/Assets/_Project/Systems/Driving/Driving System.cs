@@ -257,9 +257,9 @@ namespace Assets._Project.Systems.Driving
             _isGasregulationEnabled = false;
         }
 
-        internal void EnableGasRegulation()
+        public void EnableGasRegulation()
         {
-            throw new NotImplementedException();
+            _isGasregulationEnabled = true;
         }
     }
 }
