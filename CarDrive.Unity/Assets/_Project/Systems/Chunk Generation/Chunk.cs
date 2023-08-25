@@ -40,7 +40,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             return transform.position + Vector3.forward * ((Bounds.size.z + connecting.Bounds.size.z) / 2);
         }
 
-        private void OnTriggerExit(Collider other)
+        protected virtual void OnTriggerExit(Collider other)
         {
             OnPassed?.Invoke(this);
         }

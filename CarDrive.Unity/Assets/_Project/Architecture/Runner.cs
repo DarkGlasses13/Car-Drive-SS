@@ -44,7 +44,7 @@ namespace Assets._Project
                 _systems?.ForEach(system => 
                 {
                     if (system.Enabled) 
-                        system?.OnDisable(); 
+                        system?.Disable(); 
                 });
         }
 
@@ -56,5 +56,19 @@ namespace Assets._Project
                     system?.Restart(); 
             });
         }
+
+        public void ForceRestart()
+        {
+            if (_isInitialized)
+                _systems?.ForEach(system =>
+                {
+                    if (system.Enabled)
+                        system?.Disable();
+                });
+
+            OnForceRestart();
+        }
+
+        protected abstract void OnForceRestart();
     }
 }

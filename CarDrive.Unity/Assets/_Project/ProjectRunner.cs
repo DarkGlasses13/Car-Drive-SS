@@ -76,17 +76,22 @@ namespace Assets._Project
             _sceneChanger.Change("Level");
         }
 
-        //private void OnApplicationPause(bool pause)
-        //{
-        //    if (pause)
-        //    {
-        //        _storage.Save(_saveVersion, _player.GetSave());
-        //    }
-        //}
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause)
+            {
+                _storage.Save(_saveVersion, _player.GetSave());
+            }
+        }
 
-        //private void OnApplicationQuit()
-        //{
-        //    _storage.Save(_saveVersion, _player.GetSave());
-        //}
+        private void OnApplicationQuit()
+        {
+            _storage.Save(_saveVersion, _player.GetSave());
+        }
+
+        protected override void OnForceRestart()
+        {
+            return;
+        }
     }
 }

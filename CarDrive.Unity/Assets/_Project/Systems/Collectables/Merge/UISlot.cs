@@ -8,7 +8,7 @@ namespace Assets._Project.Systems.Collecting
 {
     public class UISlot : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
-        [SerializeField] private Image _itemIcon;
+        [SerializeField] private Image _background, _itemIcon;
         [SerializeField] private TMP_Text _mergeLevel;
         [SerializeField] private ParticleSystem _confetiParticle;
         private UIInventory _uiInventory;
@@ -90,5 +90,7 @@ namespace Assets._Project.Systems.Collecting
         }
 
         public void EmitMergeparticle() => _confetiParticle.Play();
+
+        public RectTransform GetRectTransform() => _background.rectTransform;
     }
 }

@@ -18,12 +18,12 @@ namespace Assets._Project.Systems.Tutorial
         public void Show(Action callback = null)
         {
             gameObject.SetActive(true);
-            _canvasGroup.DOFade(1, 0.125f).Play().SetAutoKill().OnComplete(callback.Invoke);
+            _canvasGroup.DOFade(1, 0.125f).Play().SetAutoKill().OnComplete(() => callback?.Invoke());
         }
 
         public void Hide(Action callback = null)
         {
-            _canvasGroup.DOFade(0, 0.125f).Play().SetAutoKill().OnComplete(callback.Invoke);
+            _canvasGroup.DOFade(0, 0.125f).Play().SetAutoKill().OnComplete(() => callback?.Invoke());
             gameObject.SetActive(false);
         }
     }

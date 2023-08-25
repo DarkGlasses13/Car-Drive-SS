@@ -57,5 +57,46 @@ namespace Assets._Project.Systems.Collecting
             OnLootBoxOpened?.Invoke(slot);
             _lootBoxOpenSound.Play();
         }
+
+        public Rect GetFiledSlotsRect()
+        {
+            RectTransform rectTransform = _slots[0].GetRectTransform();
+            return new(rectTransform.position, new(rectTransform.rect.width, rectTransform.rect.height));
+        }
+
+        public Vector3 GetSlotPosition(int index)
+        {
+            return _slots[index].GetRectTransform().position;
+        }
+
+        public int GetEquipmentSlot(int index)
+        {
+            return _equipmentSlots[index].transform.GetSiblingIndex();
+        }
+
+        public Vector3 GetEquipmentSlotPosition(int index)
+        {
+            return _equipmentSlots[index].GetRectTransform().position;
+        }
+
+        public Vector3 GetFirstSlotPosition()
+        {
+            return _slots.First(slot => slot.Item != null).GetRectTransform().position;
+        }
+
+        public Vector3 GetLastSlotPosition()
+        {
+            return _slots.Last(slot => slot.Item != null).GetRectTransform().position;
+        }
+
+        public int GetFirstSlot()
+        {
+            return _slots.First(slot => slot.Item != null).transform.GetSiblingIndex();
+        }
+
+        public int GetLastSlot()
+        {
+            return _slots.Last(slot => slot.Item != null).transform.GetSiblingIndex();
+        }
     }
 }

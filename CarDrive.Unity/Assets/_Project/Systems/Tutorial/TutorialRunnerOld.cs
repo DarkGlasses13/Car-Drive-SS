@@ -114,5 +114,10 @@ namespace Assets._Project.Systems.Tutorial
             _additionalCameraData.cameraStack.Remove(_uiCamera);
             _sceneChanger.Change("Level");
         }
+
+        protected override void OnForceRestart()
+        {
+            return;
+        }
     }
 }

@@ -1,17 +1,22 @@
 using Assets._Project.Architecture;
 using Assets._Project.Systems.CheckPoint;
+using System;
 
 namespace Assets._Project.Systems.Collecting
 {
     public class InventorySystem : GameSystem
     {
+        public event Action<int> OnMerged, OnEquiped;
+        public event Action<int, int> OnSwaped;
+
         private readonly IInventory _inventory;
         private readonly IItemDatabase _database;
         private readonly UIInventory _uiInventory;
         private readonly CheckPointPopup _popup;
         private readonly Player _player;
 
-        public InventorySystem(IInventory inventory, IItemDatabase database, UIInventory grid, CheckPointPopup popup, Player player)
+        public InventorySystem(IInventory inventory, IItemDatabase database,
+            UIInventory grid, CheckPointPopup popup, Player player)
         {
             _inventory = inventory;
             _database = database;
@@ -26,6 +31,14 @@ namespace Assets._Project.Systems.Collecting
             _inventory.OnChenged += OnInventoryChanged;
             _uiInventory.OnLootBoxOpened += OnLootBoxOpened;
             _uiInventory.OnSwap += OnSwap;
+        }
+
+        public void Add(params string[] itemIDs)
+        {
+            foreach (string id in itemIDs)
+            {
+                _inventory.TryAdd(_database.GetByID(id));
+            }
         }
 
         private void OnLootBoxOpened(int slot)
@@ -60,6 +73,7 @@ namespace Assets._Project.Systems.Collecting
                     _popup.PlayEquipSound();
                     _inventory.Equip(fromSlotIndex, toSlotIndex);
                     _player.SetStat(to.Type, to.Item.Stat);
+                    OnEquiped?.Invoke(toSlotIndex);
                 }
 
                 return;
@@ -110,12 +124,14 @@ namespace Assets._Project.Systems.Collecting
                         _inventory.Swap(toSlotIndex, mergeResult);
                         _popup.PlayMergeSound();
                         _popup.EmitMergeParticle(to);
+                        OnMerged?.Invoke(toSlotIndex);
                     }
                     return;
                 }
             }
 
             _inventory.Swap(fromSlotIndex, toSlotIndex);
+            OnSwaped?.Invoke(fromSlotIndex, toSlotIndex);
         }
 
         private void OnPopupOpening()
@@ -136,6 +152,11 @@ namespace Assets._Project.Systems.Collecting
             _inventory.OnChenged -= OnInventoryChanged;
             _uiInventory.OnLootBoxOpened -= OnLootBoxOpened;
             _uiInventory.OnSwap -= OnSwap;
+        }
+
+        public void Clear()
+        {
+            _inventory?.Clear();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Assets._Project.Systems.Driving
 {
     public class DrivingSystem : GameSystem, IGameStateSwitchHandler
     {
+        public event Action<int> OnGasRegulated;
         private readonly LocalAssetLoader _assetLoader;
         private readonly IPlayerInput _playerInput;
         private readonly IDrivable _drivable;
@@ -35,7 +36,7 @@ namespace Assets._Project.Systems.Driving
         private Vector2 _roadWidth;
         private float _stearInput;
         private bool _isStearing;
-        private bool _isGasregulationEnabled;
+        private bool _isGasregulationEnabled = true;
 
         public DrivingSystem(LocalAssetLoader assetLoader, IPlayerInput playerInput, IDrivable drivable,
             Player player, GameState gameState, Coroutiner coroutiner, Cinematographer cinematographer, Vector2 roadWidth)
@@ -153,6 +154,7 @@ namespace Assets._Project.Systems.Driving
 
                 _maneuverDirection = value;
                 _gasRegulationRoutine = _coroutiner.StartCoroutine(GasManeuverRoutine(target));
+                OnGasRegulated?.Invoke((int)_maneuverDirection);
             }
         }
 

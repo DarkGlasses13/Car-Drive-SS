@@ -136,10 +136,16 @@ namespace Assets._Project.Entities.Character
             if (_windParticle && _windParticle.isPlaying == false && acceleration > 0.5f)
                 _windParticle.Play();
 
-            _engineSound.pitch = acceleration / 1.5f;
-            ParticleSystem.MainModule ps = _windParticle.main;
-            ps.maxParticles = (int)(acceleration * 50);
-            ps.simulationSpeed = acceleration * 5;
+            if (_engineSound)
+                _engineSound.pitch = acceleration / 1.5f;
+
+            if (_windParticle)
+            {
+                ParticleSystem.MainModule windParticle = _windParticle.main;
+                windParticle.maxParticles = (int)(acceleration * 50);
+                windParticle.simulationSpeed = acceleration * 5;
+            }
+
             transform.position += transform.forward * acceleration;
         }
 

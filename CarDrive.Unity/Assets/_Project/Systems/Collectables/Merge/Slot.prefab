@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bef18e302134dd4599059bd216717eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _background: {fileID: 438241659763567054}
   _itemIcon: {fileID: 5154434254514793702}
   _mergeLevel: {fileID: 8239677434073919876}
   _confetiParticle: {fileID: 8699756827167521780}

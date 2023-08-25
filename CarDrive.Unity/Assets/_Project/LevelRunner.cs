@@ -6,6 +6,7 @@ using Assets._Project.Entities.Character;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
+using Assets._Project.SceneChange;
 using Assets._Project.Systems.CheckPoint;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collectables;
@@ -19,7 +20,9 @@ using Assets._Project.Systems.Sound;
 using Assets._Project.Systems.Tutorial;
 using Assets._Project.Systems.WorldCentring;
 using Cinemachine;
+using DG.Tweening;
 using NaughtyAttributes;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -37,6 +40,7 @@ namespace Assets._Project
             _hudContainer,
             _popupContainer,
             _fxContainer,
+            _tutorialContainer,
             _loadingScreenContainer;
 
         [SerializeField] private Canvas _canvas;
@@ -46,29 +50,35 @@ namespace Assets._Project
         private CharacterCar _characterCar;
         private Player _player;
         private GameState _gameState;
+        private Coroutiner _coroutiner;
+        private SceneChanger _sceneChanger;
         private LoadingScreen _loadingScreen;
         private Money _money;
         private IItemDatabase _itemDatabase;
         private Inventory _inventory;
+        private TutorialSystem _tutorialSystem;
+        private UniversalAdditionalCameraData _additionalCameraData;
+        private Camera _uiCamera;
 
         protected override async Task CreateSystems()
         {
             DIContainer projectContainer = FindObjectOfType<DIContainer>();
             LocalAssetLoader assetLoader = projectContainer.Get<LocalAssetLoader>();
+            _sceneChanger = projectContainer.Get<SceneChanger>();
             _loadingScreen = projectContainer.Get<LoadingScreen>();
             _player = projectContainer.Get<Player>();
             _gameState = new(GameStates.WaitForRun);
-            Coroutiner coroutiner = projectContainer.Get<Coroutiner>();
+            _coroutiner = projectContainer.Get<Coroutiner>();
             _money = projectContainer.Get<Money>();
             _itemDatabase = projectContainer.Get<IItemDatabase>();
             _playerInput = projectContainer.Get<IPlayerInput>();
             _cinematographer = projectContainer.Get<Cinematographer>();
             Camera playerCamera = projectContainer.Get<Camera>();
-            UniversalAdditionalCameraData additionalCameraData = playerCamera.GetComponent<UniversalAdditionalCameraData>();
-            Camera uiCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("UI Camera", _camerasContainer);
-            _canvas.worldCamera = uiCamera;
-            additionalCameraData.cameraStack.Add(uiCamera);
-            additionalCameraData.cameraStack.Reverse();
+            _additionalCameraData = playerCamera.GetComponent<UniversalAdditionalCameraData>();
+            _uiCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("UI Camera", _camerasContainer);
+            _canvas.worldCamera = _uiCamera;
+            _additionalCameraData.cameraStack.Add(_uiCamera);
+            _additionalCameraData.cameraStack.Reverse();
             _cinematographer.AddCamera(GameCamera.Run, await assetLoader
                 .LoadAndInstantiateAsync<CinemachineVirtualCamera>("Run Virtual Camera", _camerasContainer));
             _cinematographer.AddCamera(GameCamera.Lose, await assetLoader
@@ -81,9 +91,9 @@ namespace Assets._Project
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
             ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
-                _player, _gameState, coroutiner, _cinematographer, new(-5.5f, 5.5f));
+                _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
 
-            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, coroutiner);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             Slider progressBar = await assetLoader.LoadAndInstantiateAsync<Slider>("Progress Bar", _hudContainer);
@@ -93,7 +103,7 @@ namespace Assets._Project
             UIInventory uiInventory = await assetLoader.LoadAndInstantiateAsync<UIInventory>("Merge", checkPointPopup.OtherSection);
             uiInventory.Construct(_canvas, equipment);
             UICounter lootBoxPrice = await assetLoader.LoadAndInstantiateAsync<UICounter>("Loot Box Price", checkPointPopup.OtherSection);
-            PriceTagButton buyButton = await assetLoader
+            PriceTagButton lootBoxBuyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Buy Loot Box Button", checkPointPopup.OtherSection);
             _inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount, _player.Equipment, _player.Items);
             RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, _inventory, _player, _money);
@@ -101,21 +111,24 @@ namespace Assets._Project
                 checkPointPopup, uiMoneyCounter, playButton, _money, _leveMusic, _player);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, _money, _itemDatabase, _inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(_inventory, _itemDatabase, uiInventory, checkPointPopup, _player);
-            ShopSystem shopSystem = new(_inventory, _itemDatabase, buyButton, _money, collectablesConfig, lootBoxPrice, _player);
+            ShopSystem shopSystem = new(_inventory, _itemDatabase, lootBoxBuyButton, _money, collectablesConfig, lootBoxPrice, _player);
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
             ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform);
-            TutorialSystem tutorialSystem = new(_gameState);
-            StearState stearState = new(tutorialSystem, drivingSystem, _playerInput, 
-                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false));
-            GasRegulationState gasRegulationState = new(tutorialSystem, drivingSystem, _playerInput,
-                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Gas Reguation Popup", _popupContainer, isActive: false));
-            tutorialSystem.AddStates(stearState, gasRegulationState);
+            _tutorialSystem = new(_gameState, _inventory, _money, _player);
+            StearState stearState = new(_tutorialSystem, drivingSystem, _playerInput, 
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false), _coroutiner, checkPoint);
+            GasRegulationState gasRegulationState = new(_tutorialSystem, drivingSystem,
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Gas Reguation Popup", _popupContainer, isActive: false), checkPoint);
+            MergeState mergeState = new(_tutorialSystem, _money, collectablesConfig, inventorySystem, shopSystem, lootBoxBuyButton,
+                await assetLoader.LoadAndInstantiateAsync<TutorialHighlighter>("Tutorial Highlighter", _tutorialContainer, isActive: false), uiInventory,
+                await assetLoader.LoadAndInstantiateAsync<Image>("Finger", _tutorialContainer, isActive: false), playButton, _player, this);
+            _tutorialSystem.AddStates(stearState, gasRegulationState, mergeState);
 
             _systems = new()
             {
-                tutorialSystem,
+                _tutorialSystem,
                 chunkGenerationSystem,
                 worldCentringSystem,
                 drivingSystem,
@@ -140,6 +153,9 @@ namespace Assets._Project
 
         private void OnFadeOut()
         {
+            if (_player.IsTutorialCompleted == false)
+                _tutorialSystem.Start();
+
             _playerInput.Enable();
             _gameState.Switch(GameStates.Run);
         }
@@ -154,6 +170,22 @@ namespace Assets._Project
         public void GetAllStuff()
         {
             _inventory.Add(_itemDatabase.GetByIDs("it_Mhl_8", "it_Bks_8", "it_Egn_8", "it_Aclr_8"));
+        }
+
+        protected override void OnForceRestart()
+        {
+            _loadingScreen.FadeIn(OnFadeIn);
+        }
+
+        private void OnFadeIn()
+        {
+            _leveMusic.Pause();
+            _coroutiner.StopAllCoroutines();
+            DOTween.KillAll();
+            _additionalCameraData.cameraStack.Remove(_uiCamera);
+            _cinematographer.RemoveCamera(GameCamera.Run);
+            _cinematographer.RemoveCamera(GameCamera.Lose);
+            _sceneChanger.Change("Level");
         }
     }
 }

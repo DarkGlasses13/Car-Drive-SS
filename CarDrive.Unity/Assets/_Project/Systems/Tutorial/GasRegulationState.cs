@@ -1,38 +1,53 @@
 ﻿using Assets._Project.Architecture.UI;
-using Assets._Project.Input;
+using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Driving;
-using UnityEngine;
 
 namespace Assets._Project.Systems.Tutorial
 {
     public class GasRegulationState : TutorialState
     {
         private readonly DrivingSystem _drivingSystem;
-        private readonly IPlayerInput _playerInput;
         private readonly IUIElement _popup;
+        private readonly CheckPointChunk _checkPoint;
 
-        public GasRegulationState(ITutorialSystem system, DrivingSystem drivingSystem, IPlayerInput playerInput, IUIElement popup) : base(system)
+        public GasRegulationState(ITutorialSystem system, DrivingSystem drivingSystem,
+            IUIElement popup, CheckPointChunk checkPoint) : base(system)
         {
             _drivingSystem = drivingSystem;
-            _playerInput = playerInput; 
             _popup = popup;
+            _checkPoint = checkPoint;
         }
 
         public override void Enter()
         {
-            _popup.Show(OnPopupShown);
-        }
+            if (_checkPoint.IsTriggered)
+            {
+                _system.SwitchToNextState();
+                return;
+            }
 
-        private void OnPopupShown()
-        {
+            _popup.Show();
             _drivingSystem.EnableGasRegulation();
-            _playerInput.OnVerticalSwipeWithThreshold += OnSwipe;
+            _drivingSystem.OnGasRegulated += OnGasRegulated;
+            _checkPoint.OnEnter += OnCheckPointEnter;
         }
 
-        private void OnSwipe(float value)
+        private void OnCheckPointEnter(CheckPointChunk chunk)
         {
-            Debug.Log("Tutorial ended");
-            //_system.SwitchToNextState();
+            _popup.Hide();
+            _system.SwitchToNextState();
+        }
+
+        private void OnGasRegulated(int value)
+        {
+            _drivingSystem.OnGasRegulated -= OnGasRegulated;
+            _popup.Hide();
+        }
+
+        public override void Exit()
+        {
+            _drivingSystem.OnGasRegulated -= OnGasRegulated;
+            _checkPoint.OnEnter -= OnCheckPointEnter;
         }
     }
 }
