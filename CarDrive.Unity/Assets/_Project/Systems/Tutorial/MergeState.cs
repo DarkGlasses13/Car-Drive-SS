@@ -63,7 +63,7 @@ namespace Assets._Project.Systems.Tutorial
         {
             _lootBoxBuyButton.Button.onClick.RemoveListener(OnBuyButtonClicked);
             _fingerShakeTween?.Pause();
-            _inventorySystem.Add("it_Egn_4", "it_Egn_4");
+            _inventorySystem.Add("it_Egn_1", "it_Egn_1");
             _finger.rectTransform.position = _uiInventory.GetFirstSlotPosition();
             _finger.transform.localScale = Vector2.one;
             _fingerSwapTween = _finger.rectTransform
