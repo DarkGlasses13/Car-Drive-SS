@@ -96,7 +96,7 @@ namespace Assets._Project
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner, drivingSystem, _money, _leveMusic);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
-            Slider progressBar = await assetLoader.LoadAndInstantiateAsync<Slider>("Progress Bar", _hudContainer);
+            ProgressBar progressBar = await assetLoader.LoadAndInstantiateAsync<ProgressBar>("Progress Bar", _hudContainer);
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
             UIEquipment equipment = await assetLoader.LoadAndInstantiateAsync<UIEquipment>("Equipment", checkPointPopup.OtherSection);
@@ -115,7 +115,7 @@ namespace Assets._Project
             WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
-            ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform);
+            ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform, _player);
             _tutorialSystem = new(_gameState, _inventory, _money, _player);
             StearState stearState = new(_tutorialSystem, drivingSystem, _playerInput, 
                 await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false), _coroutiner, checkPoint);

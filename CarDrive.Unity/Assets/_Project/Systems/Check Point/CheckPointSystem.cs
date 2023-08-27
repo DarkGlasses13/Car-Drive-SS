@@ -66,6 +66,7 @@ namespace Assets._Project.Systems.CheckPoint
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
+            _player.Level++;
             _gameState.Switch(GameStates.Finish);
             _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);
             _levelMusic.Stop();
