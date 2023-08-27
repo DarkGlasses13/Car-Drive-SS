@@ -93,7 +93,7 @@ namespace Assets._Project
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
                 _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
 
-            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner, drivingSystem, _money, _leveMusic);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             Slider progressBar = await assetLoader.LoadAndInstantiateAsync<Slider>("Progress Bar", _hudContainer);

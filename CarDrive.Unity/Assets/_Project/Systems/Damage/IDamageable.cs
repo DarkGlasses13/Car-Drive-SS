@@ -8,7 +8,9 @@ namespace Assets._Project.Systems.Damage
         Quaternion Rotation { get; }
 
         void HideAura();
+        void OnCrash();
         void OnDie();
+        void OnMoneyLose();
         void OnRestore();
         void ShowAura();
     }

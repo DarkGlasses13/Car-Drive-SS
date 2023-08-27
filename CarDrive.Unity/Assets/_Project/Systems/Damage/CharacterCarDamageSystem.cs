@@ -1,6 +1,9 @@
 using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
+using Assets._Project.Systems.Collecting;
+using Assets._Project.Systems.Driving;
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -13,17 +16,25 @@ namespace Assets._Project.Systems.Damage
         private readonly GameState _gameState;
         private readonly IDamageable _damageable;
         private readonly Coroutiner _coroutiner;
+        private readonly DrivingSystem _drivingSystem;
+        private readonly Money _money;
+        private readonly AudioSource _levelMusic;
         private CharacterCarDamageConfig _config;
         private readonly Collider[] _hits = new Collider[5];
         private int _lives;
         private bool _isImpregnability;
 
-        public CharacterCarDamageSystem(LocalAssetLoader assetLoader, GameState gameState, IDamageable damageable, Coroutiner coroutiner)
+        public CharacterCarDamageSystem(LocalAssetLoader assetLoader, GameState gameState,
+            IDamageable damageable, Coroutiner coroutiner, DrivingSystem drivingSystem,
+            Money money, AudioSource levelMusic)
         {
             _assetLoader = assetLoader;
             _gameState = gameState;
             _damageable = damageable;
             _coroutiner = coroutiner;
+            _drivingSystem = drivingSystem;
+            _money = money;
+            _levelMusic = levelMusic;
         }
 
         public override async Task InitializeAsync()
@@ -54,6 +65,7 @@ namespace Assets._Project.Systems.Damage
 
                 if (hitsCount > 0 )
                 {
+                    _isImpregnability = true;
                     TakeDamage();
                 }
             }
@@ -71,11 +83,33 @@ namespace Assets._Project.Systems.Damage
                     _gameState.Switch(GameStates.Lose);
                     _damageable.OnDie();
                 }
+                else
+                {
+                    _coroutiner.StartCoroutine(TakeDamageRoutine());
+                }
             }
+        }
+
+        private IEnumerator TakeDamageRoutine()
+        {
+            _levelMusic.Pause();
+            _drivingSystem.Disable();
+            _damageable.OnCrash();
+
+            if (_money.TrySpend(_config.CrashPrice))
+                _damageable.OnMoneyLose();
+
+            yield return new WaitForSeconds(1);
+            _drivingSystem.Enable();
+            _damageable.ShowAura();
+            yield return new WaitForSeconds(_config.ImpregnabilityTime);
+            _isImpregnability = false;
+            _damageable.HideAura();
         }
 
         private IEnumerator RestoreRoutine()
         {
+            _lives = _config.MaxLives;
             _damageable.OnRestore();
             _damageable.ShowAura();
             _isImpregnability = true;

@@ -18,7 +18,9 @@ namespace Assets._Project.Entities.Character
             _leftFire,
             _rightFire,
             _impregnabilityAura,
-            _collectParticle;
+            _collectParticle,
+            _moneyLoseParticle,
+            _crashParticle;
 
         [SerializeField] private TrailRenderer 
             _leftWheelTrailRenderer,
@@ -161,6 +163,22 @@ namespace Assets._Project.Entities.Character
             _moveTween?.Kill();
             _rigidbody.AddForce(Vector3.up * 10000, ForceMode.Impulse);
             transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
+        }
+
+        public void OnCrash()
+        {
+            _engineSound.Stop();
+            _crashSound.Play();
+            EndBreak();
+            FireStop();
+            _moveTween?.Kill();
+            transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
+            _crashParticle.Play();
+        }
+
+        public void OnMoneyLose()
+        {
+            _moneyLoseParticle.Play();
         }
 
         public void OnRestore()
