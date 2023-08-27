@@ -28,6 +28,7 @@ namespace Assets._Project.Entities.Obstacles
         private void OnEnable()
         {
             ResetPosition();
+            SetRandomView();
         }
 
         public void Translate(float duration)
