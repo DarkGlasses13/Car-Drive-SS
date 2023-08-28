@@ -132,6 +132,9 @@ namespace Assets._Project.Entities.Character
 
         public void Accelerate(float acceleration)
         {
+            if (gameObject == false)
+                return;
+
             if (_windParticle && _windParticle.isPlaying && acceleration < 0.5f)
                 _windParticle.Stop();
 
