@@ -14,7 +14,7 @@ namespace Assets._Project.Helpers
             return asset;
         }
 
-        public async Task<IList<T>> LoadAll<T>(AssetLabelReference label, Action<T> callback = null)
+        public async Task<IList<T>> LoadAll<T>(object label, Action<T> callback = null)
         {
             IList<T> assets = await Addressables.LoadAssetsAsync<T>(label, callback).Task;
             return assets;
