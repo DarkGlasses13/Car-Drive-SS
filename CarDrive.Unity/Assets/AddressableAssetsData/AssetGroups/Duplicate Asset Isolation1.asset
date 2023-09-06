@@ -141,11 +141,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d35b2e65446d9e64da5dd4957f9d390c
-    m_Address: Assets/Low poly cartoon city/Materials/Mat_low_poly_building.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b527b1687387864c8998d612b2cc8d5
     m_Address: Assets/Lana Studio/Hyper Casual FX/Materials/Square.mat
     m_ReadOnly: 0

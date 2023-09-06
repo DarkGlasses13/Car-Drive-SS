@@ -138,7 +138,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4aa5e6448b8acd4e962d4223bc5fc33
-    m_Address: Chunk Japan v1.2
+    m_Address: Chunk Japan v1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -185,17 +185,32 @@ MonoBehaviour:
   - m_GUID: 2a08d201bcf744d4cb126fde65f285c4
     m_Address: Chunk Snow v1
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 416e8ded31845b8448a8fec0f2a85d40
     m_Address: Chunk Snow v2
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Chunk
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ead6e3e0d1b921241bc04ee29a72e6cc
     m_Address: Chunk Snow v3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d590d7338046be4f93b303af8f18b6c
+    m_Address: Chunk Town v1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa177e9d3f0d29040ab9463be84f7bfa
+    m_Address: Chunk Town v2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Chunk
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6504f2e90264e304c8f3a55e9d93fc22
+    m_Address: Chunk Town v3
     m_ReadOnly: 0
     m_SerializedLabels:
     - Chunk
