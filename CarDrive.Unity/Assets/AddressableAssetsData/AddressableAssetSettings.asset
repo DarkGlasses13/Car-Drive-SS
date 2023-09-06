@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: a1612ac02eb9cdd4e8bf011f25b68e51
   m_currentHash:
     serializedVersion: 2
-    Hash: f4eda0f306b6bb63a2448c678d9f56f0
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - Chunk
+    - In Game Chunk
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: c790717157a4a034794178c674ed4071, type: 2}

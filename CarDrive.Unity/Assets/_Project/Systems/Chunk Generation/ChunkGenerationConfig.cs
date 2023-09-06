@@ -1,13 +1,11 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace Assets._Project.Systems.ChunkGeneration
 {
     [CreateAssetMenu(menuName = "Config/Chunk Generation")]
     public class ChunkGenerationConfig : ScriptableObject
     {
-        [field: SerializeField] public AssetLabelReference ChunkAssetLabel { get; private set; }
         [field: SerializeField] public int ChunksBetweenCheckPoints { get; private set; }
         [field: SerializeField] public int ChunksPassedBeforeDespawn { get; private set; }
         [field: SerializeField, Label("Enable Obstacles")] public bool IsObstaclesEnabled { get; private set; }

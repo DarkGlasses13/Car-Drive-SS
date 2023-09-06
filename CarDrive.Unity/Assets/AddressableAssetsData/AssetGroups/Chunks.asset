@@ -17,16 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ae537bc8eac07b149b532b26c61fb148
   m_SerializeEntries:
-  - m_GUID: 04adc31d6cdd5f24d8d9f9ebbb8d3087
-    m_Address: Chunk 3.2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 56038f4cc09bf9749911a091be3472d8
-    m_Address: Chunk 3.1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74d3aa0d5e94ae4458eece4a62a0454a
     m_Address: Check Point Chunk
     m_ReadOnly: 0
@@ -37,6 +27,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+<<<<<<< HEAD
   - m_GUID: efff95bb63790cf47903eff70747b269
     m_Address: Chunk 2.4
     m_ReadOnly: 0
@@ -214,6 +205,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Chunk
+=======
+  - m_GUID: 1fa504a84adcf2e4ca45bf5ed41e5ad8
+    m_Address: In Game
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - In Game Chunk
+>>>>>>> 14e5b1c9a514269811d93cd1f0f95a37c5e3c072
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}

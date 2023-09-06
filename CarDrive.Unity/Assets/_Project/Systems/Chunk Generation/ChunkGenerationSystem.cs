@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Pool;
 
 namespace Assets._Project.Systems.ChunkGeneration
 {
@@ -15,7 +13,6 @@ namespace Assets._Project.Systems.ChunkGeneration
         private readonly ChunkGenerationConfig _config;
         private readonly Transform _container;
         private readonly LocalAssetLoader _assetLoader;
-        private AssetLabelReference _assetLabel;
         private List<Chunk> _prefabs;
         private int _prefabIndex;
         private Pool<Chunk> _pool;
@@ -39,8 +36,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public override async Task InitializeAsync()
         {
-            _assetLabel = _config.ChunkAssetLabel;
-            IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>(_assetLabel, OnPrefabLoaded);
+            IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>("In Game Chunk", OnPrefabLoaded);
             _prefabs = new(emptyPrefabs.Select(chunk => chunk.GetComponent<Chunk>()));
             _pool = new(Create, _container, 100);
         }
