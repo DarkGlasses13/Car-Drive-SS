@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: Chunks_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: a1fe7f1df4853bb449b4da8abd08946c, type: 2}
+  m_Group: {fileID: 11400000, guid: 324412467de473049829675e64fd86e6, type: 2}
   m_StaticContent: 0
