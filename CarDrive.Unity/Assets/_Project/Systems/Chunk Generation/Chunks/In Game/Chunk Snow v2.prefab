@@ -17421,6 +17421,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6792211379749825344, guid: 2a08d201bcf744d4cb126fde65f285c4,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7267185681538999012, guid: 2a08d201bcf744d4cb126fde65f285c4,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -718,6 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 321650451534187907}
+  <EnvironmentType>k__BackingField: 1
 --- !u!1001 &4121992750942550605
 PrefabInstance:
   m_ObjectHideFlags: 0

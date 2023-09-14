@@ -140,6 +140,11 @@ PrefabInstance:
       propertyPath: _isContainsCollectables
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

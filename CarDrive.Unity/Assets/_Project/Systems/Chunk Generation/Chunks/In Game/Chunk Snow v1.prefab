@@ -4319,6 +4319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 9188241403036432505}
+  <EnvironmentType>k__BackingField: 3
 --- !u!4 &4414802793778862128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9019685841216796958, guid: 11293170eb437754884daaa8ddd1e242,

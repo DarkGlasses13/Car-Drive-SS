@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7266765703410259221, guid: 1962f10655d804e429b5e41fbdece3c5,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7637127927682216626, guid: 1962f10655d804e429b5e41fbdece3c5,
         type: 3}
       propertyPath: m_Layer

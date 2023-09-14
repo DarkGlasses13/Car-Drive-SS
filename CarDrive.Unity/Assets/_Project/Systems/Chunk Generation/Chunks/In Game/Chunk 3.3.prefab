@@ -822,6 +822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chunk 3.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6360677878963623954, guid: 56f24c2734ebe7f4c9b6749d54b9a6e2,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

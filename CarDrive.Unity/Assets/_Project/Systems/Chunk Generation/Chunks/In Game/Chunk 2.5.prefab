@@ -304,6 +304,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
       propertyPath: m_LocalPosition.x

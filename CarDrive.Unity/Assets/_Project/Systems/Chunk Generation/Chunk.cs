@@ -9,10 +9,12 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         public Action OnSpawned;
         public Action<Chunk> OnPassed;
+
         [SerializeField] private MeshRenderer _roadMeshRenderer;
         private ItemObject[] _collectables;
         private Obstacle[] _obstacles;
 
+        [field: SerializeField] public ChunkEnvironmentType EnvironmentType { get; private set; }
         public Bounds Bounds => _roadMeshRenderer.bounds;
 
         public void Init()

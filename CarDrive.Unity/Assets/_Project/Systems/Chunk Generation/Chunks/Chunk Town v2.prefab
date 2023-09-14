@@ -4423,6 +4423,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 17.21
       objectReference: {fileID: 0}
+    - target: {fileID: 6551933305618857710, guid: 5d590d7338046be4f93b303af8f18b6c,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7558011013676172498, guid: 5d590d7338046be4f93b303af8f18b6c,
         type: 3}
       propertyPath: m_LocalScale.x

@@ -2465,7 +2465,7 @@ PrefabInstance:
     - target: {fileID: 4273494063504175063, guid: 5b76b1ab9c2dc5b4d90ee975b8936666,
         type: 3}
       propertyPath: m_Name
-      value: Chunk Japan v1.2
+      value: Chunk Japan v1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2561,6 +2561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadMeshRenderer: {fileID: 5086568018802274289}
+  <EnvironmentType>k__BackingField: 2
 --- !u!23 &5086568018802274289 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6219392666000734240, guid: 5b76b1ab9c2dc5b4d90ee975b8936666,

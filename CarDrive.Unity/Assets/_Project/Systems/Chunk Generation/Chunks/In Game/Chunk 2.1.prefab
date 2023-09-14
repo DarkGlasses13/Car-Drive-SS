@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfaf8ae66cdfb94c81c5aca2498d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _viewVariants: []
 --- !u!1001 &3412340576948429751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfaf8ae66cdfb94c81c5aca2498d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _viewVariants: []
 --- !u!4 &8794148879410544444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2959055796086842048, guid: 4a6941e67b9083a4cac2f8e3eff16d36,
@@ -662,6 +664,11 @@ PrefabInstance:
       propertyPath: _collectables.Array.data[2]
       value: 
       objectReference: {fileID: 2038735462339762619}
+    - target: {fileID: 568226789709276823, guid: deb3304004a80a14cad814cf93c39b4f,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
       propertyPath: m_RootOrder

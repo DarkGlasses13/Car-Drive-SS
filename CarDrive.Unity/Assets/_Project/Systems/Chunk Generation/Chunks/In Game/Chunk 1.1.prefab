@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfaf8ae66cdfb94c81c5aca2498d8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _viewVariants: []
 --- !u!1001 &4485991959371968774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -889,6 +890,11 @@ PrefabInstance:
       propertyPath: _collectables.Array.data[3]
       value: 
       objectReference: {fileID: 3428974436496253024}
+    - target: {fileID: 6794325682830581494, guid: 17c3516b5213a1a4c9b77362fd5cf775,
+        type: 3}
+      propertyPath: <EnvironmentType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
