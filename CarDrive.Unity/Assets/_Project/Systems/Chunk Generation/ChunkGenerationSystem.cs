@@ -57,7 +57,7 @@ namespace Assets._Project.Systems.ChunkGeneration
                 _currentChunks.Add(SpawnRandom(currentType));
             }
 
-            SpawnCheckPoint().OnPassed += OnPassed;
+            SpawnCheckPoint(currentType).OnPassed += OnPassed;
             ChunkEnvironmentType nextType = GetRandomType();
             _nextChunks.Add(SpawnInitial(nextType));
 
@@ -93,14 +93,14 @@ namespace Assets._Project.Systems.ChunkGeneration
 
                 if (_passedChunksCount >= _config.ChunksPassedBeforeDespawn && _isCheckPointPassed)
                 {
-                    SpawnCheckPoint();
+                    ChunkEnvironmentType nextType = GetRandomType();
+                    SpawnCheckPoint(nextType);
                     _passedChunksCount = 0;
                     _isCheckPointPassed = false;
                     Despawn(_currentChunks);
                     _currentChunks.Clear();
                     _currentChunks.AddRange(_nextChunks);
                     _nextChunks.Clear();
-                    ChunkEnvironmentType nextType = GetRandomType();
                     _nextChunks.Add(SpawnInitial(nextType));
 
                     for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
@@ -149,9 +149,15 @@ namespace Assets._Project.Systems.ChunkGeneration
             return chunk;
         }
 
-        private CheckPointChunk SpawnCheckPoint()
+        private CheckPointChunk SpawnCheckPoint(ChunkEnvironmentType type)
         {
-            CheckPointChunk checkPoint = (CheckPointChunk)Spawn(ChunkEnvironmentType.None, whithCollectables: false, withObstacles: false, isCheckpoint: true);
+            CheckPointChunk checkPoint = (CheckPointChunk)Spawn(
+                ChunkEnvironmentType.None, 
+                whithCollectables: false, 
+                withObstacles: false, 
+                isCheckpoint: true);
+
+            checkPoint.SetEnvironment(type);
             return checkPoint;
         }
 

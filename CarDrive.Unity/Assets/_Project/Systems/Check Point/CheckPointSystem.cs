@@ -3,7 +3,6 @@ using Assets._Project.Architecture.UI;
 using Assets._Project.GameStateControl;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collecting;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
