@@ -10,12 +10,14 @@ namespace Assets._Project.Entities.Obstacles
 
         public void SetRandomView()
         {
-            Array.ForEach(_viewVariants, view => view.SetActive(false));
+            if (_viewVariants == null)
+                return;
 
-            if (_viewVariants.Length > 0)
-            {
-                _viewVariants[UnityEngine.Random.Range(0, _viewVariants.Length)].SetActive(true);
-            }
+            if (_viewVariants.Length == 0)
+                return;
+
+            Array.ForEach(_viewVariants, view => view.SetActive(false));
+            _viewVariants[UnityEngine.Random.Range(0, _viewVariants.Length)].SetActive(true);
         }
     }
 }
