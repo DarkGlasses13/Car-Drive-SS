@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 8627461983621966641, guid: ea7b13746ca5e0c47aa05386d653a2ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.7
+      value: -6.36
       objectReference: {fileID: 0}
     - target: {fileID: 8627461983621966641, guid: ea7b13746ca5e0c47aa05386d653a2ea,
         type: 3}
@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 8627461983621966641, guid: ea7b13746ca5e0c47aa05386d653a2ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8627461983621966641, guid: ea7b13746ca5e0c47aa05386d653a2ea,
         type: 3}
@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 3140739782936557574, guid: 7d374b27dea4d1c4499122bc08a830fa,
         type: 3}
       propertyPath: m_Name
-      value: Chunk Japan v1.2
+      value: Chunk Japan v1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
