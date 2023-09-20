@@ -2,7 +2,6 @@
 using Assets._Project.GameStateControl;
 using Assets._Project.Systems.Collecting;
 using System.Collections.Generic;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Assets._Project.Systems.Tutorial
 {
