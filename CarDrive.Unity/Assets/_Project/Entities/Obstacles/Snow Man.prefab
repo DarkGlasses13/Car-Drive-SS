@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6793647027741719242}
   - component: {fileID: 5353445306144943623}
   - component: {fileID: 2571642009465110449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snow Man
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,5 +117,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.0473266, y: 8.299178, z: 4.81}
+  m_Size: {x: 3.79, y: 8.299178, z: 3.53}
   m_Center: {x: -0.023371344, y: 0.18210709, z: 0.08784916}

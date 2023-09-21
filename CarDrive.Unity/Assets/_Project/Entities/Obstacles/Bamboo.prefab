@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8627461983619933313}
   - component: {fileID: 4967318728752895386}
   - component: {fileID: 6573451309295035507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bamboo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.346239, y: 4.344662, z: 4.937294}
-  m_Center: {x: 0.0000009536743, y: 2.172331, z: 0.0000076293945}
+  m_Size: {x: 3.54, y: 2.98, z: 3.65}
+  m_Center: {x: 0.0000009536743, y: 1.38, z: 0.0000076293945}
 --- !u!114 &6573451309295035507
 MonoBehaviour:
   m_ObjectHideFlags: 0

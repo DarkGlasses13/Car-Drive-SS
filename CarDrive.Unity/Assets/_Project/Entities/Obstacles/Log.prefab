@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5140836254525726387}
   - component: {fileID: 6987715616947484612}
   - component: {fileID: 4324999909422516176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.295939, y: 1.3314899, z: 1.4406527}
-  m_Center: {x: -0.0021038055, y: 0.6507961, z: -0.1787371}
+  m_Size: {x: 5.295939, y: 2.08, z: 1.4406527}
+  m_Center: {x: -0.0021038055, y: 1.11, z: -0.1787371}
 --- !u!114 &4324999909422516176
 MonoBehaviour:
   m_ObjectHideFlags: 0
