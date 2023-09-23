@@ -88,7 +88,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 050a303dbd627d642a5898a01b197d6a
-    m_Address: Loot Box Price
+    m_Address: Loot Box Icon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

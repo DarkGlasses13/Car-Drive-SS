@@ -14,8 +14,8 @@ namespace Assets._Project.Systems.Shop
         private readonly Player _player;
 
         public ShopSystem(IInventory inventory, IItemDatabase database,
-            PriceTagButton buyButton, Money money, CollectablesConfig config,
-            UICounter lootBoxPrice, Player player)
+            PriceTagButton buyButton, Money money, CollectablesConfig config, 
+            Player player)
         {
             _inventory = inventory;
             _database = database;
@@ -23,7 +23,7 @@ namespace Assets._Project.Systems.Shop
             _money = money;
             _config = config;
             _player = player;
-            lootBoxPrice.Set(config.LootBoxPrice.ToString());
+            buyButton.SetPrice(config.LootBoxPrice);
         }
 
         public override void OnEnable()
