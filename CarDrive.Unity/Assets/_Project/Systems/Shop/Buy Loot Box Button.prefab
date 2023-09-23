@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a060fb3d96968c746b007ff8a9dfef33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: {fileID: 0}
+  _price: {fileID: 3398682728638822191}
   _dealSound: {fileID: 1047489098505119241}
   _failSound: {fileID: 180471746502407723}
 --- !u!114 &7414493989315708286
@@ -837,6 +837,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 050a303dbd627d642a5898a01b197d6a, type: 3}
+--- !u!114 &3398682728638822191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6506894374671514245, guid: 050a303dbd627d642a5898a01b197d6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8459917454650232234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7376031916166241385 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1385780374764097987, guid: 050a303dbd627d642a5898a01b197d6a,
