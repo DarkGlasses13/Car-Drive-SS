@@ -1,79 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &344175884024866081
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7437881279218435611}
-    m_Modifications:
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679470260427782668, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-        type: 3}
-      propertyPath: m_Name
-      value: Coin
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 87ef642fcbbb2d44181cb22e2a79da25, type: 3}
---- !u!4 &556186758398393029 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 248044104084250596, guid: 87ef642fcbbb2d44181cb22e2a79da25,
-    type: 3}
-  m_PrefabInstance: {fileID: 344175884024866081}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3461901765552154543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -370,22 +296,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
       insertIndex: 0
-      addedObject: {fileID: 556186758398393029}
-    - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
-        type: 3}
-      insertIndex: 1
       addedObject: {fileID: 8375103033416851644}
     - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
-      insertIndex: 2
+      insertIndex: 1
       addedObject: {fileID: 3709311999035504715}
     - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
-      insertIndex: 3
+      insertIndex: 2
       addedObject: {fileID: 7069574658349209711}
     - targetCorrespondingSourceObject: {fileID: 593598099357519357, guid: deb3304004a80a14cad814cf93c39b4f,
         type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 7454099405787494692}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb3304004a80a14cad814cf93c39b4f, type: 3}
