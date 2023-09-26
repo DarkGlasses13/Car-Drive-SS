@@ -113,15 +113,21 @@ namespace Assets._Project.Entities.Character
         public void Break()
         {
             _isBreaking = true;
-            _breakSound.Play();
+
+            if (_breakSound)
+                _breakSound.Play();
+
             _leftWheelTrailRenderer.emitting = true;
             _rightWheelTrailRenderer.emitting = true;
         }
 
         public void Fire()
         {
-            _leftFire.Play();
-            _rightFire.Play();
+            if (_leftFire)
+                _leftFire.Play();
+
+            if (_rightFire)
+                _rightFire.Play();
         }
 
         public void FireStop()
@@ -157,11 +163,19 @@ namespace Assets._Project.Entities.Character
         public void OnDie()
         {
             _engineSound.Stop();
-            _crashSound.Play();
+
+            if (_crashSound)
+                _crashSound.Play();
+
             EndBreak();
             FireStop();
-            _explosionParticle.Play();
-            _smokeParticle.Play();
+
+            if (_explosionParticle)
+                _explosionParticle.Play();
+
+            if (_smokeParticle)
+                _smokeParticle.Play();
+
             _rigidbody.isKinematic = false;
             _moveTween?.Kill();
             _rigidbody.AddForce(Vector3.up * 10000, ForceMode.Impulse);
@@ -171,12 +185,17 @@ namespace Assets._Project.Entities.Character
         public void OnCrash()
         {
             _engineSound.Stop();
-            _crashSound.Play();
+
+            if (_crashSound)
+                _crashSound.Play();
+
             EndBreak();
             FireStop();
             _moveTween?.Kill();
             transform.DOPunchScale(Vector3.one * 2, 0.25f).Play().SetAutoKill(true);
-            _crashParticle.Play();
+
+            if (_crashParticle)
+                _crashParticle.Play();
         }
 
         public void OnMoneyLose()
@@ -186,16 +205,23 @@ namespace Assets._Project.Entities.Character
 
         public void OnRestore()
         {
-            _engineSound.Play();
-            _repairSound.Play();
+            if (_engineSound)
+                _engineSound.Play();
+
+            if (_repairSound)
+                _repairSound.Play();
+
             _rigidbody.isKinematic = true;
             _smokeParticle.Stop();
         }
 
         public void OnCollect()
         {
-            _collectSound.Play();
-            _collectParticle.Play();
+            if (_collectSound && _collectSound.enabled)
+                _collectSound.Play();
+
+            if (_collectParticle)
+                _collectParticle.Play();
         }
 
         public void ShowAura()

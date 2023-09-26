@@ -180,8 +180,8 @@ MonoBehaviour:
   - {fileID: 7516446363427214798}
   - {fileID: 7913780080343942309}
   _waypoints: []
-  _detectionDistance: 0
-  _duration: 0
+  _detectionDistance: 100
+  _duration: 2
   _engineSound: {fileID: 5164751486777008055}
 --- !u!1 &4771485624120009931
 GameObject:
