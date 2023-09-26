@@ -51,8 +51,8 @@ namespace Assets._Project.Systems.Tutorial
             Vector2 position = _lootBoxBuyButton.Button.targetGraphic.rectTransform.position;
             Vector2 size = _lootBoxBuyButton.Button.targetGraphic.rectTransform.rect.size;
             _lootBoxBuyButton.Button.onClick.AddListener(OnBuyButtonClicked);
-            _finger.gameObject.SetActive(true);
             _finger.rectTransform.position = _lootBoxBuyButton.transform.position;
+            _finger.gameObject.SetActive(true);
             _fingerShakeTween = _finger.rectTransform
                 .DOShakeScale(1, 0.5f, 5, 0)
                 .SetLoops(-1)
