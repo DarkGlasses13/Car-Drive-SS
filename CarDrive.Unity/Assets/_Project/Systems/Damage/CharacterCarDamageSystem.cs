@@ -100,6 +100,7 @@ namespace Assets._Project.Systems.Damage
                 _damageable.OnMoneyLose();
 
             yield return new WaitForSeconds(1);
+            _levelMusic.Play();
             _drivingSystem.Enable();
             _damageable.ShowAura();
             yield return new WaitForSeconds(_config.ImpregnabilityTime);
