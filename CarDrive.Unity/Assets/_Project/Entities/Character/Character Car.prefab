@@ -3293,6 +3293,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4596712645984719339}
     m_Modifications:
+    - target: {fileID: 3696007233179127046, guid: c248f95ffea8b8543bc7ad0fffe0216d,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3696007233179127047, guid: c248f95ffea8b8543bc7ad0fffe0216d,
         type: 3}
       propertyPath: playOnAwake
@@ -3438,7 +3443,8 @@ PrefabInstance:
       propertyPath: clearBehavior
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4988679831145923249, guid: c248f95ffea8b8543bc7ad0fffe0216d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
