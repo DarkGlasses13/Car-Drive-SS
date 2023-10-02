@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c151705efef5748b9a8ff640aafdf0, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  GameAnalytics: 0
+  GameAnalytics: 1
   gameAnalyticsIosGameKey: 
   gameAnalyticsIosSecretKey: 
   gameAnalyticsAndroidGameKey: 
   gameAnalyticsAndroidSecretKey: 
-  Facebook: 0
+  Facebook: 1
   facebookAppId: 
   facebookClientId: 
   StudioLogo: 0
