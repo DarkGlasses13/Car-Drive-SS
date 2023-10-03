@@ -15,8 +15,8 @@ MonoBehaviour:
   GameAnalytics: 1
   gameAnalyticsIosGameKey: 
   gameAnalyticsIosSecretKey: 
-  gameAnalyticsAndroidGameKey: 
-  gameAnalyticsAndroidSecretKey: 
+  gameAnalyticsAndroidGameKey: d34d1b22ff02eb28eabb417b0a477575
+  gameAnalyticsAndroidSecretKey: b36883a21d442ff9514f87cbc93ec14a7a3e5f8b
   Facebook: 1
   facebookAppId: 
   facebookClientId: 
