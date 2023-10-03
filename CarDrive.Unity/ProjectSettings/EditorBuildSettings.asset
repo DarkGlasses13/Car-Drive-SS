@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Low Poly Combo Pack/Scenes/MoonSDKScene.unity
+    guid: d000346570aa29644a23227aa0d21329
+  - enabled: 1
+    path: Assets/_Project/Scenes/Boot.unity
+    guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ddf3ec4bf00c4524a863a6b9539d9ff8,
       type: 2}

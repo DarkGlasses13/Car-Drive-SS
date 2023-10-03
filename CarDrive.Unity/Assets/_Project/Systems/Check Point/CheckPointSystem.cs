@@ -65,6 +65,7 @@ namespace Assets._Project.Systems.CheckPoint
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
         {
+            MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Complete, _player.Level);
             _player.Level++;
             _gameState.Switch(GameStates.Finish);
             _uiMoneyCounter.transform.SetParent(_popup.BalanceAndPlayButtonSection);

@@ -46,6 +46,7 @@ namespace Assets._Project.Systems.Progress
         {
             _bar.CurrentLevel = _player.Level;
             _bar.NextLevel = _player.Level + 1;
+            MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
             _totalDistance = Vector3.Distance(_checkPoint.transform.position, _characterTransform.position);
             _bar.gameObject.SetActive(true);
             _barCanvasGroup.DOFade(1, 0.25f).Play().SetAutoKill(true);
