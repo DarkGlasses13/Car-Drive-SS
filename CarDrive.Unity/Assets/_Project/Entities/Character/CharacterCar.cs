@@ -16,7 +16,9 @@ namespace Assets._Project.Entities.Character
             _smokeParticle,
             _windParticle,
             _leftFire,
+            _leftSmoke,
             _rightFire,
+            _rightSmoke,
             _impregnabilityAura,
             _collectParticle,
             _moneyLoseParticle,
@@ -125,15 +127,22 @@ namespace Assets._Project.Entities.Character
         {
             if (_leftFire)
                 _leftFire.Play();
+            if (_leftSmoke) 
+                _leftSmoke.Play();
 
             if (_rightFire)
                 _rightFire.Play();
+
+            if (_rightSmoke) 
+                _rightSmoke.Play();
         }
 
         public void FireStop()
         {
             _leftFire.Stop();
+            _leftSmoke.Stop();
             _rightFire.Stop();
+            _rightSmoke.Stop();
         }
 
         public void Accelerate(float acceleration)

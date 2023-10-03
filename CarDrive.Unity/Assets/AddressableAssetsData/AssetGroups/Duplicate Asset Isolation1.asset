@@ -89,12 +89,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2108d8603f3bd8a4889e438479b3fd2d
-    m_Address: Assets/LiquidFire Package 4 - BSH games/Devtoid - Gold Coins/3D Assets/Gold
-      Coin - Single/Materials/Gold Coin - Single.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 900acfa037f7a0242b5afdeea8ff53bc
     m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr fire
       circle plain hdr ab.mat
@@ -234,12 +228,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22dd7259ccc241b4485d6540627942a1
     m_Address: Assets/Low poly cartoon city/Models/Roads/Roads_1/Road_1_310.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5f9ee1799e7f21548ba0dd65ac83ea7f
-    m_Address: Assets/LiquidFire Package 4 - BSH games/Devtoid - Gold Coins/3D Assets/Gold
-      Coin - Single/Mesh/GoldCoin.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -454,12 +442,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf08aeb1da73b6142be2a02582dcf194
-    m_Address: Assets/LiquidFire Package 4 - BSH games/Devtoid - Gold Coins/3D Assets/Gold
-      Coins/Textures/GoldCoins_AlbedoTransparency.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74db0952acdd7ba488d3d0b114954504
     m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr uv
       distortion fire smudge.png
@@ -538,6 +520,33 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 108c3f9e07ae25f448c41e0a23bb48fc
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Medium Coin.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13c9ec03c36c76f4d814c9e33d09c3bc
+    m_Address: Assets/VFX_Klaus/Materials/Mat_fx_GrabThatCoin_Set01.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fca7fd76b1a04f348b863d94830daee6
+    m_Address: Assets/VFX_Klaus/Materials/Mat_fx_GrabThatSeries_Particle.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b8ee6c2bc63e904a9c093e5781ef20b
+    m_Address: Assets/TinyFire VFX/Materials/sphereAlphaMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c9d6983f275678479ebf019a670f9cf
+    m_Address: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Misc/CFX2_WhiteCircle
+      AB.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9f8ab332ba6f4a45bd1913a9ff33b10
+    m_Address: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Light/CFX3_SmallRay
+      ADDSOFT.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
