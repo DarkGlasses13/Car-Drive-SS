@@ -72,26 +72,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7840d900dc0a4ed4dbcd26e23f064dd8
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr smoke
-      cloud x4 ab.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbfa9d0037628bc47bd0eed4292be3dd
     m_Address: Assets/_Project/Systems/Check Point/trunk.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a16809106044f5b41b7cbe1d711a1c98
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch
-      smoke fume blur ab.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 900acfa037f7a0242b5afdeea8ff53bc
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr fire
-      circle plain hdr ab.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -102,11 +84,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e786861ec161fd49a8baa937a66b609
     m_Address: Assets/MuscleCarPack/Materials/Leather.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7e3ff0d2def0b2a4d88ba94ab7c3e683
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr hidden.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -167,12 +144,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 56b6dd5d8ff60834da3a8064c9a7439d
     m_Address: Assets/Cartoon Buildings/Materals/Material_Emission.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6cd2d08f4a4d93542aa0004bdac91566
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr ember
-      blur hdr ab.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -431,20 +402,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4a4bd2804b2d1ff46ab18baabfc526da
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr smoke
-      cloud x4.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d8eb81a13dab50d439088a9d36c6cc6b
     m_Address: Assets/Cartoon Buildings/Texture/Tex_color.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 74db0952acdd7ba488d3d0b114954504
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr uv
-      distortion fire smudge.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -458,12 +417,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b3844cb7852127d4e9b11bf32b43ceda
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch
-      smoke fume.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: beaff2d80f886c04bbee441e52b721a4
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Square02.png
     m_ReadOnly: 0
@@ -474,37 +427,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0855038b7bf8ecc4eb77dc56090675cd
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr fire
-      circle plain.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 209460ccb2aaaf847a61d7e73c92f193
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr ember
-      blur.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd88335d1175cb84bb77f61fd659d0eb
     m_Address: Assets/_Project/Systems/Collectables/rotate.anim
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e198026df304af84a85675be636192ea
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Shaders/CFXR Particle
-      Ubershader.shader
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
     m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c1819aef53deedf40af80257ccb5b1a8
-    m_Address: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr smoke
-      cloud x4 dissolve.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -539,14 +468,22 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c9d6983f275678479ebf019a670f9cf
-    m_Address: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Misc/CFX2_WhiteCircle
-      AB.mat
+    m_Address: Assets/_Project/Materials/CFX2_WhiteCircle AB.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9f8ab332ba6f4a45bd1913a9ff33b10
-    m_Address: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Light/CFX3_SmallRay
-      ADDSOFT.mat
+    m_Address: Assets/_Project/Materials/CFX3_SmallRay ADDSOFT.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0659a2faaee9f7442a45c7ec908dabcb
+    m_Address: Assets/_Project/Materials/CFX3_T_SmallRay.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b11eec997e4c3044a59e4a2ff710b4e
+    m_Address: Assets/_Project/Materials/CFX_T_WhiteCircleSmall.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
