@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 809383aaf0ed8ee7a2a1a34772ecd2f3
   appIds:
-  - 123456
+  - 3387523058224359
   appLabels:
-  - 
+  - 'Pitstop Puzzler: Race & Merge'
   cookie: 1
   logging: 1
   status: 1
