@@ -24,6 +24,8 @@ namespace Assets._Project.Systems.Tutorial
         private readonly Runner _runner;
         private Tweener _fingerShakeTween;
         private TweenerCore<Vector3, Vector3, VectorOptions> _fingerSwapTween;
+        private Transform _fingerParent = null;
+        private Vector3 _fingerLocalPosition;
 
         public MergeState(ITutorialSystem system, Money money, CollectablesConfig collectablesConfig,
             InventorySystem inventorySystem, ShopSystem shopSystem, PriceTagButton lootBoxBuyButton,
@@ -51,7 +53,11 @@ namespace Assets._Project.Systems.Tutorial
             Vector2 position = _lootBoxBuyButton.Button.targetGraphic.rectTransform.position;
             Vector2 size = _lootBoxBuyButton.Button.targetGraphic.rectTransform.rect.size;
             _lootBoxBuyButton.Button.onClick.AddListener(OnBuyButtonClicked);
-            _finger.rectTransform.position = _lootBoxBuyButton.Button.targetGraphic.rectTransform.position;
+            // _finger.rectTransform.position = _lootBoxBuyButton.Button.targetGraphic.rectTransform.position;
+            _fingerParent = _finger.transform.parent;
+            _finger.transform.parent = _lootBoxBuyButton.transform;
+            _fingerLocalPosition = _finger.transform.localPosition;
+            _finger.transform.localPosition = Vector3.zero;
             _finger.gameObject.SetActive(true);
             _fingerShakeTween = _finger.rectTransform
                 .DOShakeScale(1, 0.5f, 5, 0)
@@ -64,6 +70,8 @@ namespace Assets._Project.Systems.Tutorial
             _lootBoxBuyButton.Button.onClick.RemoveListener(OnBuyButtonClicked);
             _fingerShakeTween?.Pause();
             _inventorySystem.Add("it_Egn_1", "it_Egn_1");
+            _finger.transform.parent = _fingerParent;
+            _finger.transform.localPosition = _fingerLocalPosition;
             _finger.rectTransform.position = _uiInventory.GetFirstSlotPosition();
             _finger.transform.localScale = Vector2.one;
             _fingerSwapTween = _finger.rectTransform
