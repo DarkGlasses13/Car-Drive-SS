@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
     dependencies {
         **BUILD_SCRIPT_DEPS**
     }

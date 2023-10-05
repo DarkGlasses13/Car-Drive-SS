@@ -18,7 +18,7 @@ MonoBehaviour:
   appIds:
   - 3387523058224359
   appLabels:
-  - 'Pitstop Puzzler: Race & Merge'
+  - PitstopPuzzler
   cookie: 1
   logging: 1
   status: 1
