@@ -34,7 +34,7 @@ namespace Assets._Project
             DontDestroyOnLoad(_container);
             DontDestroyOnLoad(coroutiner);
             LocalAssetLoader assetLoader = new();
-            Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", null);
+            Camera playerCamera = await assetLoader.LoadAndInstantiateAsync<Camera>("Player Camera", parent: null);
             IItemDatabase itemDatabase = await assetLoader.Load<ItemDatabase>("Item Database");
             _player = new(itemDatabase);
             _defaultData = _player.GetSave();
