@@ -55,7 +55,7 @@ namespace Assets._Project.Systems.Tutorial
             _lootBoxBuyButton.Button.onClick.AddListener(OnBuyButtonClicked);
             // _finger.rectTransform.position = _lootBoxBuyButton.Button.targetGraphic.rectTransform.position;
             _fingerParent = _finger.transform.parent;
-            _finger.transform.parent = _lootBoxBuyButton.transform;
+            _finger.transform.SetParent(_lootBoxBuyButton.transform);
             _fingerLocalPosition = _finger.transform.localPosition;
             _finger.transform.localPosition = Vector3.zero;
             _finger.gameObject.SetActive(true);
@@ -70,7 +70,7 @@ namespace Assets._Project.Systems.Tutorial
             _lootBoxBuyButton.Button.onClick.RemoveListener(OnBuyButtonClicked);
             _fingerShakeTween?.Pause();
             _inventorySystem.Add("it_Egn_1", "it_Egn_1");
-            _finger.transform.parent = _fingerParent;
+            _finger.transform.SetParent(_fingerParent);
             _finger.transform.localPosition = _fingerLocalPosition;
             _finger.rectTransform.position = _uiInventory.GetFirstSlotPosition();
             _finger.transform.localScale = Vector2.one;

@@ -1,6 +1,9 @@
 using Assets._Project.Architecture;
 using Assets._Project.Systems.CheckPoint;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Assets._Project.Systems.Collecting
 {
@@ -43,7 +46,20 @@ namespace Assets._Project.Systems.Collecting
 
         private void OnLootBoxOpened(int slot)
         {
-            _inventory.Swap(slot, _database.GetRandom(1));
+            int mergeLevel = 1;
+            int minEquipmentMergeLevel = 1;
+            int minItemsMergeLevel = 1;
+            IEnumerable<IItem> equipment = _inventory.Equipment.Where(item => item != null);
+            IEnumerable<IItem> items = _inventory.Items.Where(item => item != null);
+
+            if (equipment.Count() > 0)
+                minEquipmentMergeLevel = equipment.Min(item => item.MergeLevel);
+
+            if (items.Count() > 0)
+                minItemsMergeLevel = items.Min(item => item.MergeLevel);
+
+            mergeLevel = Mathf.Min(minEquipmentMergeLevel, minItemsMergeLevel);
+            _inventory.Swap(slot, _database.GetRandom(mergeLevel));
         }
 
         private void OnSwap(UISlot from, UISlot to)

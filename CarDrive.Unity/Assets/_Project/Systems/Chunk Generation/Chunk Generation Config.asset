@@ -17,4 +17,4 @@ MonoBehaviour:
   <IsObstaclesEnabled>k__BackingField: 1
   <GeneralObstacleDensity>k__BackingField: 0.8
   <IsMoneyEnabled>k__BackingField: 1
-  <MoneyDensity>k__BackingField: 0.5
+  <MoneyDensity>k__BackingField: 1
