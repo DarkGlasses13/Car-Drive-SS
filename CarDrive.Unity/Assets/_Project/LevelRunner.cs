@@ -89,7 +89,7 @@ namespace Assets._Project
             _characterCar.gameObject.SetActive(false);
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
-            ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
+            ChunkGenerationSystem chunkGenerationSystem = new(_coroutiner, assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
                 _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
 

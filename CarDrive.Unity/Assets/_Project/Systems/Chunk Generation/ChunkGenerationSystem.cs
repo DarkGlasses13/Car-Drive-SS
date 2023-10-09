@@ -2,6 +2,7 @@ using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         private readonly ChunkGenerationConfig _config;
         private readonly Transform _container;
+        private readonly Coroutiner _coroutiner;
         private readonly LocalAssetLoader _assetLoader;
         private List<Chunk> _prefabs;
         private List<Chunk> _pool = new();
@@ -25,9 +27,10 @@ namespace Assets._Project.Systems.ChunkGeneration
         private int _passedChunksCount;
         private List<Chunk> _currentChunks = new(), _nextChunks = new();
 
-        public ChunkGenerationSystem(LocalAssetLoader assetLoader, ChunkGenerationConfig config,
+        public ChunkGenerationSystem(Coroutiner coroutiner, LocalAssetLoader assetLoader, ChunkGenerationConfig config,
             Transform container, CheckPointChunk checkPoint, GameState gameState)
         {
+            _coroutiner = coroutiner;
             _assetLoader = assetLoader;
             _config = config;
             _container = container;
@@ -44,28 +47,46 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public override void OnEnable()
         {
-            SpawnLocation();
+            _coroutiner.StartCoroutine(SpawnLocationRoutine());
         }
 
-        private void SpawnLocation()
+        private IEnumerator SpawnLocationRoutine()
         {
             ChunkEnvironmentType currentType = GetRandomType();
             _currentChunks.Add(SpawnInitial(currentType));
+            int count = 0;
 
             for (int i = 1; i < _config.ChunksBetweenCheckPoints; i++)
             {
+                if (count > 3)
+                {
+                    count = 0;
+                    yield return null;
+                }
+
                 _currentChunks.Add(SpawnRandom(currentType));
+                count++;
             }
 
             SpawnCheckPoint(currentType).OnPassed += OnPassed;
             ChunkEnvironmentType nextType = GetRandomType();
             _nextChunks.Add(SpawnInitial(nextType));
+            count = 0;
 
             for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
             {
+                if (count > 3)
+                {
+                    count = 0;
+                    yield return null;
+                }
+
                 _nextChunks.Add(SpawnRandom(nextType));
+                count++;
             }
         }
+
+        private void OnPassed(Chunk chunk) => _coroutiner.StartCoroutine(OnPassedRoutine(chunk));
 
         private Chunk SpawnInitial(ChunkEnvironmentType environmentType) => Spawn(environmentType, whithCollectables: false, withObstacles: false);
 
@@ -77,10 +98,10 @@ namespace Assets._Project.Systems.ChunkGeneration
             return instance;
         }
 
-        private void OnPassed(Chunk chunk)
+        private IEnumerator OnPassedRoutine(Chunk chunk)
         {
             if (_gameState.Current == GameStates.Finish)
-                return;
+                yield break;
 
             if (chunk is CheckPointChunk)
             {
@@ -106,6 +127,7 @@ namespace Assets._Project.Systems.ChunkGeneration
                     for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
                     {
                         _nextChunks.Add(SpawnRandom(nextType));
+                        yield return null;
                     }
                 }
             }
