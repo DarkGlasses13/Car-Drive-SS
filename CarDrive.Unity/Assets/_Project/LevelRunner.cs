@@ -93,7 +93,6 @@ namespace Assets._Project
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
                 _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
 
-            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner, drivingSystem, _money, _leveMusic);
             CollectablesConfig collectablesConfig = projectContainer.Get<CollectablesConfig>();
             UICounter uiMoneyCounter = await assetLoader.LoadAndInstantiateAsync<UICounter>("UI Money Counter", _hudContainer);
             ProgressBar progressBar = await assetLoader.LoadAndInstantiateAsync<ProgressBar>("Progress Bar", _hudContainer);
@@ -106,6 +105,7 @@ namespace Assets._Project
             PriceTagButton lootBoxBuyButton = await assetLoader
                 .LoadAndInstantiateAsync<PriceTagButton>("Buy Loot Box Button", checkPointPopup.OtherSection);
             _inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount, _player.Equipment, _player.Items);
+            CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner, drivingSystem, _money, _leveMusic, _inventory);
             RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, _inventory, _player, _money);
             CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
                 checkPointPopup, uiMoneyCounter, playButton, _money, _leveMusic, _player);

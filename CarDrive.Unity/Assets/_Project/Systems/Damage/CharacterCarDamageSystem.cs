@@ -5,6 +5,8 @@ using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Driving;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ namespace Assets._Project.Systems.Damage
         private readonly DrivingSystem _drivingSystem;
         private readonly Money _money;
         private readonly AudioSource _levelMusic;
+        private readonly Inventory _inventory;
         private CharacterCarDamageConfig _config;
         private readonly Collider[] _hits = new Collider[5];
         private int _lives;
@@ -26,7 +29,7 @@ namespace Assets._Project.Systems.Damage
 
         public CharacterCarDamageSystem(LocalAssetLoader assetLoader, GameState gameState,
             IDamageable damageable, Coroutiner coroutiner, DrivingSystem drivingSystem,
-            Money money, AudioSource levelMusic)
+            Money money, AudioSource levelMusic, Inventory inventory)
         {
             _assetLoader = assetLoader;
             _gameState = gameState;
@@ -35,6 +38,7 @@ namespace Assets._Project.Systems.Damage
             _drivingSystem = drivingSystem;
             _money = money;
             _levelMusic = levelMusic;
+            _inventory = inventory;
         }
 
         public override async Task InitializeAsync()
@@ -95,8 +99,12 @@ namespace Assets._Project.Systems.Damage
             _levelMusic.Pause();
             _drivingSystem.Disable();
             _damageable.OnCrash();
+            int minEquipmentLevel = 1;
+            IEnumerable<IItem> equipment = _inventory.Equipment.Where(item => item != null);
+            if (equipment?.Count() > 0)
+                minEquipmentLevel = equipment.Min(item => item.MergeLevel);
 
-            if (_money.TrySpend(_config.CrashPrice))
+            if (_money.TrySpend(_config.CrashPrice * minEquipmentLevel))
                 _damageable.OnMoneyLose();
 
             yield return new WaitForSeconds(1);
