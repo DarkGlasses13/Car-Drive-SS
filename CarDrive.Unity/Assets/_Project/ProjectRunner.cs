@@ -27,6 +27,7 @@ namespace Assets._Project
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
+            OnLogoAssetLoader onLogoAssetLoader = FindObjectOfType<OnLogoAssetLoader>();
             Application.targetFrameRate = 90;
             _container = new GameObject("Project DI Container").AddComponent<DIContainer>();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
@@ -46,6 +47,7 @@ namespace Assets._Project
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
             _collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
+            _container.Bind(onLogoAssetLoader.ChunksLoader);
             _container.Bind(_storage);
             _container.Bind(playerCamera);
             _container.Bind(_loadingScreen);

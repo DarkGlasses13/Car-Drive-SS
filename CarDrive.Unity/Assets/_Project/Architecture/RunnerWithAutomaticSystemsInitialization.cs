@@ -1,4 +1,6 @@
-﻿namespace Assets._Project.Architecture
+﻿using UnityEngine;
+
+namespace Assets._Project.Architecture
 {
     public abstract class RunnerWithAutomaticSystemsInitialization : Runner
     {
@@ -10,6 +12,7 @@
             {
                 await system.InitializeAsync();
                 system.Initialize();
+                Debug.Log(system + "was initialized");
                 system.Enable();
             }
 

@@ -1,6 +1,7 @@
 using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
+using Assets._Project.Systems.Chunk_Generation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         private readonly ChunkGenerationConfig _config;
         private readonly Transform _container;
+        private readonly ChunksLoader _chunksLoader;
         private readonly Coroutiner _coroutiner;
-        private readonly LocalAssetLoader _assetLoader;
         private List<Chunk> _prefabs;
         private List<Chunk> _pool = new();
         private Chunk _last;
@@ -27,11 +28,11 @@ namespace Assets._Project.Systems.ChunkGeneration
         private int _passedChunksCount;
         private List<Chunk> _currentChunks = new(), _nextChunks = new();
 
-        public ChunkGenerationSystem(Coroutiner coroutiner, LocalAssetLoader assetLoader, ChunkGenerationConfig config,
+        public ChunkGenerationSystem(ChunksLoader chunksLoader, Coroutiner coroutiner, ChunkGenerationConfig config,
             Transform container, CheckPointChunk checkPoint, GameState gameState)
         {
+            _chunksLoader = chunksLoader;
             _coroutiner = coroutiner;
-            _assetLoader = assetLoader;
             _config = config;
             _container = container;
             _checkPoint = checkPoint;
@@ -41,8 +42,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public override async Task InitializeAsync()
         {
-            IList<GameObject> emptyPrefabs = await _assetLoader.LoadAll<GameObject>("In Game Chunk", OnPrefabLoaded);
-            _prefabs = new(emptyPrefabs.Select(chunk => chunk.GetComponent<Chunk>()));
+            _prefabs = new(await _chunksLoader.LoadAsync());
         }
 
         public override void OnEnable()

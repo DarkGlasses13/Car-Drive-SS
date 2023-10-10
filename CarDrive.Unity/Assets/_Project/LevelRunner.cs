@@ -8,6 +8,7 @@ using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.SceneChange;
 using Assets._Project.Systems.CheckPoint;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collectables;
 using Assets._Project.Systems.Collecting;
@@ -89,7 +90,9 @@ namespace Assets._Project
             _characterCar.gameObject.SetActive(false);
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
             CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
-            ChunkGenerationSystem chunkGenerationSystem = new(_coroutiner, assetLoader, chunkGenerationConfig, _chunksContainer, checkPoint, _gameState);
+            ChunkGenerationSystem chunkGenerationSystem = new(projectContainer.Get<ChunksLoader>(), _coroutiner, chunkGenerationConfig,
+                _chunksContainer, checkPoint, _gameState);
+
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
                 _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
 
