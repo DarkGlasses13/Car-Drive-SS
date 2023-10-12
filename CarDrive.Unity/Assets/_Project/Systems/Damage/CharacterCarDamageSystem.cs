@@ -1,6 +1,7 @@
 using Assets._Project.Architecture;
 using Assets._Project.GameStateControl;
 using Assets._Project.Helpers;
+using Assets._Project.Systems.Collectables;
 using Assets._Project.Systems.Collecting;
 using Assets._Project.Systems.Driving;
 using System;
@@ -79,17 +80,21 @@ namespace Assets._Project.Systems.Damage
         {
             if (_gameState.Current == GameStates.Run)
             {
-                _lives--;
-                _lives = Mathf.Clamp(_lives, 0, _config.MaxLives);
+                int minEquipmentLevel = 1;
+                IEnumerable<IItem> equipment = _inventory.Equipment.Where(item => item != null);
 
-                if (_lives <= 0)
+                if (equipment?.Count() > 0)
+                    minEquipmentLevel = equipment.Min(item => item.MergeLevel);
+
+                if (_money.TrySpend(_config.CrashPrice * minEquipmentLevel))
                 {
-                    _gameState.Switch(GameStates.Lose);
-                    _damageable.OnDie();
+                    _damageable.OnMoneyLose();
+                    _coroutiner.StartCoroutine(TakeDamageRoutine());
                 }
                 else
                 {
-                    _coroutiner.StartCoroutine(TakeDamageRoutine());
+                    _gameState.Switch(GameStates.Lose);
+                    _damageable.OnDie();
                 }
             }
         }
@@ -99,14 +104,6 @@ namespace Assets._Project.Systems.Damage
             _levelMusic.Pause();
             _drivingSystem.Disable();
             _damageable.OnCrash();
-            int minEquipmentLevel = 1;
-            IEnumerable<IItem> equipment = _inventory.Equipment.Where(item => item != null);
-            if (equipment?.Count() > 0)
-                minEquipmentLevel = equipment.Min(item => item.MergeLevel);
-
-            if (_money.TrySpend(_config.CrashPrice * minEquipmentLevel))
-                _damageable.OnMoneyLose();
-
             yield return new WaitForSeconds(1);
             _levelMusic.Play();
             _drivingSystem.Enable();
