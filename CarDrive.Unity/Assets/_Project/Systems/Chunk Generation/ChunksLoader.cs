@@ -15,7 +15,12 @@ namespace Assets._Project.Systems.Chunk_Generation
 
         public void Load()
         {
-            _loading = Addressables.LoadAssetsAsync<GameObject>("In Game Chunk", null);
+            _loading = Addressables.LoadAssetsAsync<GameObject>("In Game Chunk", OnLoaded);
+        }
+
+        private void OnLoaded(GameObject @object)
+        {
+            Debug.Log(@object.name + "was loaded");
         }
 
         public async Task<IEnumerable<Chunk>> GetAsync()
