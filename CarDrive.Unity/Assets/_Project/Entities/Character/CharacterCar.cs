@@ -162,8 +162,8 @@ namespace Assets._Project.Entities.Character
             if (_windParticle)
             {
                 ParticleSystem.MainModule windParticle = _windParticle.main;
-                // windParticle.maxParticles = (int)(acceleration * 50);
-                windParticle.simulationSpeed = acceleration * 5;
+                windParticle.maxParticles = (int)(acceleration * 50);
+                windParticle.simulationSpeed = acceleration * 4;
             }
 
             transform.position += transform.forward * acceleration;
