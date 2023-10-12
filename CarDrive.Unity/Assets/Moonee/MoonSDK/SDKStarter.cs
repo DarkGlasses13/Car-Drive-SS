@@ -1,3 +1,4 @@
+using Assets._Project;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +9,18 @@ namespace Moonee.MoonSDK
     {
         [SerializeField] private GameObject moonSDK;
         [SerializeField] private GameObject intro;
+        [SerializeField] private OnLogoAssetLoader _assetLoader;
 
         private AsyncOperation asyncOperation;
 
         private void Start()
         {
             intro.gameObject.SetActive(false);
-
+            _assetLoader.Initialize();
+            DontDestroyOnLoad(_assetLoader);
+            _assetLoader.ChunksLoader.Load();
             asyncOperation = SceneManager.LoadSceneAsync(1);
             asyncOperation.allowSceneActivation = false;
-
             StartCoroutine(Starter());
         }
         private void InitializeMoonSDK()

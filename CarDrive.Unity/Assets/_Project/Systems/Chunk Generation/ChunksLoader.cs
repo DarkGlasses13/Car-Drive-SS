@@ -13,19 +13,18 @@ namespace Assets._Project.Systems.Chunk_Generation
         private List<Chunk> _chunks;
         private AsyncOperationHandle<IList<GameObject>> _loading;
 
-        public async Task<IEnumerable<Chunk>> LoadAsync()
+        public void Load()
         {
-            if (_chunks == null)
-            {
-                if (_loading.Equals(default))
-                {
-                    _loading = Addressables.LoadAssetsAsync<GameObject>("In Game Chunk", null);
-                }
+            _loading = Addressables.LoadAssetsAsync<GameObject>("In Game Chunk", null);
+        }
 
-                await _loading.Task;
-                _chunks = new(_loading.Result.Select(chunk => chunk.GetComponent<Chunk>()));
-            }
+        public async Task<IEnumerable<Chunk>> GetAsync()
+        {
+            if (_loading.Equals(default))
+                return null;
 
+            await _loading.Task;
+            _chunks = new(_loading.Result.Select(chunk => chunk.GetComponent<Chunk>()));
             return _chunks.AsEnumerable();
         }
     }

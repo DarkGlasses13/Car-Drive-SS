@@ -42,7 +42,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         public override async Task InitializeAsync()
         {
-            _prefabs = new(await _chunksLoader.LoadAsync());
+            _prefabs = new(await _chunksLoader.GetAsync());
         }
 
         public override void OnEnable()

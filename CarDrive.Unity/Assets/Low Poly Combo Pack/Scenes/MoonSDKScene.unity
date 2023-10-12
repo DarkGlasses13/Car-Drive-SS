@@ -1157,6 +1157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moonSDK: {fileID: 633987594}
   intro: {fileID: 1270419900}
+  _assetLoader: {fileID: 83721162}
 --- !u!4 &1682979914
 Transform:
   m_ObjectHideFlags: 0

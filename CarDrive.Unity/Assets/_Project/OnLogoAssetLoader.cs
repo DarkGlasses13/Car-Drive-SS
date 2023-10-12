@@ -7,15 +7,10 @@ namespace Assets._Project
     {
         public ChunksLoader ChunksLoader {  get; private set; }
 
-        private void Awake()
+        public void Initialize()
         {
             DontDestroyOnLoad(this);
             ChunksLoader = new ChunksLoader();
-        }
-
-        private async void Start()
-        {
-            await ChunksLoader.LoadAsync();
         }
     }
 }
