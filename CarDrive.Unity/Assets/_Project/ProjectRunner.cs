@@ -9,7 +9,9 @@ using Assets._Project.SceneChange;
 using Assets._Project.Systems.Collecting;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace Assets._Project
 {
@@ -40,8 +42,7 @@ namespace Assets._Project
             _player = new(itemDatabase);
             _defaultData = _player.GetSave();
             DontDestroyOnLoad(playerCamera);
-            _loadingScreen = await assetLoader.LoadAndInstantiateAsync<LoadingScreen>("Loading Screen", null);
-            DontDestroyOnLoad(_loadingScreen);
+            _loadingScreen = FindAnyObjectByType<LoadingScreen>();
             playerCamera.GetComponent<UniversalAdditionalCameraData>().cameraStack.Add(_loadingScreen.Camera);
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
@@ -75,7 +76,7 @@ namespace Assets._Project
         {
             _player.Update(JsonUtility.FromJson<PlayerSave>(save));
             _container.Bind(new Money(_collectablesConfig, _player.Money));
-            _sceneChanger.Change("Level");
+            Addressables.LoadSceneAsync("Level", LoadSceneMode.Additive);
         }
 
         private void OnApplicationPause(bool pause)

@@ -1,4 +1,6 @@
 using Assets._Project;
+using Assets._Project.Architecture.UI;
+using Assets._Project.Helpers;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,19 +25,22 @@ namespace Moonee.MoonSDK
             asyncOperation.allowSceneActivation = false;
             StartCoroutine(Starter());
         }
+
+        private IEnumerator Starter()
+        {
+            intro.SetActive(true);
+            yield return new WaitForSeconds(4f);
+            LocalAssetLoader assetLoader = new();
+            yield return assetLoader.LoadAndInstantiateAsync<LoadingScreen>("Loading Screen", null);
+            //DontDestroyOnLoad(FindAnyObjectByType<LoadingScreen>());
+            InitializeMoonSDK();
+        }
+
         private void InitializeMoonSDK()
         {
             moonSDK.SetActive(true);
             DontDestroyOnLoad(moonSDK);
             asyncOperation.allowSceneActivation = true;
-        }
-        private IEnumerator Starter()
-        {
-            intro.SetActive(true);
-            yield return new WaitForSeconds(4f);
-            intro.SetActive(false);
-
-            InitializeMoonSDK();
         }
     }
 }
