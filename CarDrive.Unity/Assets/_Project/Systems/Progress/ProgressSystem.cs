@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Architecture;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using DG.Tweening;
 using UnityEngine;
@@ -9,53 +10,57 @@ namespace Assets._Project.Systems.Progress
     {
         private readonly ProgressBar _bar;
         private readonly CanvasGroup _barCanvasGroup;
-        private readonly CheckPointChunk _checkPoint;
-        private readonly Transform _characterTransform;
+        private readonly ChunksEvents _chunksEvents;
         private readonly Player _player;
+        private readonly ChunkGenerationConfig _config;
         private float _totalDistance;
+        private int _passed;
+        private float _distance;
 
-        public ProgressSystem(ProgressBar bar, CheckPointChunk checkPoint, Transform characterTransform, Player player) 
+        public ProgressSystem(ProgressBar bar, ChunksEvents chunksEvents,
+            Player player, ChunkGenerationConfig config) 
         {
             _bar = bar;
             _barCanvasGroup = bar.GetComponent<CanvasGroup>();
-            _checkPoint = checkPoint;
-            _characterTransform = characterTransform;
+            _chunksEvents = chunksEvents;
             _player = player;
+            _config = config;
         }
 
         public override void OnEnable()
         {
-            _checkPoint.OnSpawned += OnCheckpointSpawned;
-            _checkPoint.OnEnter += OnCheckPointEnter;
-            OnCheckpointSpawned();
+            _chunksEvents.OnCheckPointEnter += OnCheckPointEnter;
+            _chunksEvents.OnAnyPass += OnChunkPassed;
+            _bar.CurrentLevel = _player.Level;
+            _bar.NextLevel = _player.Level + 1;
         }
 
-        private void OnCheckPointEnter(CheckPointChunk chunk)
+        private void OnChunkPassed(Chunk chunk)
         {
-            _barCanvasGroup.alpha = 0;
-            _bar.gameObject.SetActive(false);
+            _passed++;
+            _distance = (float)_passed / _config.ChunksBetweenCheckPoints;
         }
 
         public override void Tick()
         {
-            float distance = Mathf.Abs(Vector3.Distance(_checkPoint.transform.position, _characterTransform.position) / _totalDistance - 1);
-            _bar.Value = distance;
+            _bar.Value = Mathf.Lerp(_bar.Value, _distance, 5 * Time.deltaTime);
         }
 
-        private void OnCheckpointSpawned()
+        private void OnCheckPointEnter(CheckPointChunk chunk)
         {
+            _passed = 0;
+            _barCanvasGroup.alpha = 0;
+            _bar.gameObject.SetActive(false);
+            MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
             _bar.CurrentLevel = _player.Level;
             _bar.NextLevel = _player.Level + 1;
-            MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
-            _totalDistance = Vector3.Distance(_checkPoint.transform.position, _characterTransform.position);
             _bar.gameObject.SetActive(true);
             _barCanvasGroup.DOFade(1, 0.25f).Play().SetAutoKill(true);
         }
 
         public override void OnDisable()
         {
-            _checkPoint.OnSpawned -= OnCheckpointSpawned;
-            _checkPoint.OnEnter -= OnCheckPointEnter;
+            _chunksEvents.OnCheckPointEnter -= OnCheckPointEnter;
         }
     }
 }

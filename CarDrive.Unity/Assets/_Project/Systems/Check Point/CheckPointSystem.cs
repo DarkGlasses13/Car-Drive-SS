@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Architecture;
 using Assets._Project.Architecture.UI;
 using Assets._Project.GameStateControl;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Collecting;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Assets._Project.Systems.CheckPoint
     public class CheckPointSystem : GameSystem
     {
         private readonly GameState _gameState;
-        private readonly CheckPointChunk _checkPoint;
+        private readonly ChunksEvents _checkPointEvent;
         private readonly UICounter _uiMoneyCounter;
         private readonly RectTransform _uiMoneyCounterRectTransform;
         private readonly Vector2 _defaultUIMoneyCounterSize;
@@ -23,13 +24,13 @@ namespace Assets._Project.Systems.CheckPoint
         private readonly AudioSource _levelMusic;
         private readonly Player _player;
 
-        public CheckPointSystem(GameState gameState, Transform hudContainer, CheckPointChunk checkpPoint, 
+        public CheckPointSystem(GameState gameState, Transform hudContainer, ChunksEvents checkpPointEvent, 
             CheckPointPopup popup, UICounter uiMoneyCounter, Button playButton, Money money,
             AudioSource levelMusic, Player player)
         {
             _gameState = gameState;
             _hudContainer = hudContainer;
-            _checkPoint = checkpPoint;
+            _checkPointEvent = checkpPointEvent;
             _popup = popup;
             _uiMoneyCounter = uiMoneyCounter;
             _uiMoneyCounterRectTransform = uiMoneyCounter.GetComponent<RectTransform>();
@@ -44,7 +45,7 @@ namespace Assets._Project.Systems.CheckPoint
 
         public override void OnEnable()
         {
-            _checkPoint.OnEnter += OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter += OnCheckPointEnter;
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _money.OnChanged += OnMoneyChanged;
         }
@@ -76,7 +77,7 @@ namespace Assets._Project.Systems.CheckPoint
 
         public override void OnDisable()
         {
-            _checkPoint.OnEnter -= OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter -= OnCheckPointEnter;
             _playButton.onClick.RemoveListener(OnPlayButtonClicked);
         }
     }

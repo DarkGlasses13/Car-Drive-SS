@@ -44,7 +44,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
             switch (type)
             {
-                case ChunkEnvironmentType.Town:
+                case ChunkEnvironmentType.City:
                 _townViews.ForEach(view => view.SetActive(true));
                 break;
                 case ChunkEnvironmentType.Japan:

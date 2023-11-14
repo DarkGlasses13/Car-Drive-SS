@@ -3,7 +3,7 @@
     public enum ChunkEnvironmentType
     {
         None,
-        Town,
+        City,
         Japan,
         Snow,
         Beach

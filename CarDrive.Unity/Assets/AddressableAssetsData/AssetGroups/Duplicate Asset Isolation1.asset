@@ -21,477 +21,374 @@ MonoBehaviour:
     m_Address: Assets/_Project/Scenes/Boot.lighting
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7416536dbe0334cfd888dd1beb75a9fb
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 511c35b44798e0d4a8f6a149aa259348
     m_Address: Assets/Casual Jingles - 022420/Win Jingles/Win Jingle 7.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 602be783f57f1b24e888f01567d64cc4
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunsetSettings.lighting
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ca9f5fa95ffab41fb9a615ab714db018
-    m_Address: Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbdb0c81375e549b1bae3506c1863a68
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_1_Back-Z.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e1c1042c332d4444bfe47799ff3e0d3
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_5_Down-Y.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 04869052f46ba428caebe862513e3b5d
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_3_Right-X.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 604c8e250817f485c97f85e8237f7524
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_2_Left+X.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33dc9d88f32144697ba9777ee1aaae7b
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_0_Front+Z.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 912bf47cb4f5f4c6ea43b7a8bd2eb0e5
     m_Address: Assets/AllSkyFree/Epic_BlueSunset/Epic_BlueSunset_Cam_4_Up+Y.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbfa9d0037628bc47bd0eed4292be3dd
     m_Address: Assets/_Project/Systems/Check Point/trunk.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6697871153fbd554e987e956ce853cb4
     m_Address: Assets/_Project/Systems/Check Point/finish_mt.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e786861ec161fd49a8baa937a66b609
     m_Address: Assets/MuscleCarPack/Materials/Leather.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80a4ee7350c0bda4dba8a2e6e1ea0f70
     m_Address: Assets/_Project/Entities/Character/trail.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3ed9e83085d95542b762dd15b306e7a
     m_Address: Assets/Lana Studio/Hyper Casual FX/Materials/Circles_Additive.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a516034e8204ad4696290ab8396a2c8
     m_Address: Assets/Cartoon Buildings/Materals/Buildings.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cce1e234c87d372488bb96a013c93fa8
     m_Address: Assets/Polygonal Particles/Assets/Materials/DustMobile.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 92db4b45010a56146b66aa6ba3b712d3
     m_Address: Assets/Polygonal Particles/Assets/Materials/ExplosionMobile.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b527b1687387864c8998d612b2cc8d5
     m_Address: Assets/Lana Studio/Hyper Casual FX/Materials/Square.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 269a94a6e4479b14ea1773d944794bb7
     m_Address: Assets/MuscleCarPack/Materials/paintBlue.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d789bd285b0278848808ac4587043a4f
     m_Address: Assets/Lana Studio/Hyper Casual FX/Materials/Drop_AB.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 91ea5e78feead6144a0f9afea7123268
     m_Address: Assets/Cartoon Buildings/Materals/Material_alpha.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 085089598c54317408ea3393cd29d708
     m_Address: Assets/MuscleCarPack/Materials/paintRed.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7d420caf00b4e74c88b3682321312dd
     m_Address: Assets/Lana Studio/Hyper Casual FX/Materials/Circles_AB.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 56b6dd5d8ff60834da3a8064c9a7439d
     m_Address: Assets/Cartoon Buildings/Materals/Material_Emission.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 420e62b074ab91a47a0e91d82f0df470
     m_Address: Assets/Lana Studio/Hyper Casual FX/Models/Confetti.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 755a10e137242514e94c0fa38b6ec8be
     m_Address: Assets/Low poly cartoon city/Models/Roads/Roads_1/Road_1_311.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7cce8a2360abdf748a0a556bfa5c1ea3
     m_Address: Assets/_Project/Systems/Check Point/For_banner.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 376153f3bc577c84ead7c2bc8df9c990
     m_Address: Assets/Polygonal Particles/Assets/Meshes/PolygonalMesh.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ba82e841d845e646b044f7ab1caefe1
     m_Address: Assets/Low poly cartoon city/Models/Props/Sidewalk_2.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8e161794cba3191408a5db4e14a62aa3
     m_Address: Assets/Low poly cartoon city/Models/Buildings cartoon/Building_cartoon_13.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0df2bc15b2550c74abfb100705685598
     m_Address: Assets/Low poly cartoon city/Models/Props/Road_barrier_2.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 753033b53c0fbc440b78a31104fbced9
     m_Address: Assets/Lana Studio/Hyper Casual FX/Models/Area_vertical.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90f92247241a1a14090644de1c00ba31
     m_Address: Assets/Low poly cartoon city/Models/Roads/Roads_1/Road_1_101.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57284247272fdb24e9a6ea2a4a7204ca
     m_Address: Assets/MuscleCarPack/Meshes/MuscleCar_02.FBX
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22dd7259ccc241b4485d6540627942a1
     m_Address: Assets/Low poly cartoon city/Models/Roads/Roads_1/Road_1_310.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c90d52b9158705741b4c51ee8d29ea98
     m_Address: Assets/Low poly cartoon city/Models/Props/Bench_2.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c6cc1faeb5bf5e4882c7a409f55fc5d
     m_Address: Assets/Low poly cartoon city/Models/Roads/Roads_1/Road_1_302.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 37d2193b1634c8e4494ad6ba1f9d2e21
     m_Address: Assets/Low poly cartoon city/Models/Buildings cartoon/Building_cartoon_15.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4d3563c1bfd3704e8b06a819170e5e9
     m_Address: Assets/MuscleCarPack/Meshes/MuscleCar_04.FBX
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0678dc3ef0170c44db27784d34ba06db
     m_Address: Assets/Low poly cartoon city/Models/Buildings cartoon/Building_cartoon_10.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7d313a7e87ce1aa45a9a5c14c13a6cb4
     m_Address: Assets/Cartoon Buildings/Models/Gas_station.fbx
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79180f511d89441b9aa23ccae1992fe0
     m_Address: Assets/CasualGameSounds/DM-CGS-28.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d46323e22e74e46baa241cbf48c85671
     m_Address: Assets/CasualGameSounds/DM-CGS-47.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 958408b32ccf3714ea02821877b0870c
     m_Address: Assets/Free Pack/Metal impact 5.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6dad6dc3700d8ad4d84ed30273e12336
     m_Address: Assets/GroundTransportationLoops/EngineLoops/engine_loop_07.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b9e74c60627a7041bb58b048385eb47
     m_Address: Assets/GroundTransportationLoops/Braking/vehicle_braking_01.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7bd6b897eb5ca4b7d88a205c4a51640c
     m_Address: Assets/CasualGameSounds/DM-CGS-26.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c5292ba5cf254919a6b9e2b18e04f49
     m_Address: Assets/CasualGameSounds/DM-CGS-07.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b049660b860c8334a852b54855bce599
     m_Address: Assets/Engines/Engines SFX/Engine_07.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ab241e6ba30172c419e4a071a035fbaa
     m_Address: Assets/Casual Jingles - 022420/Win Jingles/Win Jingle 8.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29f1578b1dd644bc68d3b0e95fc5fefe
     m_Address: Assets/Epic Game Hits SFX/Repair vehicle.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc6614beca09347ec9b258f12d154bdd
     m_Address: Assets/CasualGameSounds/DM-CGS-02.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed4d73602911d2441904be7eabb87c9e
     m_Address: Assets/_Project/Systems/Collectables/rotate.controller
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8aadb4099ff658489e46e53a807e7e8
     m_Address: Assets/_Project/Systems/Collectables/Engine.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5fd1d31c7504cd4083d950f36ed7511
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/confetti_large.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a4522a1719ed6e4099dd535d78cbd14
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Flare03.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8478db03ff5f02e4bbfbc2498bb690d3
     m_Address: Assets/Pitstop Puzzler UI v2/Menu Screen/Play Button.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 098eca53dfcb7b14989fd25bda5a8314
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle01.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e61fec3f8e7bbb4c950b3641c53c1ce
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Plus01.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b56f37e358971ca4992cc35b2d05d512
     m_Address: Assets/_Project/Systems/Collectables/Wheel.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d732c2243257de342b5996c67d1ae7ba
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Megre Screen Bg.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d4ed2c24a7c24e3419b43faf029ce757
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Blast_directional.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 708a03548d00b73449bd5eea3963da5e
     m_Address: Assets/_Project/Systems/Collectables/Accelerator.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74f39665d293cd54db70d48c694d08c2
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Title.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 738d0386f7ab1b242b3cca6cedcb2106
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle04.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b27bcf37600cca24196520251965a496
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle02.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4424dda84344cd94489735f2f7bdfdbc
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Star01.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0af66a9d145d5f438be94e94354e0e4
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle05.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9208f0b907763a642ab2a0a4718fa2db
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle03.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19a47a1a975ddeb4992226a4867d9eb9
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Circle06.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b06b739ac8257f74aafa03de14bcd10e
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Buy Box Button.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ad88c9c9b62b4e40af9d2d3db57588d
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Gradient01.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50e9825ff7ee7a04da8910a9b6f10e6a
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Details Box.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fc9f47fab605d54082c50db6df21f35
     m_Address: Assets/_Project/Systems/Collectables/Brakes.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 69ce8388f6785dd4c8c39915efece2f4
-    m_Address: Packages/com.unity.cinemachine/Presets/Noise/6D Shake.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d8eb81a13dab50d439088a9d36c6cc6b
     m_Address: Assets/Cartoon Buildings/Texture/Tex_color.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d036a444a6e4bf64a9b1051e89808c67
     m_Address: Assets/Low poly cartoon city/Textures/1024.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bdb1182660d2c1140b2f882e00702b49
     m_Address: Assets/_Project/Systems/Check Point/strat_finish_flag.shadergraph
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: beaff2d80f886c04bbee441e52b721a4
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/Square02.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa7777da9f2101d4898e23c5e4b0010d
     m_Address: Assets/Lana Studio/Hyper Casual FX/Textures/drop.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd88335d1175cb84bb77f61fd659d0eb
     m_Address: Assets/_Project/Systems/Collectables/rotate.anim
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
     m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67fd5bff0c20a8f4abae0a5f4be0312d
     m_Address: Assets/_Project/Systems/Check Point/finish.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3265ab4bf004d28a9537516768c1c75
     m_Address: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 108c3f9e07ae25f448c41e0a23bb48fc
     m_Address: Assets/Pitstop Puzzler UI v2/Merge Screen/Medium Coin.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 13c9ec03c36c76f4d814c9e33d09c3bc
     m_Address: Assets/VFX_Klaus/Materials/Mat_fx_GrabThatCoin_Set01.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fca7fd76b1a04f348b863d94830daee6
     m_Address: Assets/VFX_Klaus/Materials/Mat_fx_GrabThatSeries_Particle.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b8ee6c2bc63e904a9c093e5781ef20b
     m_Address: Assets/TinyFire VFX/Materials/sphereAlphaMat.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c9d6983f275678479ebf019a670f9cf
     m_Address: Assets/_Project/Materials/CFX2_WhiteCircle AB.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9f8ab332ba6f4a45bd1913a9ff33b10
     m_Address: Assets/_Project/Materials/CFX3_SmallRay ADDSOFT.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0659a2faaee9f7442a45c7ec908dabcb
     m_Address: Assets/_Project/Materials/CFX3_T_SmallRay.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b11eec997e4c3044a59e4a2ff710b4e
     m_Address: Assets/_Project/Materials/CFX_T_WhiteCircleSmall.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: afb53a42d63f7754fa05782038d703a2
     m_Address: Assets/_Project/Systems/Tutorial/UI/CFX Demo Btn Arrow.png
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
   m_SchemaSet:

@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049a83a24f07ed54bafb15f473b2ae71, type: 3}
   m_Name: Chunk Generation Config
   m_EditorClassIdentifier: 
-  <ChunkAssetLabel>k__BackingField:
-    m_LabelString: Chunk
-  <ChunksBetweenCheckPoints>k__BackingField: 25
-  <ChunksPassedBeforeDespawn>k__BackingField: 3
+  <MaxChunks>k__BackingField: 10
+  <ChunksBetweenCheckPoints>k__BackingField: 15
+  <ChunksPassedBeforeDespawn>k__BackingField: 2
   <IsObstaclesEnabled>k__BackingField: 1
   <GeneralObstacleDensity>k__BackingField: 0.8
   <IsMoneyEnabled>k__BackingField: 1
-  <MoneyDensity>k__BackingField: 0.8
+  <MoneyDensity>k__BackingField: 0.25

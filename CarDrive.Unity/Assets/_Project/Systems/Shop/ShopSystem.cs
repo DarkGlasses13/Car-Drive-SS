@@ -1,5 +1,4 @@
 using Assets._Project.Architecture;
-using Assets._Project.Architecture.UI;
 using Assets._Project.Systems.Collecting;
 
 namespace Assets._Project.Systems.Shop
