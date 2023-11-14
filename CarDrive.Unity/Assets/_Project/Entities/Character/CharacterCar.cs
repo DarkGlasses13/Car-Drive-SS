@@ -193,8 +193,6 @@ namespace Assets._Project.Entities.Character
 
         public void OnCrash()
         {
-            _engineSound.Stop();
-
             if (_crashSound)
                 _crashSound.Play();
 
