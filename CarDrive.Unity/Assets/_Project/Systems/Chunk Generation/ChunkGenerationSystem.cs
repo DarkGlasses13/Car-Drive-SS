@@ -101,7 +101,7 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void OnPassed(Chunk chunk)
         {
-            _passedChunks.Enqueue(chunk);
+            //_passedChunks.Enqueue(chunk);
 
             if (chunk is CheckPointChunk checkPoint)
             {
@@ -113,8 +113,8 @@ namespace Assets._Project.Systems.ChunkGeneration
                 _chunksEvents.AnyPass(chunk);
             }
 
-            if (_passedChunks.Count > _config.ChunksPassedBeforeDespawn)
-                Despawn(_passedChunks.Dequeue());
+            //if (_passedChunks.Count > _config.ChunksPassedBeforeDespawn)
+            //    Despawn(_passedChunks.Dequeue());
 
             if (_gameState.Current == GameStates.Finish)
                 return;
@@ -143,7 +143,7 @@ namespace Assets._Project.Systems.ChunkGeneration
             }
             else
             {
-                IEnumerable<Chunk> chunksByType = _pool.Where(chunk => chunk.gameObject.activeInHierarchy == false && chunk.EnvironmentType == type);
+                IEnumerable<Chunk> chunksByType = _pool.Where(chunk => chunk is not CheckPointChunk && chunk.gameObject.activeInHierarchy == false && chunk.EnvironmentType == type);
 
                 chunk = chunksByType.Count() > 0 
                     ? chunksByType.ElementAt(Random.Range(0, chunksByType.Count())) 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Chunk Generation Config
   m_EditorClassIdentifier: 
   <MaxChunks>k__BackingField: 10
-  <ChunksBetweenCheckPoints>k__BackingField: 15
-  <ChunksPassedBeforeDespawn>k__BackingField: 2
+  <ChunksBetweenCheckPoints>k__BackingField: 20
+  <ChunksPassedBeforeDespawn>k__BackingField: 3
   <IsObstaclesEnabled>k__BackingField: 1
   <GeneralObstacleDensity>k__BackingField: 0.8
   <IsMoneyEnabled>k__BackingField: 1
-  <MoneyDensity>k__BackingField: 0.25
+  <MoneyDensity>k__BackingField: 0.5

@@ -77,7 +77,7 @@ namespace Assets._Project
         {
             _player.Update(JsonUtility.FromJson<PlayerSave>(save));
             _container.Bind(new Money(_collectablesConfig, _player.Money));
-            Addressables.LoadSceneAsync("Level", LoadSceneMode.Additive);
+            _sceneChanger.Change("Level");
         }
 
         private void OnApplicationPause(bool pause)

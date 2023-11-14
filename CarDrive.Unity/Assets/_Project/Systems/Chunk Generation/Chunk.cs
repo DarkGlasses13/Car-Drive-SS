@@ -1,8 +1,6 @@
 ﻿using Assets._Project.Entities.Obstacles;
 using Assets._Project.Systems.Collecting;
-using NaughtyAttributes;
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project.Systems.ChunkGeneration
