@@ -1,6 +1,7 @@
 ﻿using Assets._Project.Architecture.UI;
 using Assets._Project.Helpers;
 using Assets._Project.Input;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Driving;
 using System.Collections;
@@ -14,25 +15,25 @@ namespace Assets._Project.Systems.Tutorial
         private readonly IPlayerInput _playerInput;
         private readonly IUIElement _popup;
         private readonly Coroutiner _coroutiner;
-        private readonly CheckPointChunk _checkPoint;
+        private readonly ChunksEvents _checkPointEvent;
         private readonly WaitForSeconds _waitForOpenDelay = new(1.5f);
         private Coroutine _waitDelayRoutine;
 
         public StearState(ITutorialSystem system, DrivingSystem drivingSystem,
-            IPlayerInput playerInput, IUIElement popup, Coroutiner coroutiner, CheckPointChunk checkPoint) : base(system)
+            IPlayerInput playerInput, IUIElement popup, Coroutiner coroutiner, ChunksEvents checkPointEvent) : base(system)
         {
             _drivingSystem = drivingSystem;
             _playerInput = playerInput;
             _popup = popup;
             _coroutiner = coroutiner;
-            _checkPoint = checkPoint;
+            _checkPointEvent = checkPointEvent;
         }
 
         public override void Enter()
         {
             _drivingSystem.DisableGasRegulation();
             _popup.Show();
-            _checkPoint.OnEnter += OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter += OnCheckPointEnter;
             _playerInput.OnAnyInput += OnAnyInput;
         }
 
@@ -60,7 +61,7 @@ namespace Assets._Project.Systems.Tutorial
 
         public override void Exit()
         {
-            _checkPoint.OnEnter -= OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter -= OnCheckPointEnter;
             _playerInput.OnAnyInput -= OnAnyInput;
         }
     }

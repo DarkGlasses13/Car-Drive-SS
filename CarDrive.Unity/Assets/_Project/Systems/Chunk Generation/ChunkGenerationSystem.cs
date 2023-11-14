@@ -17,78 +17,112 @@ namespace Assets._Project.Systems.ChunkGeneration
     {
         private readonly ChunkGenerationConfig _config;
         private readonly Transform _container;
+        private readonly LocalAssetLoader _assetLoader;
         private readonly ChunksLoader _chunksLoader;
-        private readonly Coroutiner _coroutiner;
-        private List<Chunk> _prefabs;
-        private List<Chunk> _pool = new();
         private Chunk _last;
-        private CheckPointChunk _checkPoint;
+        private ChunksEvents _chunksEvents;
         private readonly GameState _gameState;
-        private bool _isCheckPointPassed;
-        private int _passedChunksCount;
-        private List<Chunk> _currentChunks = new(), _nextChunks = new();
+        private bool _isAllChunksLoaded;
+        private int _sequenceIndex;
+        private ChunkEnvironmentType[] _randomTypesSequence;
+        private GameObject _checkPointPrefab;
+        private int _activeChunksCount;
+        private ChunkEnvironmentType _currentType;
+        private readonly Queue<Chunk> _passedChunks = new();
+        private readonly List<Chunk>
+            _prefabs = new(),
+            _pool = new();
 
-        public ChunkGenerationSystem(ChunksLoader chunksLoader, Coroutiner coroutiner, ChunkGenerationConfig config,
-            Transform container, CheckPointChunk checkPoint, GameState gameState)
+        public ChunkGenerationSystem(LocalAssetLoader assetLoader, ChunksLoader chunksLoader, ChunkGenerationConfig config,
+            Transform container, ChunksEvents checkPointEvent, GameState gameState)
         {
+            _assetLoader = assetLoader;
             _chunksLoader = chunksLoader;
-            _coroutiner = coroutiner;
             _config = config;
             _container = container;
-            _checkPoint = checkPoint;
+            _chunksEvents = checkPointEvent;
             _gameState = gameState;
-            _checkPoint.gameObject.SetActive(false);
         }
 
         public override async Task InitializeAsync()
         {
-            _prefabs = new(await _chunksLoader.GetAsync());
+            System.Random random = new();
+            _randomTypesSequence = Enum.GetValues(typeof(ChunkEnvironmentType)) as ChunkEnvironmentType[];
+            _randomTypesSequence = _randomTypesSequence.OrderBy(element => random.Next()).ToArray();
+            _randomTypesSequence = _randomTypesSequence.Where(element => element != ChunkEnvironmentType.None).ToArray();
+            _checkPointPrefab = await _assetLoader.Load<GameObject>("Check Point Chunk");
+            await LoadPrefabs();
+            await SpawnInitialAsync();
         }
 
-        public override void OnEnable()
+        private async Task LoadPrefabs()
         {
-            _coroutiner.StartCoroutine(SpawnLocationRoutine());
+            IEnumerable<Chunk> initialPrefabs = await _chunksLoader.LoadAsync(_randomTypesSequence[_sequenceIndex]);
+            _prefabs.AddRange(initialPrefabs);
+            _sequenceIndex++;
+            _isAllChunksLoaded = _sequenceIndex >= _randomTypesSequence.Length - 1;
         }
 
-        private IEnumerator SpawnLocationRoutine()
+        private async void OnCheckPointEnter(CheckPointChunk chunk)
         {
-            ChunkEnvironmentType currentType = GetRandomType();
-            _currentChunks.Add(SpawnInitial(currentType));
-            int count = 0;
+            _chunksEvents.Enter(chunk);
+            _chunksEvents.IsTriggered = true;
 
-            for (int i = 1; i < _config.ChunksBetweenCheckPoints; i++)
+            if (_isAllChunksLoaded == false)
+                await LoadPrefabs();
+        }
+
+        private async Task SpawnInitialAsync()
+        {
+            _currentType = GetRandomType();
+            SpawnInitialChunk();
+            _activeChunksCount++;
+
+            for (int i = 0; i < _config.MaxChunks; i++)
             {
-                if (count > 3)
-                {
-                    count = 0;
-                    yield return null;
-                }
-
-                _currentChunks.Add(SpawnRandom(currentType));
-                count++;
-            }
-
-            SpawnCheckPoint(currentType).OnPassed += OnPassed;
-            ChunkEnvironmentType nextType = GetRandomType();
-            _nextChunks.Add(SpawnInitial(nextType));
-            count = 0;
-
-            for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
-            {
-                if (count > 3)
-                {
-                    count = 0;
-                    yield return null;
-                }
-
-                _nextChunks.Add(SpawnRandom(nextType));
-                count++;
+                SpawnTick();
+                await Task.Yield();
             }
         }
 
-        private void OnPassed(Chunk chunk) => _coroutiner.StartCoroutine(OnPassedRoutine(chunk));
+        private void SpawnTick()
+        {
+            if (_activeChunksCount < _config.ChunksBetweenCheckPoints)
+            {
+                SpawnRandom(_currentType);
+                _activeChunksCount++;
+                return;
+            }
 
-        private Chunk SpawnInitial(ChunkEnvironmentType environmentType) => Spawn(environmentType, whithCollectables: false, withObstacles: false);
+            SpawnCheckPoint(_currentType);
+            _activeChunksCount = 0;
+            _currentType = GetRandomType();
+        }
+
+        private void OnPassed(Chunk chunk)
+        {
+            _passedChunks.Enqueue(chunk);
+
+            if (chunk is CheckPointChunk checkPoint)
+            {
+                _chunksEvents.Pass(checkPoint);
+                _chunksEvents.IsTriggered = false;
+            }
+            else
+            {
+                _chunksEvents.AnyPass(chunk);
+            }
+
+            if (_passedChunks.Count > _config.ChunksPassedBeforeDespawn)
+                Despawn(_passedChunks.Dequeue());
+
+            if (_gameState.Current == GameStates.Finish)
+                return;
+
+            SpawnTick();
+        }
+
+        private Chunk SpawnInitialChunk() => Spawn(_currentType, whithCollectables: false, withObstacles: false);
 
         private Chunk SpawnRandom(ChunkEnvironmentType environmentType)
         {
@@ -98,56 +132,14 @@ namespace Assets._Project.Systems.ChunkGeneration
             return instance;
         }
 
-        private IEnumerator OnPassedRoutine(Chunk chunk)
-        {
-            if (_gameState.Current == GameStates.Finish)
-                yield break;
-
-            if (chunk is CheckPointChunk)
-            {
-                _isCheckPointPassed = true;
-            }
-
-            if (_isCheckPointPassed)
-            {
-                _passedChunksCount++;
-
-                if (_passedChunksCount >= _config.ChunksPassedBeforeDespawn && _isCheckPointPassed)
-                {
-                    ChunkEnvironmentType nextType = GetRandomType();
-                    SpawnCheckPoint(nextType);
-                    _passedChunksCount = 0;
-                    _isCheckPointPassed = false;
-                    Despawn(_currentChunks);
-                    _currentChunks.Clear();
-                    _currentChunks.AddRange(_nextChunks);
-                    _nextChunks.Clear();
-                    _nextChunks.Add(SpawnInitial(nextType));
-
-                    for (int i = 0; i < _config.ChunksBetweenCheckPoints; i++)
-                    {
-                        _nextChunks.Add(SpawnRandom(nextType));
-                        yield return null;
-                    }
-                }
-            }
-        }
-
-        private void Despawn(IEnumerable<Chunk> chunks)
-        {
-            foreach (Chunk chunk in chunks)
-            {
-                Despawn(chunk);
-            }
-        }
-
         private Chunk Spawn(ChunkEnvironmentType type, bool whithCollectables = false, bool withObstacles = false, bool isCheckpoint = false)
         {
             Chunk chunk;
 
             if (isCheckpoint)
             {
-                chunk = _checkPoint;
+                chunk = _pool.FirstOrDefault(chunk => chunk is CheckPointChunk && chunk.gameObject.activeInHierarchy == false);
+                chunk = chunk == null ? CreateCheckPoint() : chunk;
             }
             else
             {
@@ -171,6 +163,15 @@ namespace Assets._Project.Systems.ChunkGeneration
             return chunk;
         }
 
+        private CheckPointChunk CreateCheckPoint()
+        {
+            CheckPointChunk instance = Object.Instantiate(_checkPointPrefab, _container).GetComponent<CheckPointChunk>();
+            instance.OnEnter += OnCheckPointEnter;
+            instance.OnPassed += OnPassed;
+            _pool.Add(instance);
+            return instance;
+        }
+
         private CheckPointChunk SpawnCheckPoint(ChunkEnvironmentType type)
         {
             CheckPointChunk checkPoint = (CheckPointChunk)Spawn(
@@ -191,29 +192,25 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void DespawnAll()
         {
-            _checkPoint.gameObject.SetActive(false);
             _pool.ForEach(chunk => Despawn(chunk));
+            _passedChunks.Clear();
         }
 
         private Chunk Create(ChunkEnvironmentType type)
         {
-            var prefabsByType = _prefabs.Where(prefab => prefab.EnvironmentType == type);
+            IEnumerable<Chunk> prefabsByType = _prefabs.Where(prefab => prefab.EnvironmentType == type);
             Chunk instance = Object.Instantiate(prefabsByType.ElementAt(Random.Range(0, prefabsByType.Count())), _container);
             instance.Init();
             instance.HideAll();
             instance.OnPassed += OnPassed;
+            _pool.Add(instance);
             return instance;
         }
 
-        private void OnPrefabLoaded(GameObject prefab) { }
-
         private ChunkEnvironmentType GetRandomType()
         {
-            return (ChunkEnvironmentType)Random
-                .Range(1, (int)Enum
-                .GetValues(typeof(ChunkEnvironmentType))
-                .Cast<ChunkEnvironmentType>()
-                .Max());
+            IEnumerable<ChunkEnvironmentType> types = _prefabs.Select(chunk => chunk.EnvironmentType);
+            return types.ElementAt(Random.Range(0, types.Count()));
         }
     }
 }

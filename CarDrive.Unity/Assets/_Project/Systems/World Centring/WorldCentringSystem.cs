@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Architecture;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using Cinemachine;
 using UnityEngine;
@@ -8,21 +9,21 @@ namespace Assets._Project.Systems.WorldCentring
     public class WorldCentringSystem : GameSystem
     {
         private readonly Transform _referens;
-        private readonly CheckPointChunk _checkPoint;
+        private readonly ChunksEvents _checkPointEvent;
         private readonly Transform[] _containers;
         private CinemachineBrain _cameraBrain;
 
-        public WorldCentringSystem(Transform referensTransform, CheckPointChunk checkPointChunk, params Transform[] containers) 
+        public WorldCentringSystem(Transform referensTransform, ChunksEvents checkPointEvent, params Transform[] containers) 
         {
             _referens = referensTransform;
-            _checkPoint = checkPointChunk;
+            _checkPointEvent = checkPointEvent;
             _containers = containers;
         }
 
         public override void OnEnable()
         {
             _cameraBrain = Camera.main.GetComponent<CinemachineBrain>();
-            _checkPoint.OnEnter += OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter += OnCheckPointEnter;
         }
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
@@ -44,7 +45,7 @@ namespace Assets._Project.Systems.WorldCentring
 
         public override void OnDisable()
         {
-            _checkPoint.OnEnter -= OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter -= OnCheckPointEnter;
         }
     }
 }

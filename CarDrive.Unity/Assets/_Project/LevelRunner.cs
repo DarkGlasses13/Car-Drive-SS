@@ -89,9 +89,9 @@ namespace Assets._Project
             _characterCar = new CharacterCarFactory(await assetLoader.Load<GameObject>("Character Car")).Create(characterCarSpawnData);
             _characterCar.gameObject.SetActive(false);
             ChunkGenerationConfig chunkGenerationConfig = await assetLoader.Load<ChunkGenerationConfig>("Chunk Generation Config");
-            CheckPointChunk checkPoint = await assetLoader.LoadAndInstantiateAsync<CheckPointChunk>("Check Point Chunk", _chunksContainer);
-            ChunkGenerationSystem chunkGenerationSystem = new(projectContainer.Get<ChunksLoader>(), _coroutiner, chunkGenerationConfig,
-                _chunksContainer, checkPoint, _gameState);
+            ChunksEvents checkPointEvent = new();
+            ChunkGenerationSystem chunkGenerationSystem = new(assetLoader, projectContainer.Get<ChunksLoader>(),
+                chunkGenerationConfig, _chunksContainer, checkPointEvent, _gameState);
 
             DrivingSystem drivingSystem = new(assetLoader, _playerInput, _characterCar,
                 _player, _gameState, _coroutiner, _cinematographer, new(-5.5f, 5.5f));
@@ -110,20 +110,20 @@ namespace Assets._Project
             _inventory = new Inventory(uiInventory.SlotsCount, equipment.SlotsCount, _player.Equipment, _player.Items);
             CharacterCarDamageSystem damageSystem = new(assetLoader, _gameState, _characterCar, _coroutiner, drivingSystem, _money, _leveMusic, _inventory);
             RestartSystem restartSystem = new(_gameState, assetLoader, _popupContainer, this, _leveMusic, _inventory, _player, _money);
-            CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPoint,
+            CheckPointSystem checkPointSystem = new(_gameState, _hudContainer, checkPointEvent,
                 checkPointPopup, uiMoneyCounter, playButton, _money, _leveMusic, _player);
             CollectingSystem levelMoneyCollectingSystem = new(collectablesConfig, _money, _itemDatabase, _inventory, _characterCar, uiMoneyCounter);
             InventorySystem inventorySystem = new(_inventory, _itemDatabase, uiInventory, checkPointPopup, _player);
             ShopSystem shopSystem = new(_inventory, _itemDatabase, lootBoxBuyButton, _money, collectablesConfig, _player);
-            WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPoint, _entityContainer,
+            WorldCentringSystem worldCentringSystem = new(_characterCar.transform, checkPointEvent, _entityContainer,
                 _chunksContainer, _camerasContainer);
             SoundSystem soundSystem = new(assetLoader, _hudContainer, playerCamera.GetComponent<AudioListener>());
-            ProgressSystem progressSystem = new(progressBar, checkPoint, _characterCar.transform, _player);
+            ProgressSystem progressSystem = new(progressBar, checkPointEvent, _player, chunkGenerationConfig);
             _tutorialSystem = new(_gameState, _inventory, _money, _player);
             StearState stearState = new(_tutorialSystem, drivingSystem, _playerInput, 
-                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false), _coroutiner, checkPoint);
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Stear Popup", _popupContainer, isActive: false), _coroutiner, checkPointEvent);
             GasRegulationState gasRegulationState = new(_tutorialSystem, drivingSystem,
-                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Gas Reguation Popup", _popupContainer, isActive: false), checkPoint);
+                await assetLoader.LoadAndInstantiateAsync<IUIElement>("Tutorial Gas Reguation Popup", _popupContainer, isActive: false), checkPointEvent);
             MergeState mergeState = new(_tutorialSystem, _money, collectablesConfig, inventorySystem, shopSystem, lootBoxBuyButton,
                 await assetLoader.LoadAndInstantiateAsync<TutorialHighlighter>("Tutorial Highlighter", _tutorialContainer, isActive: false), uiInventory,
                 await assetLoader.LoadAndInstantiateAsync<Image>("Finger", _tutorialContainer, isActive: false), playButton, _player, this);

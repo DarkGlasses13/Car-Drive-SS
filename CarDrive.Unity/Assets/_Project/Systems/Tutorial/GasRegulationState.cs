@@ -1,4 +1,5 @@
 ﻿using Assets._Project.Architecture.UI;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.ChunkGeneration;
 using Assets._Project.Systems.Driving;
 
@@ -8,19 +9,19 @@ namespace Assets._Project.Systems.Tutorial
     {
         private readonly DrivingSystem _drivingSystem;
         private readonly IUIElement _popup;
-        private readonly CheckPointChunk _checkPoint;
+        private readonly ChunksEvents _checkPointEvent;
 
         public GasRegulationState(ITutorialSystem system, DrivingSystem drivingSystem,
-            IUIElement popup, CheckPointChunk checkPoint) : base(system)
+            IUIElement popup, ChunksEvents checkPointEvent) : base(system)
         {
             _drivingSystem = drivingSystem;
             _popup = popup;
-            _checkPoint = checkPoint;
+            _checkPointEvent = checkPointEvent;
         }
 
         public override void Enter()
         {
-            if (_checkPoint.IsTriggered)
+            if (_checkPointEvent.IsTriggered)
             {
                 _system.SwitchToNextState();
                 return;
@@ -29,7 +30,7 @@ namespace Assets._Project.Systems.Tutorial
             _popup.Show();
             _drivingSystem.EnableGasRegulation();
             _drivingSystem.OnGasRegulated += OnGasRegulated;
-            _checkPoint.OnEnter += OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter += OnCheckPointEnter;
         }
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
@@ -47,7 +48,7 @@ namespace Assets._Project.Systems.Tutorial
         public override void Exit()
         {
             _drivingSystem.OnGasRegulated -= OnGasRegulated;
-            _checkPoint.OnEnter -= OnCheckPointEnter;
+            _checkPointEvent.OnCheckPointEnter -= OnCheckPointEnter;
         }
     }
 }

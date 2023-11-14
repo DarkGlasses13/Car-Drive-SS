@@ -6,6 +6,7 @@ using Assets._Project.Helpers;
 using Assets._Project.Input;
 using Assets._Project.SaveLoad;
 using Assets._Project.SceneChange;
+using Assets._Project.Systems.Chunk_Generation;
 using Assets._Project.Systems.Collecting;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -29,7 +30,6 @@ namespace Assets._Project
         protected override async Task CreateSystems()
         {
             DontDestroyOnLoad(this);
-            OnLogoAssetLoader onLogoAssetLoader = FindObjectOfType<OnLogoAssetLoader>();
             Application.targetFrameRate = 90;
             _container = new GameObject("Project DI Container").AddComponent<DIContainer>();
             Coroutiner coroutiner = new GameObject("Coroutiner").AddComponent<Coroutiner>();
@@ -43,12 +43,12 @@ namespace Assets._Project
             _defaultData = _player.GetSave();
             DontDestroyOnLoad(playerCamera);
             _loadingScreen = FindAnyObjectByType<LoadingScreen>();
+            DontDestroyOnLoad(_loadingScreen);
             playerCamera.GetComponent<UniversalAdditionalCameraData>().cameraStack.Add(_loadingScreen.Camera);
             PlayerInputConfig playerInputConfig = await assetLoader.Load<PlayerInputConfig>("Player Input Config");
             IPlayerInput playerInput = new UniversalPlayerInput(playerInputConfig);
             _sceneChanger = new SceneChanger();
             _collectablesConfig = await assetLoader.Load<CollectablesConfig>("Collectables Config");
-            _container.Bind(onLogoAssetLoader.ChunksLoader);
             _container.Bind(_storage);
             _container.Bind(playerCamera);
             _container.Bind(_loadingScreen);
@@ -60,6 +60,7 @@ namespace Assets._Project
             _container.Bind(itemDatabase);
             _container.Bind(_collectablesConfig);
             _container.Bind(new Cinematographer());
+            _container.Bind(new ChunksLoader());
 
             _systems = new()
             {

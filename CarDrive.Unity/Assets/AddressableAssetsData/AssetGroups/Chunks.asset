@@ -21,18 +21,30 @@ MonoBehaviour:
     m_Address: Check Point Chunk
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1c49bc71684d674b864bcc7b746bd9e
     m_Address: Initial Chunk
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1fa504a84adcf2e4ca45bf5ed41e5ad8
-    m_Address: In Game
+  - m_GUID: f19c34985e51e7b418d6e57652ecd58c
+    m_Address: Snow
     m_ReadOnly: 0
     m_SerializedLabels:
-    - In Game Chunk
-    FlaggedDuringContentUpdateRestriction: 0
+    - Snow
+  - m_GUID: 9797ab42486adbd4d91ed083f29eb08a
+    m_Address: Japan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Japan
+  - m_GUID: f1706a210f2878e4981e69360ed8c54d
+    m_Address: City
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - City
+  - m_GUID: 8f48cf4935e4b064fb02ac81f920c386
+    m_Address: Beach
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Beach
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
   m_SchemaSet:

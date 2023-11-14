@@ -4,33 +4,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Assets._Project.Systems.Chunk_Generation
 {
     public class ChunksLoader
     {
-        private List<Chunk> _chunks;
-        private AsyncOperationHandle<IList<GameObject>> _loading;
+        private readonly Dictionary<ChunkEnvironmentType, List<Chunk>> _chunks = new();
 
-        public void Load()
+        public async Task<IEnumerable<Chunk>> LoadAsync(ChunkEnvironmentType type)
         {
-            _loading = Addressables.LoadAssetsAsync<GameObject>("In Game Chunk", OnLoaded);
+            if (_chunks.ContainsKey(type) == false)
+            {
+                IList<GameObject> loaded = await Addressables.LoadAssetsAsync<GameObject>(type.ToString(), OnLoaded).Task;
+                IEnumerable<Chunk> loadedChunks = loaded.Select(gameObject => gameObject.GetComponent<Chunk>());
+                _chunks.Add(type, new List<Chunk>(loadedChunks));
+            }
+
+            return _chunks[type];
         }
 
-        private void OnLoaded(GameObject @object)
+        private void OnLoaded(GameObject chunk)
         {
-            Debug.Log(@object.name + "was loaded");
-        }
-
-        public async Task<IEnumerable<Chunk>> GetAsync()
-        {
-            if (_loading.Equals(default))
-                return null;
-
-            await _loading.Task;
-            _chunks = new(_loading.Result.Select(chunk => chunk.GetComponent<Chunk>()));
-            return _chunks.AsEnumerable();
+            //Debug.Log(chunk.name);
         }
     }
 }
