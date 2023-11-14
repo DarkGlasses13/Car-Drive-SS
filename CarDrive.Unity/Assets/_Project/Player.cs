@@ -43,6 +43,8 @@ namespace Assets._Project
             {
                 _stats[key] = 1;
             }
+
+            Level = 1;
         }
 
         public PlayerSave GetSave()

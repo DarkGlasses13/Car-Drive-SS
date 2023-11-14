@@ -44,6 +44,8 @@ namespace Assets._Project.Systems.Progress
         public override void Tick()
         {
             _bar.Value = Mathf.Lerp(_bar.Value, _distance, 5 * Time.deltaTime);
+            _bar.CurrentLevel = _player.Level;
+            _bar.NextLevel = _player.Level + 1;
         }
 
         private void OnCheckPointEnter(CheckPointChunk chunk)
@@ -52,8 +54,6 @@ namespace Assets._Project.Systems.Progress
             _barCanvasGroup.alpha = 0;
             _bar.gameObject.SetActive(false);
             MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
-            _bar.CurrentLevel = _player.Level;
-            _bar.NextLevel = _player.Level + 1;
             _bar.gameObject.SetActive(true);
             _barCanvasGroup.DOFade(1, 0.25f).Play().SetAutoKill(true);
         }
