@@ -101,7 +101,8 @@ namespace Assets._Project.Systems.ChunkGeneration
 
         private void OnPassed(Chunk chunk)
         {
-            //_passedChunks.Enqueue(chunk);
+            if (_passedChunks.Contains(chunk) == false)
+                _passedChunks.Enqueue(chunk);
 
             if (chunk is CheckPointChunk checkPoint)
             {
@@ -113,8 +114,8 @@ namespace Assets._Project.Systems.ChunkGeneration
                 _chunksEvents.AnyPass(chunk);
             }
 
-            //if (_passedChunks.Count > _config.ChunksPassedBeforeDespawn)
-            //    Despawn(_passedChunks.Dequeue());
+            if (_passedChunks.Count > _config.ChunksPassedBeforeDespawn)
+                Despawn(_passedChunks.Dequeue());
 
             if (_gameState.Current == GameStates.Finish)
                 return;
