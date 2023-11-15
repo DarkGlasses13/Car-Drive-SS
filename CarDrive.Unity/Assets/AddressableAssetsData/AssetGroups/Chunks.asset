@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Chunks
   m_Data:
     m_SerializedData: []
-  m_GUID: 89f3097f45fc26d4da16af191324b750
+  m_GUID: b288761dc892c3b4b8a4b4e0fc38f7e8
   m_SerializeEntries:
   - m_GUID: 74d3aa0d5e94ae4458eece4a62a0454a
     m_Address: Check Point Chunk
@@ -49,5 +49,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: c01fe5ca5407caf498ccd23c570500de, type: 2}
-    - {fileID: 11400000, guid: e7d7c31f5d029644b87dcfec5aaa2da5, type: 2}
+    - {fileID: 11400000, guid: a00ffca26d1bfaf42b4d785a5b847988, type: 2}
+    - {fileID: 11400000, guid: 0846eda5056a1534c946bd4a68b85d11, type: 2}

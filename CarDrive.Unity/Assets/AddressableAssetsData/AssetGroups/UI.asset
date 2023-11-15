@@ -15,86 +15,71 @@ MonoBehaviour:
   m_GroupName: UI
   m_Data:
     m_SerializedData: []
-  m_GUID: 23d2b9e2c6f69bc4d8814b34171a5845
+  m_GUID: 924983f66ed53ab4fb8ed69165bf553a
   m_SerializeEntries:
-  - m_GUID: f7f8ed148aa7ccc48b579a7995949e18
-    m_Address: UI Money Counter
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 58c3eff9fad78dd41ba037fb0e8a7997
-    m_Address: Play Button
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d6ecc0e09fb831479bc23b00c29f3ba
     m_Address: Check Point Popup
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b253165e14a404246b33add79f88d873
-    m_Address: Equipment
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf429a4726699d54ab7932129f4d2a2a
-    m_Address: Merge
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 92bcddc2c48ed9440b27b2d6709834ec
-    m_Address: Buy Loot Box Button
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54c50f43ee8b9d0458567e78be8809a1
     m_Address: Restart Popup
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a471473a5738eac409a8988170836d05
-    m_Address: Sound Toggle
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: daf79189a2429c94892c6a76f94c0527
-    m_Address: Loading Screen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6cf208eda913e3e4e8dc07acf5db4bd3
-    m_Address: Progress Bar
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1602f9cf0367d734090f11580785bf90
     m_Address: Tutorial Gas Reguation Popup
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3f0212854b05724a929f76290d55e77
     m_Address: Tutorial Stear Popup
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0a9e47ce6bfac214ba2b514a468a86b7
-    m_Address: Tutorial Highlighter
+  - m_GUID: daf79189a2429c94892c6a76f94c0527
+    m_Address: Loading Screen
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f7800e8c7457aec4f81a8adb98483fd4
-    m_Address: Finger
+  - m_GUID: 58c3eff9fad78dd41ba037fb0e8a7997
+    m_Address: Play Button
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf429a4726699d54ab7932129f4d2a2a
+    m_Address: Merge Grid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b253165e14a404246b33add79f88d873
+    m_Address: Equipment
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7f8ed148aa7ccc48b579a7995949e18
+    m_Address: UI Money Counter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6cf208eda913e3e4e8dc07acf5db4bd3
+    m_Address: Progress Bar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 92bcddc2c48ed9440b27b2d6709834ec
+    m_Address: Buy Loot Box Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 050a303dbd627d642a5898a01b197d6a
     m_Address: Loot Box Icon
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a471473a5738eac409a8988170836d05
+    m_Address: Sound Toggle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a9e47ce6bfac214ba2b514a468a86b7
+    m_Address: Tutorial Highlighter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7800e8c7457aec4f81a8adb98483fd4
+    m_Address: Finger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 3386dc201a2c5c4429449328966d3ea8, type: 2}
-    - {fileID: 11400000, guid: 111514ae2c7745442a102a25df3d354e, type: 2}
+    - {fileID: 11400000, guid: abbe7f4ce1712534eb969695508bf80d, type: 2}
+    - {fileID: 11400000, guid: 765ac6c846672864998f6458ca9e98e7, type: 2}

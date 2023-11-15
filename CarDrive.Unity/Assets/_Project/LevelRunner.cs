@@ -102,7 +102,7 @@ namespace Assets._Project
             CheckPointPopup checkPointPopup = await assetLoader.LoadAndInstantiateAsync<CheckPointPopup>("Check Point Popup", _popupContainer);
             Button playButton = await assetLoader.LoadAndInstantiateAsync<Button>("Play Button", checkPointPopup.BalanceAndPlayButtonSection);
             UIEquipment equipment = await assetLoader.LoadAndInstantiateAsync<UIEquipment>("Equipment", checkPointPopup.OtherSection);
-            UIInventory uiInventory = await assetLoader.LoadAndInstantiateAsync<UIInventory>("Merge", checkPointPopup.OtherSection);
+            UIInventory uiInventory = await assetLoader.LoadAndInstantiateAsync<UIInventory>("Merge Grid", checkPointPopup.OtherSection);
             uiInventory.Construct(_canvas, equipment);
             UICounter lootBoxIcon = await assetLoader.LoadAndInstantiateAsync<UICounter>("Loot Box Icon", checkPointPopup.OtherSection);
             PriceTagButton lootBoxBuyButton = await assetLoader

@@ -10,21 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Entities
+  m_Name: Items
   m_EditorClassIdentifier: 
-  m_GroupName: Entities
+  m_GroupName: Items
   m_Data:
     m_SerializedData: []
-  m_GUID: 93588cc369cae7c47baf34a83bb67ea1
+  m_GUID: ea42bd5cd9148c64597eef6b9e57669d
   m_SerializeEntries:
-  - m_GUID: 1922846417a2cc142901f5492ed27c1a
-    m_Address: Character Car
+  - m_GUID: 2e82098d40c39ea4c94664047a4b982a
+    m_Address: Items
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Item
+  - m_GUID: 044e6506448b27b43b05a3d3fd34e49a
+    m_Address: Item Database
     m_ReadOnly: 0
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bc07760719193e54580f7d46230d41e0, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 5f94093797af56d4aa4834336d4ab124, type: 2}
-    - {fileID: 11400000, guid: 475a69a7ff38da64bb06f589a6510936, type: 2}
+    - {fileID: 11400000, guid: 76e423e181c3ce34fad539d7fbf6ac41, type: 2}
+    - {fileID: 11400000, guid: 37190404037b3e147a04184dd97c894e, type: 2}
