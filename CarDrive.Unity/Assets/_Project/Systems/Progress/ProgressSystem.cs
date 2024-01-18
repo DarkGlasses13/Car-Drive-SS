@@ -53,7 +53,7 @@ namespace Assets._Project.Systems.Progress
             _passed = 0;
             _barCanvasGroup.alpha = 0;
             _bar.gameObject.SetActive(false);
-            MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
+            // MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Start, _player.Level + 1);
             _bar.gameObject.SetActive(true);
             _barCanvasGroup.DOFade(1, 0.25f).Play().SetAutoKill(true);
         }

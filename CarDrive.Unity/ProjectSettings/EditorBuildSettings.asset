@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Low Poly Combo Pack/Scenes/MoonSDKScene.unity
     guid: d000346570aa29644a23227aa0d21329
   - enabled: 1

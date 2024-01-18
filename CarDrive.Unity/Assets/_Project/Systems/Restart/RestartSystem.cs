@@ -56,7 +56,7 @@ namespace Assets._Project.Systems.Restart
         {
             if (state == GameStates.Lose)
             {
-                MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Fail, _player.Level);
+                // MoonSDK.TrackLevelEvents(MoonSDK.LevelEvents.Fail, _player.Level);
                 _levelMusic.Stop();
                 _popup.Show();
                 _inventory.Clear();
